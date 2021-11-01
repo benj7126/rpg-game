@@ -6,4 +6,8 @@
     <RootNamespace>rpg_game</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
