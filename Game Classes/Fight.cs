@@ -5,12 +5,8 @@ using rpg_game;
 
 namespace rpg_game.Game_Classes
 {
-    class Enemy
+    class Fight
     {
-        public static Enemy[] enemys =
-        {
 
-        };
-        public int Health
     }
 }
