@@ -7,5 +7,6 @@ namespace rpg_game.Game_Classes
 {
     class Enemy
     {
+        public int Health
     }
 }
