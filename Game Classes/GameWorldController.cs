@@ -36,7 +36,7 @@ namespace rpg_game.Game_Classes
             }
             else if (gameState == gameStates.other)
             {
-                Choice.update();
+                Choice.update(ref player, ref gameState);
             }
         }
     }
