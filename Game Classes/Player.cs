@@ -9,7 +9,7 @@ namespace rpg_game.Game_Classes
     {
         public int health = 16;
 
-        public Location targetLocation = null;
+        public Vector pos = new Vector(0, 0);
 
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();

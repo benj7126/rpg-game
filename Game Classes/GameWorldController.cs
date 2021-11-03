@@ -15,9 +15,9 @@ namespace rpg_game.Game_Classes
 
     class GameWorldController
     {
-        public gameStates gameState = gameStates.other;
+        public gameStates gameState = gameStates.Traveling;
         public Player player = new Player();
-        public List<Location> places = new List<Location>();
+        public List<Location> knownPlaces = new List<Location>();
         public ChoiceSelector Choice = new ChoiceSelector();
         public Travel curTravel = new Travel();
 
@@ -31,7 +31,7 @@ namespace rpg_game.Game_Classes
             else if (gameState == gameStates.Traveling)
             {
                 Travel curTravel = new Travel();
-                curTravel.run();
+                curTravel.run(ref player, Location.locations[1]);
             }
             else if (gameState == gameStates.Labyrinth)
             {
