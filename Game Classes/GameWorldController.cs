@@ -19,7 +19,8 @@ namespace rpg_game.Game_Classes
         public Player player = new Player();
         public List<Location> places = new List<Location>();
         public ChoiceSelector Choice = new ChoiceSelector();
-        public Travel curTravel
+        public Travel curTravel = new Travel();
+
 
         public void updateWorld()
         {
