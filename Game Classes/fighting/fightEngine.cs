@@ -50,12 +50,17 @@ namespace Fight_Engine
                     DrawChar(text[i], x + i, y);
                 }
             } else {
+                // Remove spaces at start of lines
+                for(int i = 0; i < text.Length; i+=wrapWidth) {
+                    if(text[i] == ' ')
+                        text = text.Remove(i, 1);
+                }
                 for(int j = 0; j < 1 + text.Length / wrapWidth; j++) {
                     for(int i = 0; i < wrapWidth; i++) {
                         try {
                             DrawChar(text[i + j * wrapWidth], x + i, y);
                         } catch (Exception e) {
-
+                            break;
                         }
                     }
                 y++;

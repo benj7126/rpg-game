@@ -13,11 +13,14 @@ namespace rpg_game.Game_Classes
             int hp = 305;
             while(true) {
                 Console.Clear();
+                game.DrawBorder();
                 game.SetLineColor(10, ConsoleColor.Red);
                 Fight_Engine.FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game);
                 game.SetLineColor(20, ConsoleColor.Green);
                 Fight_Engine.FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game);
                 hp = hp < 0 ? 0 : hp-1;
+
+                game.DrawText(enemy.enemys[1].Introduction, 5, 25, 20);
                 game.SwapBuffers();
                 game.DrawScreen();
                 Thread.Sleep(16);
