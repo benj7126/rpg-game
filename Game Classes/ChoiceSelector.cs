@@ -9,7 +9,7 @@ namespace rpg_game.Game_Classes
         public List<string> options = new List<string>();
         public int optionSelected = 0;
 
-        public void update()
+        public void update(ref Player player, ref gameStates state)
         {
 
         }
