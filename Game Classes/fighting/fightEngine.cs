@@ -126,12 +126,16 @@ namespace Fight_Engine
     class FightHelpers {
         public static void DrawHealthBar(int CurHP, int MaxHP, int x, int y, ref Engine game) {
             float hp_perc = (CurHP / (float)MaxHP) * 80;
-            Console.WriteLine(hp_perc);
             int cur_x = x;
             while (hp_perc - 8 >= 0) {
                 hp_perc -= 8;
                 game.DrawChar('█', cur_x, y);
                 cur_x++;
+            }
+
+            if(hp_perc != 0) {
+                int ch = Convert.ToInt32(9609 + (7 - hp_perc));
+                game.DrawChar((char)ch, cur_x, y);
             }
         }
     }
