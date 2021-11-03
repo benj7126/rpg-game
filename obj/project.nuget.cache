@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "9y3evcFq7mI3T41DpOKBg4j8HUpRKC68wWvLJxgGJohyx7fLGatLw8rV7pM8vazFFHd9o96oS4hY5Lp3Ac0CKA==",
+  "dgSpecHash": "Css3a9ZXVRLW3dFNE6MdLDJaQSZa5M0T4KziIgosiwLcmsswt0Eg2d93XZSCHs5eJIJWsZAnv3lT91xTZfD1uw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thoms\\source\\repos\\rpg-game\\rpg-game.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "/home/lasse/programming/programmeringC/rpg-game/rpg-game.csproj",
+  "expectedPackageFiles": [
+    "/home/lasse/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/home/lasse/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.17/microsoft.netcore.app.host.linux-x64.3.1.17.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/lasse/programming/programmeringC/rpg-game/obj/project.nuget.cache : Unexpected character encountered while parsing value: <. Path '', line 0, position 0."
+    }
+  ]
 }

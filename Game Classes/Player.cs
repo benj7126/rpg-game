@@ -7,6 +7,14 @@ namespace rpg_game.Game_Classes
 {
     class Player
     {
+        public enum itemPlace
+        {
+            MainHand,
+            OffHand,
+            Armor,
+            Ring,
+            Amulet
+        }
         public int health = 16;
 
         public Vector pos = new Vector(0, 0);
