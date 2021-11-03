@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using rpg_game.Game_Classes;
+using rpg_game;
 
-namespace rpg_game.Interfaces
+namespace rpg_game.Game_Classes
 {
     class Player
     {
@@ -12,7 +12,7 @@ namespace rpg_game.Interfaces
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
-        Player()
+        public Player()
         {
             equipped.Add(itemPlace.MainHand, null);
             equipped.Add(itemPlace.OffHand, null);

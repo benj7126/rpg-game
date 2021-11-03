@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading;
+using rpg_game;
+using rpg_game.Game_Classes;
 
 namespace rpg_game
 {
@@ -7,7 +9,11 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            print("My world that is hell");
+            GameWorldController game = new GameWorldController();
+            while (true)
+            {
+                game.updateWorld();
+            }
         }
 
         public static void print(string str, int ms = 50, bool stringSplit = false)
