@@ -69,11 +69,23 @@ namespace Fight_Engine
 
         }
 
-        public void DrawBox(int x1, int y1, int x2, int y2) {
+        public void DrawBox(int x1, int y1, int x2, int y2, bool edges = true) {
             DrawChar('┌', x1, y1);
             DrawChar('┐', x2, y1);
             DrawChar('┘', x2, y2);
             DrawChar('└', x1, y2);
+
+            if(!edges)
+                return;
+
+            for(int y = y1 + 1; y <  y2; y++) {
+                DrawChar('│', x1, y);
+                DrawChar('│', x2, y);
+            }
+            for(int x = x1 + 1; x < x2; x++) {
+                DrawChar('─', x, y1);
+                DrawChar('─', x, y2);
+            }
         }
 
         public void DrawBorder() {
