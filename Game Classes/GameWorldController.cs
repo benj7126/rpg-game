@@ -19,6 +19,7 @@ namespace rpg_game.Game_Classes
         public Player player = new Player();
         public List<Location> places = new List<Location>();
         public ChoiceSelector Choice = new ChoiceSelector();
+        public Travel curTravel
 
         public void updateWorld()
         {
@@ -28,7 +29,8 @@ namespace rpg_game.Game_Classes
             }
             else if (gameState == gameStates.Traveling)
             {
-
+                Travel curTravel = new Travel();
+                curTravel.run();
             }
             else if (gameState == gameStates.Labyrinth)
             {
