@@ -69,6 +69,13 @@ namespace Fight_Engine
 
         }
 
+        public void DrawBox(int x1, int y1, int x2, int y2) {
+            DrawChar('┌', x1, y1);
+            DrawChar('┐', x2, y1);
+            DrawChar('┘', x2, y2);
+            DrawChar('└', x1, y2);
+        }
+
         public void DrawBorder() {
             int winWidth = GetWinWidth();
             int winHeight = GetWinHeight();
