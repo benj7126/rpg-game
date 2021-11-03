@@ -51,7 +51,6 @@ namespace rpg_game.Game_Classes
                 if (!done)
                     Console.CursorTop = Console.CursorTop - optionsCount;
             }
-
             Console.WriteLine($"Selected {selected}.");
         }
     }
