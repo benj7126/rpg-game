@@ -133,7 +133,7 @@ namespace Fight_Engine
                 cur_x++;
             }
 
-            if(hp_perc != 0) {
+            if(hp_perc > 1 && hp_perc < 8) {
                 int ch = Convert.ToInt32(9609 + (7 - hp_perc));
                 game.DrawChar((char)ch, cur_x, y);
             }

@@ -10,13 +10,13 @@ namespace rpg_game.Game_Classes
     {
         public static void update() {
             Fight_Engine.Engine game = new Fight_Engine.Engine(80, 40, "Fight");
-            int hp = 100;
+            int hp = 305;
             while(true) {
                 Console.Clear();
                 game.SetLineColor(10, ConsoleColor.Red);
-                Fight_Engine.FightHelpers.DrawHealthBar(hp, 100, 2, 10, ref game);
+                Fight_Engine.FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game);
                 game.SetLineColor(20, ConsoleColor.Green);
-                Fight_Engine.FightHelpers.DrawHealthBar(hp, 100, 2, 20, ref game);
+                Fight_Engine.FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game);
                 hp = hp < 0 ? 0 : hp-1;
                 game.SwapBuffers();
                 game.DrawScreen();
