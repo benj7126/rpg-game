@@ -165,6 +165,7 @@ namespace Fight_Engine
 
     class FightHelpers {
         public static void DrawHealthBar(int CurHP, int MaxHP, int x, int y, ref Engine game, HBColor[] colors = null, bool box = false) {
+            // Maps HP to a scale, between 0 and 80.
             float hp_perc = (CurHP / (float)MaxHP) * 80;
             int cur_x = x;
             while (hp_perc - 8 >= 0) {
@@ -173,14 +174,20 @@ namespace Fight_Engine
                 cur_x++;
             }
 
+            // choose and draw the last char in healthbar.
+            // uses uncode codepoints, casting numbers to chars.
+            // 9608 = full block
+            // 9609 = 7/8  block
+            // 9610 = 6/8  block
+            // and so on.
             if(hp_perc > 1 && hp_perc < 8) {
                 int ch = Convert.ToInt32(9609 + (7 - hp_perc));
                 game.DrawChar((char)ch, cur_x, y);
             }
 
             // color handling
-            hp_perc = (CurHP / (float)MaxHP) * 80;
             if(colors != null) {
+                hp_perc = (CurHP / (float)MaxHP) * 80;
                 for(int i = 0; i < colors.Length; i++) {
                     if(colors[i].UnderPerc > hp_perc) {
                         game.SetLineColor(y, colors[i].color);

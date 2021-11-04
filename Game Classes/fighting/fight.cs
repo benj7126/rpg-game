@@ -22,6 +22,8 @@ namespace rpg_game.Game_Classes
                 new HBColor(80, ConsoleColor.Red),
             };
 
+            string WrittenText = "";
+
             while(true) {
                 Console.Clear();
                 game.DrawBorder();
@@ -32,6 +34,21 @@ namespace rpg_game.Game_Classes
 
                 game.DrawText(enemy.enemys[1].Introduction, 5, 25, 20, true);
                 game.DrawText("testing", 5, 15, box:true);
+
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+
+                    WrittenText += key.KeyChar;
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.Backspace:
+                            WrittenText.Remove(WrittenText.Length-1, 1);
+                            break;
+                    }
+                }
+
+                game.DrawText(WrittenText, 2, 2, 20, true);
 
                 game.SwapBuffers();
                 game.DrawScreen();
