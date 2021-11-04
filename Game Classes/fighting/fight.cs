@@ -20,7 +20,7 @@ namespace rpg_game.Game_Classes
                 Fight_Engine.FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game);
                 game.DrawBox(9, 19, 20, 21, false);
 
-                hp = hp < 0 ? 0 : hp-1;
+                hp = hp < 0 ? 305 : hp-1;
 
                 game.DrawBox(4, 24, 26, 30, true);
                 game.DrawText(enemy.enemys[1].Introduction, 5, 25, 20);
