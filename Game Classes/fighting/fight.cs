@@ -25,7 +25,6 @@ namespace rpg_game.Game_Classes
             string WrittenText = "";
 
             while(true) {
-                Console.Clear();
                 game.DrawBorder();
                 FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game, playerHBCol, true);
                 FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game, enemyHBCol);
@@ -44,6 +43,7 @@ namespace rpg_game.Game_Classes
                 game.DrawText(WrittenText, 2, 2, 20, true);
 
                 game.SwapBuffers();
+                Console.Clear();
                 game.DrawScreen();
                 Thread.Sleep(16);
             }

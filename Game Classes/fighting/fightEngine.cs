@@ -176,9 +176,9 @@ namespace Fight_Engine
 
             // choose and draw the last char in healthbar.
             // uses uncode codepoints, casting numbers to chars.
-            // 9608 = full block
-            // 9609 = 7/8  block
-            // 9610 = 6/8  block
+            // 9608 = full block █ (not used here)
+            // 9609 = 7/8  block ▉
+            // 9610 = 6/8  block ▊
             // and so on.
             if(hp_perc > 1 && hp_perc < 8) {
                 int ch = Convert.ToInt32(9609 + (7 - hp_perc));
