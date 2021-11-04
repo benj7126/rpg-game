@@ -12,20 +12,21 @@ namespace rpg_game.Game_Classes
         public static void update() {
             Engine game = new Fight_Engine.Engine(80, 40, "Fight");
             int hp = 305;
+            HBColor[] playerHBCol = {
+                new HBColor(15, ConsoleColor.Red),
+                new HBColor(30, ConsoleColor.Yellow),
+                new HBColor(80, ConsoleColor.Green),
+            };
+
+            HBColor[] enemyHBCol = {
+                new HBColor(80, ConsoleColor.Red),
+            };
+
             while(true) {
                 Console.Clear();
                 game.DrawBorder();
-                HBColor[] enemyHBCol = {
-                    new HBColor(80, ConsoleColor.Red),
-                };
-                FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game, enemyHBCol);
-
-                HBColor[] playerHBCol = {
-                    new HBColor(15, ConsoleColor.Red),
-                    new HBColor(30, ConsoleColor.Yellow),
-                    new HBColor(80, ConsoleColor.Green),
-                };
                 FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game, playerHBCol, true);
+                FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game, enemyHBCol);
 
                 hp = hp < 0 ? 305 : hp-1;
 
