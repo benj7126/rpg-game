@@ -44,12 +44,15 @@ namespace Fight_Engine
             }
         }
 
-        public void DrawText(string text, int x, int y, int wrapWidth = 0) {
+        public void DrawText(string text, int x, int y, int wrapWidth = 0, bool box = false) {
             if(wrapWidth == 0) {
                 for(int i = 0; i < text.Length; i++) {
                     DrawChar(text[i], x + i, y);
                 }
+                if(box)
+                    DrawBox(x-1, y-1, x+text.Length+1, y+1);
             } else {
+                int init_y = y;
                 // Remove spaces at start of lines
                 for(int i = 0; i < text.Length; i+=wrapWidth) {
                     if(text[i] == ' ')
@@ -65,6 +68,9 @@ namespace Fight_Engine
                     }
                 y++;
                 }
+
+                if(box)
+                    DrawBox(x-1, init_y-1, x+wrapWidth+1, y);
             }
 
         }
@@ -158,7 +164,7 @@ namespace Fight_Engine
     }
 
     class FightHelpers {
-        public static void DrawHealthBar(int CurHP, int MaxHP, int x, int y, ref Engine game) {
+        public static void DrawHealthBar(int CurHP, int MaxHP, int x, int y, ref Engine game, HBColor[] colors = null, bool box = false) {
             float hp_perc = (CurHP / (float)MaxHP) * 80;
             int cur_x = x;
             while (hp_perc - 8 >= 0) {
@@ -171,6 +177,34 @@ namespace Fight_Engine
                 int ch = Convert.ToInt32(9609 + (7 - hp_perc));
                 game.DrawChar((char)ch, cur_x, y);
             }
+
+            // color handling
+            hp_perc = (CurHP / (float)MaxHP) * 80;
+            if(colors != null) {
+                for(int i = 0; i < colors.Length; i++) {
+                    if(colors[i].UnderPerc > hp_perc) {
+                        game.SetLineColor(y, colors[i].color);
+                        break;
+                    }
+                }
+            }
+
+            // draw box
+            if(box) {
+                game.DrawBox(x-1, y-1, x+10, y+1, false);
+            }
+
+        }
+    }
+
+    // HBColor = Health Bar Color
+    class HBColor {
+        public float UnderPerc;
+        public ConsoleColor color;
+
+        public HBColor(float UnderPerc, ConsoleColor color) {
+            this.UnderPerc = UnderPerc;
+            this.color = color;
         }
     }
 }

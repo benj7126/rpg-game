@@ -28,7 +28,7 @@ namespace rpg_game.Game_Classes
                 ,1,1,
                 "last words"),
 
-            new enemy("Pineapple on pizza hater","I can see it in you. You enjoy pineapple on pizza!!!.You uncultured beast I will cut you down"
+            new enemy("Pineapple on pizza hater","I can see it in you. You enjoy pineapple on pizza!!! You uncultured beast I will cut you down"
                 ,1,2,
                 "Nooo this can't happen! I can't die! Who will protect pizzas from pineapples now."),
 
