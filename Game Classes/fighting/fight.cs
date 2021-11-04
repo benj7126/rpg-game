@@ -38,14 +38,7 @@ namespace rpg_game.Game_Classes
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
-
                     WrittenText += key.KeyChar;
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.Backspace:
-                            WrittenText.Remove(WrittenText.Length-1, 1);
-                            break;
-                    }
                 }
 
                 game.DrawText(WrittenText, 2, 2, 20, true);
