@@ -259,7 +259,11 @@ namespace Fight_Engine
 
         public void DrawList(ref Engine game, int x, int y) {
             for(int i = 0; i < items.Count; i++) {
-                game.DrawText(items[i].name, x, y+i);
+                string name = items[i].name;
+                if(SelectedItemIdx == i) {
+                    name = ">" + name;
+                }
+                game.DrawText(name, x, y+i);
             }
 
             game.SetLineColor(y+SelectedItemIdx, ConsoleColor.Green);
