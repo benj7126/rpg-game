@@ -214,4 +214,67 @@ namespace Fight_Engine
             this.color = color;
         }
     }
+
+    class MenuList {
+        List<ListItem> items = new List<ListItem>();
+        int SelectedItemIdx;
+
+        public enum InputType {
+            Up,
+            Down,
+            Ok,
+            Cancel,
+        };
+
+        public MenuList(ListItem[] items) {
+            this.items = items.ToList();
+        }
+
+        public void HandleInput(InputType ipt) {
+            switch(ipt) {
+                case InputType.Up:
+                    SelectedItemIdx--;
+                    break;
+                case InputType.Down:
+                    SelectedItemIdx++;
+                    break;
+                case InputType.Ok:
+                    break;
+                case InputType.Cancel:
+                    break;
+                default:
+                    break;
+            }
+
+            WrapIdx();
+        }
+
+        private void WrapIdx() {
+            if(SelectedItemIdx < 0) {
+                SelectedItemIdx = items.Count-1;
+            } else if (SelectedItemIdx >= items.Count) {
+                SelectedItemIdx = 0;
+            }
+        }
+
+        public void DrawList(ref Engine game, int x, int y) {
+            for(int i = 0; i < items.Count; i++) {
+                string name = items[i].name;
+                if(SelectedItemIdx == i) {
+                    name = ">" + name;
+                }
+                game.DrawText(name, x, y+i);
+            }
+
+            game.SetLineColor(y+SelectedItemIdx, ConsoleColor.Green);
+        }
+    }
+
+    class ListItem {
+        public string name;
+
+        public ListItem(string name) {
+            this.name = name;
+        }
+    }
 }

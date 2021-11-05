@@ -22,9 +22,16 @@ namespace rpg_game.Game_Classes
                 new HBColor(80, ConsoleColor.Red),
             };
 
-            string WrittenText = "";
+            ListItem[] controlList = {
+                new ListItem("Fight"),
+                new ListItem("Defend"),
+                new ListItem("Run Away (coward)"),
+            };
+
+            MenuList menu = new MenuList(controlList);
 
             while(true) {
+                HandleInput(ref menu);
                 game.DrawBorder();
                 FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game, playerHBCol, true);
                 FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game, enemyHBCol);
@@ -34,18 +41,26 @@ namespace rpg_game.Game_Classes
                 game.DrawText(enemy.enemys[1].Introduction, 5, 25, 20, true);
                 game.DrawText("testing", 5, 15, box:true);
 
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo key = Console.ReadKey(true);
-                    WrittenText += key.KeyChar;
-                }
-
-                game.DrawText(WrittenText, 2, 2, 20, true);
+                menu.DrawList(ref game, 3, 32);
 
                 game.SwapBuffers();
                 Console.Clear();
                 game.DrawScreen();
                 Thread.Sleep(16);
+            }
+        }
+
+        private static void HandleInput(ref MenuList menu) {
+            if (!Console.KeyAvailable)
+                return;
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch(key.Key) {
+                case ConsoleKey.UpArrow:
+                    menu.HandleInput(MenuList.InputType.Up);
+                    break;
+                case ConsoleKey.DownArrow:
+                    menu.HandleInput(MenuList.InputType.Down);
+                    break;
             }
         }
     }
