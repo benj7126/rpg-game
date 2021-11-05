@@ -49,10 +49,8 @@ namespace rpg_game.Game_Classes
                 Thread.Sleep(16);
             }
         }
-
         private static void HandleInput(ref MenuList menu) {
-            if (!Console.KeyAvailable)
-                return;
+            if (!Console.KeyAvailable) return;
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch(key.Key) {
                 case ConsoleKey.UpArrow:
@@ -60,6 +58,12 @@ namespace rpg_game.Game_Classes
                     break;
                 case ConsoleKey.DownArrow:
                     menu.HandleInput(MenuList.InputType.Down);
+                    break;
+                case ConsoleKey.Enter:
+                    menu.HandleInput(MenuList.InputType.Ok);
+                    break;
+                case ConsoleKey.Escape:
+                    menu.HandleInput(MenuList.InputType.Cancel);
                     break;
             }
         }
