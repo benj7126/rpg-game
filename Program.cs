@@ -9,7 +9,7 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            Fight.update();
+            //Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {

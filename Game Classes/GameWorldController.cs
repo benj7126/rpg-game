@@ -10,36 +10,68 @@ namespace rpg_game.Game_Classes
         Fighting,
         Traveling,
         Labyrinth,
-        other
+        Other,
+        Optoions
     }
 
     class GameWorldController
     {
-        public gameStates gameState = gameStates.Traveling;
+        public gameStates gameState = gameStates.Other;
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
-        public ChoiceSelector Choice = new ChoiceSelector();
         public Travel curTravel = new Travel();
 
 
         public void updateWorld()
         {
-            if (gameState == gameStates.Fighting)
+            int chosen = 0;
+            ChoiceSelector Choice = new ChoiceSelector();
+            List<string> Choices = new List<string>();
+            switch (gameState)
             {
+                case gameStates.Fighting:
+                    break;
+                case gameStates.Traveling:
+                    for (int i = 0; i < player.possibleLocations.Count; i++)
+                    {
+                        Choices.Add(player.possibleLocations[i].name);
+                    }
+                    Choices.Add("Back");
 
-            }
-            else if (gameState == gameStates.Traveling)
-            {
-                Travel curTravel = new Travel();
-                curTravel.run(ref player, Location.locations[1]);
-            }
-            else if (gameState == gameStates.Labyrinth)
-            {
+                    chosen = Choice.update(ref player, ref gameState, Choices, "Where to go next?");
 
-            }
-            else if (gameState == gameStates.other)
-            {
-                Choice.update(ref player, ref gameState);
+                    if (chosen != player.possibleLocations.Count)
+                    {
+                        Travel curTravel = new Travel();
+                        curTravel.run(ref player, Location.locations[1]);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        gameState = gameStates.Other;
+                    }
+                    break;
+                case gameStates.Labyrinth:
+                    break;
+                case gameStates.Other:
+                    Choices.Add("Travel");
+                    Choices.Add("Options");
+
+                    chosen = Choice.update(ref player, ref gameState, Choices, "What to do now?");
+
+                    switch (chosen)
+                    {
+                        case 0:
+                            gameState = gameStates.Traveling;
+                            break;
+                        case 1:
+                            gameState = gameStates.Optoions;
+                            break;
+                    }
+                    Console.Clear();
+                    break;
+                case gameStates.Optoions:
+                    break;
             }
         }
     }

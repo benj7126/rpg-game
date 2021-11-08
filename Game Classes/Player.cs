@@ -17,7 +17,12 @@ namespace rpg_game.Game_Classes
         }
         public int health = 16;
 
+        ConsoleKey up = ConsoleKey.UpArrow;
+        ConsoleKey down = ConsoleKey.DownArrow;
+        ConsoleKey select = ConsoleKey.Enter;
+
         public Vector pos = new Vector(0, 0);
+        public List<Location> possibleLocations = new List<Location>();
 
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
@@ -29,6 +34,8 @@ namespace rpg_game.Game_Classes
             equipped.Add(itemPlace.Armor, null);
             equipped.Add(itemPlace.Ring, null);
             equipped.Add(itemPlace.Amulet, null);
+
+            possibleLocations.Add(Location.locations[0]);
         }
     }
 }

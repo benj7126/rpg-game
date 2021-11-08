@@ -50,8 +50,8 @@ namespace rpg_game.Game_Classes
                 str += "]";
                 if (doWrite)
                 {
-                    Console.Clear();
-                    int tempInt = (int)MathF.Floor(travelLeft / travelTotal * 100);
+                    Console.CursorTop = Console.CursorTop - 1;
+                    int tempInt = (int)MathF.Floor((MathF.Abs(travelLeft / travelTotal-1)*100));
                     Console.WriteLine(str + " " + tempInt.ToString() + "/100");
                 }
 
