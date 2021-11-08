@@ -8,6 +8,7 @@ namespace rpg_game.Game_Classes
     public enum gameStates
     {
         Fighting,
+        StartScreen,
         Traveling,
         Labyrinth,
         Other,
@@ -111,6 +112,13 @@ namespace rpg_game.Game_Classes
                             gameState = gameStates.Other;
                             break;
                     }
+                    break;
+                case gameStates.StartScreen:
+                    Program.print("What is your name player?");
+                    Choices.Add("Controls");
+                    Choices.Add("Back");
+
+                    chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
                     break;
             }
             Console.WriteLine("");

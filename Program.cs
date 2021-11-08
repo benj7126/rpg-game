@@ -9,14 +9,13 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            print("adjsalk jdakajdakldjasdkasjdklasj ddsjj j j jj jjd jka jsld jsd kjlk jllkjadkldajsdda sdas dasd asd as das dasd asd asd");
             //Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
             //scene.Start();
             //Fight.update();
-            //GameWorldController game = new GameWorldController();
+            GameWorldController game = new GameWorldController();
             while (true)
             {
-                //game.updateWorld();
+                game.updateWorld();
             }
         }
 

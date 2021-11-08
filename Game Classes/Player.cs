@@ -18,6 +18,8 @@ namespace rpg_game.Game_Classes
         public int health = 16;
         public int maxHealth = 16;
 
+        public string name = "";
+
         public ConsoleKey up = ConsoleKey.UpArrow;
         public ConsoleKey down = ConsoleKey.DownArrow;
         public ConsoleKey select = ConsoleKey.Enter;
