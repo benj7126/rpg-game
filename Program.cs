@@ -9,12 +9,16 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            //Fight.update();
+            Game_Scenes.Scene scene = new Game_Scenes.Beginning();
+            scene.Start();
+            /*
+            Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {
                 game.updateWorld();
             }
+            */
         }
 
         public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80)
