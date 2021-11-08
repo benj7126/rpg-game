@@ -9,13 +9,14 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
-            scene.Start();
-            Fight.update();
-            GameWorldController game = new GameWorldController();
+            print("adjsalk jdakajdakldjasdkasjdklasj ddsjj j j jj jjd jka jsld jsd kjlk jllkjadkldajsdda sdas dasd asd as das dasd asd asd");
+            //Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
+            //scene.Start();
+            //Fight.update();
+            //GameWorldController game = new GameWorldController();
             while (true)
             {
-                game.updateWorld();
+                //game.updateWorld();
             }
         }
 
@@ -29,10 +30,10 @@ namespace rpg_game
             {
                 if (totalNR + word.Length > maxCharLen)
                 {
-                    nString = "\n";
+                    nString = nString + "\n";
                     totalNR = 0;
                 }
-
+                
                 nString = nString + word + " ";
                 totalNR = totalNR + word.Length;
             }
