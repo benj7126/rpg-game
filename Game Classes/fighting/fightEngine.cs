@@ -23,6 +23,8 @@ namespace Fight_Engine
             parameters.winWidth = win_width;
             parameters.winHeight = win_height;
             parameters.name = game_name;
+
+            Console.Title = game_name;
         }
 
         public int GetWinWidth() { return parameters.winWidth; }
