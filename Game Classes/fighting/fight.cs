@@ -59,11 +59,11 @@ namespace rpg_game.Game_Classes
             HBColor[] playerHBCol = {
                 new HBColor(15, ConsoleColor.Red),
                 new HBColor(30, ConsoleColor.Yellow),
-                new HBColor(80, ConsoleColor.Green),
+                new HBColor(100, ConsoleColor.Green),
             };
 
             HBColor[] enemyHBCol = {
-                new HBColor(80, ConsoleColor.Red),
+                new HBColor(100, ConsoleColor.Red),
             };
 
             ListItem[] controlList = {
@@ -119,11 +119,11 @@ namespace rpg_game.Game_Classes
             int enemyHP = enemy.Health;
 
             while(true) {
-                game.DrawText("playername", 2, 2);
+                game.DrawText("playername", 2, 1);
                 game.DrawText(enemy.Name, game.GetWinWidth() - enemy.Name.Length - 2, 3);
 
-                Fight_Engine.FightHelpers.DrawHealthBar(player.health, 16, 2, 1, ref game, playerHB);
-                Fight_Engine.FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 2, ref game, enemyHB);
+                FightHelpers.DrawHealthBar(player.health, player.maxHealth, 2, 2, ref game, playerHB);
+                FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 4, ref game, enemyHB);
                 game.SwapBuffers();
                 game.DrawScreen();
             }
@@ -143,7 +143,7 @@ namespace rpg_game.Game_Classes
             Thread.Sleep(1000);
         }
 
-        private static void HandleInput(ref MenuList menu) {
+        private static void HandleInput(ref MenuList menu, Player player) {
             // The following line stops blocking the executing thread, if no key
             // has been pressed.
             if (!Console.KeyAvailable) return;
@@ -151,33 +151,12 @@ namespace rpg_game.Game_Classes
             // Reads and saves pressed key
             ConsoleKeyInfo key = Console.ReadKey(true);
             // Checks the pressed key. Sends press to menu.
-            switch(key.Key) {
-                // Handle arrow keys + enter & escape
-                case ConsoleKey.UpArrow:
-                    menu.HandleInput(MenuList.InputType.Up);
-                    break;
-                case ConsoleKey.DownArrow:
-                    menu.HandleInput(MenuList.InputType.Down);
-                    break;
-                case ConsoleKey.Enter:
-                    menu.HandleInput(MenuList.InputType.Ok);
-                    break;
-                case ConsoleKey.Escape:
-                    menu.HandleInput(MenuList.InputType.Cancel);
-                    break;
-                // Also handle vim-keys
-                case ConsoleKey.J:
-                    menu.HandleInput(MenuList.InputType.Down);
-                    break;
-                case ConsoleKey.K:
-                    menu.HandleInput(MenuList.InputType.Up);
-                    break;
-                case ConsoleKey.L:
-                    menu.HandleInput(MenuList.InputType.Ok);
-                    break;
-                case ConsoleKey.H:
-                    menu.HandleInput(MenuList.InputType.Cancel);
-                    break;
+            if(key.Key == player.up) {
+                menu.HandleInput(MenuList.InputType.Up);
+            } else if(key.Key == player.down) {
+                menu.HandleInput(MenuList.InputType.Down);
+            } else if(key.Key == player.select) {
+                menu.HandleInput(MenuList.InputType.Ok);
             }
         }
     }
