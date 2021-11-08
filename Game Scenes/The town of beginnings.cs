@@ -28,7 +28,8 @@ namespace rpg_game.Game_Scenes
             Program.print("I recommend going to a few places here in hell and preparing to kill that demon", delay: 200);
             Program.print("Actually a good start would be going to this one place where monsters just like you reside", delay: 200);
             Program.print("It's called the outpost for pineapple on pizza lovers", delay: 200);
-            Program.print("It's up to you take a look on your map and decide where to go. Warning some places are more dangerous than others.", delay: 200);
+            Program.print("It's up to you", delay: 100, withNLine: false);
+            Program.print("take a look on your map and decide where to go. Warning some places are more dangerous than others.", delay: 200);
 
         }
     }
