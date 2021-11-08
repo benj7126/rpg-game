@@ -52,6 +52,6 @@ namespace rpg_game.Game_Classes
         public static Item[] items =
         {
 
-    }
+        };
     }
 }

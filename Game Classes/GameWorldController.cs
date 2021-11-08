@@ -152,7 +152,7 @@ namespace rpg_game.Game_Classes
                     }
 
                     Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
-                    scene.Start();
+                    scene.Start(ref player);
                     gameState = gameStates.Other;
                     break;
             }
