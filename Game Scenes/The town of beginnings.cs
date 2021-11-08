@@ -19,6 +19,7 @@ namespace rpg_game.Game_Scenes
             Program.print("You always had you phone turned on in the movie theater and then you would get calls and just generally annoy everyone", delay: 200);
             Program.print("You always run late to class", delay: 1000);
             Program.print("Despite all these completely valid valid reasons you feel like this doom in hell is deeply unfair");
+            Program.print("");
 
             Program.print("So you wanna escape hell do you?", delay: 200);
             Program.print("Easier done than said", delay: 200);
