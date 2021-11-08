@@ -12,14 +12,16 @@ namespace rpg_game.Game_Classes
         public int Health;
         public int Damage;
         public string Last_words;
+        //public Item[] Drops;
 
-        public Enemy(string name, string introduction, int health, int damage, string last_words)
+        public Enemy(string name, string introduction, int health, int damage, string last_words) /*, Item[] drops)*/
         {
             Name = name;
             Introduction = introduction;
             Health = health;
             Damage = damage;
             Last_words = last_words;
+            //Drops = drops;
         }
 
         public static Enemy[] enemies =
@@ -40,9 +42,9 @@ namespace rpg_game.Game_Classes
                 ,9,0,
                 "Not fair"),
 
-            new Enemy("name","intro"
-                ,1,1,
-                "last words"),
+            new Enemy("Small red demon","They don't make any small size tridents but they had a spare normal size one. It may be too big for me but I'll use it if I must"
+                ,3,4,
+                "You've defeated me human, I wonder where I'll go now that I'm dead, Hells Hell? I guess I'll see"),
         };
 
     }
