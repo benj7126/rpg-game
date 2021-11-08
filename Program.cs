@@ -39,23 +39,6 @@ namespace rpg_game
 
             str = nString;
 
-            bool addNLine = true;
-            while (addNLine)
-            {
-                if (str.Length >= maxCharLen)
-                {
-                    nString += str.Substring(0, maxCharLen) + "\n";
-                    str = str.Substring(maxCharLen, str.Length - maxCharLen);
-                }
-                else
-                {
-                    nString += str.Substring(0, str.Length);
-                    addNLine = false;
-                }
-            }
-
-            str = nString;
-
             if (stringSplit)
             {
                 nStr = str.Split(" ");
