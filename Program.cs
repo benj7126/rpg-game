@@ -9,13 +9,10 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
-            scene.Start();
-            //Fight.update();
-            //GameWorldController game = new GameWorldController();
+            GameWorldController game = new GameWorldController();
             while (true)
             {
-                //game.updateWorld();
+                game.updateWorld();
             }
         }
 
