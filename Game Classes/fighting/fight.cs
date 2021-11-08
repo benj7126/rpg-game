@@ -74,8 +74,8 @@ namespace rpg_game.Game_Classes
 
             MenuList menu = new MenuList(controlList);
 
-            FightBeginning(ref game, enemy);
-            HandleFight(ref game, ref player, enemy);
+            //FightBeginning(ref game, enemy);
+            HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
             FightEnding(ref game, enemy);
 
             return false;
@@ -113,11 +113,20 @@ namespace rpg_game.Game_Classes
                 game.SwapBuffers();
                 game.DrawScreen();
             }
-
         }
 
-        private static void HandleFight(ref Engine game, ref Player player, Enemy enemy) {
+        private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
+            int enemyHP = enemy.Health;
 
+            while(true) {
+                game.DrawText("playername", 2, 2);
+                game.DrawText(enemy.Name, game.GetWinWidth() - enemy.Name.Length - 2, 3);
+
+                Fight_Engine.FightHelpers.DrawHealthBar(player.health, 16, 2, 1, ref game, playerHB);
+                Fight_Engine.FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 2, ref game, enemyHB);
+                game.SwapBuffers();
+                game.DrawScreen();
+            }
         }
 
         private static void FightEnding(ref Engine game, Enemy enemy, int tickSpeed = 50) {
