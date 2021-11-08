@@ -18,6 +18,18 @@ namespace rpg_game.Game_Classes
             onEnter = scene;
         }
 
+        public static Location getLocationByName(string name)
+        {
+            foreach (Location l in locations)
+            {
+                if (l.name == name)
+                {
+                    return l;
+                }
+            }
+            return null;
+        }
+
         public static Location[] locations =
         {
             new Location("The town of beginnings", new Vector(0, 0), new Game_Scenes.Beginning()),
