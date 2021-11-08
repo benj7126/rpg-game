@@ -9,21 +9,34 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            Game_Scenes.Scene scene = new Game_Scenes.Beginning();
-            scene.Start();
-            /*
             Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {
                 game.updateWorld();
             }
-            */
         }
 
-        public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80)
+        public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80, bool withNLine = true)
         {
+            string[] nStr = str.Split(" ");
+            int totalNR = 0;
             string nString = "";
+
+            foreach (string word in nStr)
+            {
+                if (totalNR + word.Length > maxCharLen)
+                {
+                    nString = "\n";
+                    totalNR = 0;
+                }
+
+                nString = nString + word + " ";
+                totalNR = totalNR + word.Length;
+            }
+
+
+
             bool addNLine = true;
             while (addNLine)
             {
@@ -43,7 +56,7 @@ namespace rpg_game
 
             if (stringSplit)
             {
-                string[] nStr = str.Split(" ");
+                nStr = str.Split(" ");
                 for (int i = 0; i < nStr.Length-1; i++)
                 {
                     Console.Write(nStr[i]);
@@ -60,7 +73,8 @@ namespace rpg_game
                     Thread.Sleep(ms);
                 }
             }
-            Console.Write("\n");
+            if (withNLine)
+                Console.Write("\n");
             Thread.Sleep(delay);
         }
     }
