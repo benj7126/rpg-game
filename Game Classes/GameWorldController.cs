@@ -17,7 +17,7 @@ namespace rpg_game.Game_Classes
 
     class GameWorldController
     {
-        public gameStates gameState = gameStates.Other;
+        public gameStates gameState = gameStates.StartScreen;
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
         public Travel curTravel = new Travel();
@@ -115,10 +115,45 @@ namespace rpg_game.Game_Classes
                     break;
                 case gameStates.StartScreen:
                     Program.print("What is your name player?");
-                    Choices.Add("Controls");
-                    Choices.Add("Back");
+                    Console.Write("My name is ");
+                    player.name = Console.ReadLine();
 
-                    chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
+                    bool doContinue = true;
+
+                    Choices.Add("Controls");
+                    Choices.Add("Start");
+
+                    while (doContinue)
+                    {
+                        chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
+                        switch (chosen)
+                        {
+                            case 0:
+
+                                Console.Write("Up - ");
+                                player.up = Console.ReadKey(true).Key;
+                                Console.WriteLine(player.up);
+
+
+                                Console.Write("Down - ");
+                                player.down = Console.ReadKey(true).Key;
+                                Console.WriteLine(player.down);
+
+
+                                Console.Write("Select - ");
+                                player.select = Console.ReadKey(true).Key;
+                                Console.WriteLine(player.select);
+
+                                break;
+                            case 1:
+                                doContinue = false;
+                                break;
+                        }
+                    }
+
+                    Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
+                    scene.Start();
+                    gameState = gameStates.Other;
                     break;
             }
             Console.WriteLine("");
