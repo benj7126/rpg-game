@@ -66,13 +66,7 @@ namespace rpg_game.Game_Classes
                 new HBColor(100, ConsoleColor.Red),
             };
 
-            ListItem[] controlList = {
-                new ListItem("Fight"),
-                new ListItem("Defend"),
-                new ListItem("Run Away (coward)"),
-            };
-
-            MenuList menu = new MenuList(controlList);
+            Console.Clear();
 
             //FightBeginning(ref game, enemy);
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
@@ -118,14 +112,27 @@ namespace rpg_game.Game_Classes
         private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
             int enemyHP = enemy.Health;
 
+            ListItem[] controlList = {
+                new ListItem("Head"),
+                new ListItem("Torso"),
+                new ListItem("Legs"),
+            };
+            MenuList menu = new MenuList(controlList);
+
             while(true) {
                 game.DrawText("playername", 2, 1);
                 game.DrawText(enemy.Name, game.GetWinWidth() - enemy.Name.Length - 2, 3);
 
                 FightHelpers.DrawHealthBar(player.health, player.maxHealth, 2, 2, ref game, playerHB);
                 FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 4, ref game, enemyHB);
+
+                game.DrawText("Where do you want to attack?", 2, 6);
+                menu.DrawList(ref game, 2, 7);
+
                 game.SwapBuffers();
                 game.DrawScreen();
+
+                HandleInput(ref menu, player);
             }
         }
 
@@ -146,10 +153,10 @@ namespace rpg_game.Game_Classes
         private static void HandleInput(ref MenuList menu, Player player) {
             // The following line stops blocking the executing thread, if no key
             // has been pressed.
-            if (!Console.KeyAvailable) return;
+            //if (!Console.KeyAvailable) return;
 
             // Reads and saves pressed key
-            ConsoleKeyInfo key = Console.ReadKey(true);
+            ConsoleKeyInfo key = Console.ReadKey();
             // Checks the pressed key. Sends press to menu.
             if(key.Key == player.up) {
                 menu.HandleInput(MenuList.InputType.Up);
