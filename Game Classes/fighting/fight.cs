@@ -163,6 +163,7 @@ namespace rpg_game.Game_Classes
             } else if(key.Key == player.down) {
                 menu.HandleInput(MenuList.InputType.Down);
             } else if(key.Key == player.select) {
+                player.health -= 1;
                 menu.HandleInput(MenuList.InputType.Ok);
             }
         }

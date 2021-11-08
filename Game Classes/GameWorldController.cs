@@ -17,7 +17,7 @@ namespace rpg_game.Game_Classes
 
     class GameWorldController
     {
-        public gameStates gameState = gameStates.StartScreen;
+        public gameStates gameState = gameStates.Other;
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
         public Travel curTravel = new Travel();
@@ -41,13 +41,13 @@ namespace rpg_game.Game_Classes
                             if (player.possibleLocations[i].name != player.playerLocation.name)
                             {
                                 usableLocations.Add(player.possibleLocations[i]);
-                                Choices.Add(player.possibleLocations[i].name);
+                                Choices.Add(player.possibleLocations[i].name + " - " + MathF.Floor(Vector.distance(player.possibleLocations[i].pos, player.pos)) + "m");
                             }
                         }
                         else
                         {
                             usableLocations.Add(player.possibleLocations[i]);
-                            Choices.Add(player.possibleLocations[i].name);
+                            Choices.Add(player.possibleLocations[i].name + " - " + MathF.Floor(Vector.distance(player.possibleLocations[i].pos, player.pos)) + "m");
                         }
                     }
                     Choices.Add("Back");

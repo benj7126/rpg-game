@@ -24,7 +24,7 @@ namespace rpg_game.Game_Classes
         public ConsoleKey down = ConsoleKey.DownArrow;
         public ConsoleKey select = ConsoleKey.Enter;
 
-        public Location playerLocation = null;
+        public Location playerLocation = Location.getLocationByName("Midt ude i ingenting");
 
         public Vector pos = new Vector(100, 0);
         public List<Location> possibleLocations = new List<Location>();
@@ -40,7 +40,15 @@ namespace rpg_game.Game_Classes
             equipped.Add(itemPlace.Ring, null);
             equipped.Add(itemPlace.Amulet, null);
 
-            possibleLocations.Add(Location.locations[0]);
+            foreach (Location l in Location.locations)
+            {
+                possibleLocations.Add(l);
+            }
+
+            /*
+            possibleLocations.Add(Location.getLocationByName("The town of beginnings"));
+            possibleLocations.Add(Location.getLocationByName("Midt ude i ingenting"));
+            */
         }
     }
 }

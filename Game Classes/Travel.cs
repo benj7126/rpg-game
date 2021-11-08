@@ -25,8 +25,8 @@ namespace rpg_game.Game_Classes
             while (doneTraveling == false)
             {
                 bool doWrite = false;
-                Thread.Sleep(100);
-                travelLeft -= 1;
+                Thread.Sleep(10);
+                travelLeft -= 0.2f;
 
 
                 float p = Math.Abs(travelLeft/travelTotal-1)* size;
@@ -57,7 +57,7 @@ namespace rpg_game.Game_Classes
                     Console.CursorTop = Console.CursorTop - 1;
                     int tempInt = (int)MathF.Floor((MathF.Abs(travelLeft / travelTotal-1)*100));
                     tempInt = Math.Max(Math.Min(tempInt, 100), 0);
-                    Console.WriteLine(str + " " + tempInt.ToString() + "/100");
+                    Console.WriteLine(str + " " + tempInt.ToString() + "/100%");
                 }
 
 
@@ -66,7 +66,7 @@ namespace rpg_game.Game_Classes
                     Console.CursorTop = Console.CursorTop - 1;
                     int tempInt = (int)MathF.Floor((MathF.Abs(travelLeft / travelTotal - 1) * 100));
                     tempInt = Math.Max(Math.Min(tempInt, 100), 0);
-                    Console.WriteLine(str + " " + tempInt.ToString() + "/100");
+                    Console.WriteLine(str + " " + tempInt.ToString() + "/100%");
                     doneTraveling = true;
 
                     plr.pos = dest.pos;

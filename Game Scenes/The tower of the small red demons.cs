@@ -10,7 +10,7 @@ namespace rpg_game.Game_Scenes
     {
         public override void Start(ref Player plr)
         {
-            Program.print("There's a tower before you.", delay: 200, withNLine: false); Program.print("the tower is about 4 times as tall as you, but only has like a 2 meter diameter."delay: 200, withNLine: false); Program.print("and the door is really small");
+            Program.print("There's a tower before you.", delay: 200, withNLine: false); Program.print("the tower is about 4 times as tall as you, but only has like a 2 meter diameter.", delay: 200, withNLine: false); Program.print("and the door is really small");
             Program.print("outside the tower there's a little sign that says");
             Program.print("'Welcome to the red demon tower", delay: 200);
             Program.print("MAXIMUM HEIGHT 3'0 ft'", delay: 200);

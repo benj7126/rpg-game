@@ -10,8 +10,7 @@ namespace rpg_game.Game_Scenes
     {
         public override void Start(ref Player plr)
         {        
-            Program.print($"Hello {plr.name} You've died");
-            Program.print("", delay: 1000);
+            Program.print($"Hello {plr.name} You've died \n", delay: 1000);
             Program.print("You've died and gone to hell", delay: 500);
             Program.print("Reasons you've gone to hell are as follows:", delay: 200);
             Program.print("You put pineapple on pizza", delay: 200);
@@ -19,8 +18,7 @@ namespace rpg_game.Game_Scenes
             Program.print("You always walk annoyingly slow in busy places", delay: 200);
             Program.print("You always had your phone turned on in the movie theater and then you would get calls and just generally annoy everyone", delay: 200);
             Program.print("You always run late to class", delay: 1000);
-            Program.print("Despite all these completely valid reasons you feel like this doom in hell is deeply unfair");
-            Program.print("");
+            Program.print("Despite all these completely valid reasons you feel like this doom in hell is deeply unfair\n");
 
             Program.print("So you wanna escape hell do you?", delay: 200);
             Program.print("Easier done than said", delay: 200);
