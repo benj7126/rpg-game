@@ -10,6 +10,7 @@ namespace rpg_game.Game_Classes
     class Fight
     {
         public static void update() {
+            /*
             Engine game = new Fight_Engine.Engine(80, 40, "Fight");
             int hp = 305;
             HBColor[] playerHBCol = {
@@ -44,12 +45,13 @@ namespace rpg_game.Game_Classes
                 menu.DrawList(ref game, 3, 32);
 
                 game.SwapBuffers();
+                Console.Clear();
                 game.DrawScreen();
                 Thread.Sleep(16);
-            }
+            }*/
 
-            //var player = new Player();
-            //StartFight(ref player, Enemy.enemies[1]);
+            var player = new Player();
+            StartFight(ref player, Enemy.enemies[1]);
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
@@ -73,11 +75,13 @@ namespace rpg_game.Game_Classes
             MenuList menu = new MenuList(controlList);
 
             FightBeginning(ref game, enemy);
+            HandleFight(ref game, ref player, enemy);
+            FightEnding(ref game, enemy);
 
             return false;
         }
 
-        private static void FightBeginning(ref Engine game, Enemy enemy) {
+        private static void FightBeginning(ref Engine game, Enemy enemy, int tickSpeed = 50) {
             string intro = "";
             int WrapLength = 40;
             for(int i = 0; i < enemy.Introduction.Length; i++) {
@@ -85,8 +89,49 @@ namespace rpg_game.Game_Classes
                 game.DrawText(intro, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - intro.Length / WrapLength)/2, WrapLength, true);
                 game.SwapBuffers();
                 game.DrawScreen();
-                Thread.Sleep(50);
+                Thread.Sleep(tickSpeed);
             }
+
+            bool blink = false;
+            while(true) {
+                game.DrawText(intro, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - intro.Length / WrapLength)/2, WrapLength, true);
+
+                blink = !blink;
+
+                if(blink) {
+                    string pressKey = "Press any key to continue!";
+                    game.DrawText(pressKey, (game.GetWinWidth() - pressKey.Length) / 2, 30);
+                    Thread.Sleep(400);
+                } else {
+                    Thread.Sleep(500);
+                }
+
+                if(Console.KeyAvailable) {
+                    break;
+                }
+
+                game.SwapBuffers();
+                game.DrawScreen();
+            }
+
+        }
+
+        private static void HandleFight(ref Engine game, ref Player player, Enemy enemy) {
+
+        }
+
+        private static void FightEnding(ref Engine game, Enemy enemy, int tickSpeed = 50) {
+            string lastWords = "";
+            int WrapLength = 40;
+            for(int i = 0; i < enemy.Last_words.Length; i++) {
+                lastWords += enemy.Last_words[i];
+                game.DrawText(lastWords, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - lastWords.Length / WrapLength)/2, WrapLength, true);
+                game.SwapBuffers();
+                game.DrawScreen();
+                Thread.Sleep(tickSpeed);
+            }
+
+            Thread.Sleep(1000);
         }
 
         private static void HandleInput(ref MenuList menu) {
