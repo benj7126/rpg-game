@@ -19,14 +19,14 @@ namespace rpg_game.Game_Scenes
             Program.print("You always walk annoyingly slow in busy places", delay: 200);
             Program.print("You always had your phone turned on in the movie theater and then you would get calls and just generally annoy everyone", delay: 200);
             Program.print("You always run late to class", delay: 1000);
-            Program.print("Despite all these completely valid valid reasons you feel like this doom in hell is deeply unfair");
+            Program.print("Despite all these completely valid reasons you feel like this doom in hell is deeply unfair");
             Program.print("");
 
             Program.print("So you wanna escape hell do you?", delay: 200);
             Program.print("Easier done than said", delay: 200);
             Program.print("I heard you could walk right up to the gate and leave actually :/", delay: 200);
             Program.print("But there's a big ass demon guarding the gate so you might not want to do that", delay: 200);
-            Program.print("I recommend going to a few places here in hell and preparing to kill that demon", delay: 200);
+            Program.print("I recommend going to a few places here in hell to prepare before taking him on", delay: 200);
             Program.print("Actually a good start would be going to this one place where monsters just like you reside", delay: 200);
             Program.print("It's called the outpost for pineapple on pizza lovers", delay: 200);
             Program.print("It's up to you", delay: 100, withNLine: false);
