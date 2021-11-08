@@ -35,7 +35,7 @@ namespace rpg_game
                 totalNR = totalNR + word.Length;
             }
 
-
+            str = nString;
 
             bool addNLine = true;
             while (addNLine)
