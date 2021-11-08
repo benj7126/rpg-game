@@ -220,7 +220,7 @@ namespace Fight_Engine
 
     class MenuList {
         List<ListItem> items = new List<ListItem>();
-        int SelectedItemIdx;
+        int SelectedItemIdx = 0;
 
         public enum InputType {
             Up,
@@ -244,8 +244,6 @@ namespace Fight_Engine
                 case InputType.Ok:
                     break;
                 case InputType.Cancel:
-                    break;
-                default:
                     break;
             }
 
