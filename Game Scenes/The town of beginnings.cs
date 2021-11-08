@@ -10,10 +10,13 @@ namespace rpg_game.Game_Scenes
         public override void Start()
         {        
             Program.print("Hello *playername You've died");
+
             Program.print("");
             Thread.Sleep(1000);
             Program.print("You've died and gone to hell");
             Thread.Sleep(500);
+            Program.print("");
+
             Program.print("Reasons you've gone to hell are as follows:");
             Thread.Sleep(200);
             Program.print("You put pineapple on pizza");
@@ -26,7 +29,10 @@ namespace rpg_game.Game_Scenes
             Thread.Sleep(200);
             Program.print("You always run late to class");
             Thread.Sleep(1000);
+
+            Program.print("");
             Program.print("Despite all these completely valid valid reasons you feel like this doom in hell is deeply unfair");
+            Program.print("");
 
             Program.print("So you wanna escape hell do you?");
             Thread.Sleep(200);
@@ -42,7 +48,9 @@ namespace rpg_game.Game_Scenes
             Thread.Sleep(200);
             Program.print("It's called the outpost for pineapple on pizza lovers");
             Thread.Sleep(200);
-            Program.print("It's up to you take a look on your map and decide where to go. Warning some places are more dangerous than others.");
+            Program.print("It's up to you,");
+            Thread.Sleep(100);
+            Program.print("take a look on your map and decide where to go. Some places are more dangerous than others.");
             Thread.Sleep(200);
 
         }
