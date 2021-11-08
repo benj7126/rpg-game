@@ -10,7 +10,6 @@ namespace rpg_game.Game_Classes
     class Fight
     {
         public static void update() {
-            /*
             Engine game = new Fight_Engine.Engine(80, 40, "Fight");
             int hp = 305;
             HBColor[] playerHBCol = {
@@ -45,14 +44,12 @@ namespace rpg_game.Game_Classes
                 menu.DrawList(ref game, 3, 32);
 
                 game.SwapBuffers();
-                Console.Clear();
                 game.DrawScreen();
                 Thread.Sleep(16);
             }
-            */
 
-            var player = new Player();
-            StartFight(ref player, Enemy.enemies[1]);
+            //var player = new Player();
+            //StartFight(ref player, Enemy.enemies[1]);
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
