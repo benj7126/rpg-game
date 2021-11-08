@@ -8,14 +8,16 @@ namespace rpg_game.Game_Classes
     {
         public List<string> options = new List<string>();
         public int optionSelected = 0;
-        public void update(ref Player player, ref gameStates gameState)
+        public int update(ref Player player, ref gameStates gameState, List<string> allOptions, string preText="")
         {
-            int optionsCount = 5;
+            options = allOptions;
+            int optionsCount = options.Count;
 
             int selected = 0;
 
             bool done = false;
 
+            rpg_game.Program.print(preText);
             while (!done)
             {
                 for (int i = 0; i < optionsCount; i++)
@@ -30,28 +32,29 @@ namespace rpg_game.Game_Classes
                         Console.Write("  ");
                     }
 
-                    Console.WriteLine(i);
+                    Console.WriteLine(options[i]);
 
                     Console.ResetColor();
                 }
 
-                switch (Console.ReadKey(true).Key)
+                ConsoleKey ck = Console.ReadKey(true).Key;
+                if (player.up == ck)
                 {
-                    case ConsoleKey.UpArrow:
-                        selected = Math.Max(0, selected - 1);
-                        break;
-                    case ConsoleKey.DownArrow:
-                        selected = Math.Min(optionsCount - 1, selected + 1);
-                        break;
-                    case ConsoleKey.Enter:
-                        done = true;
-                        break;
+                    selected = Math.Max(0, selected - 1);
+                }
+                else if (player.down == ck)
+                {
+                    selected = Math.Min(optionsCount - 1, selected + 1);
+                }
+                else if (player.select == ck)
+                {
+                    done = true;
                 }
 
                 if (!done)
                     Console.CursorTop = Console.CursorTop - optionsCount;
             }
-            Console.WriteLine($"Selected {selected}.");
+            return selected;
         }
     }
 }

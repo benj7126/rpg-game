@@ -5,7 +5,7 @@ using rpg_game.Game_Classes;
 
 namespace rpg_game
 {
-    class Program
+    class Program   
     {
         static void Main(string[] args)
         {
@@ -21,8 +21,25 @@ namespace rpg_game
             */
         }
 
-        public static void print(string str, int ms = 50, bool stringSplit = false)
+        public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80)
         {
+            string nString = "";
+            bool addNLine = true;
+            while (addNLine)
+            {
+                if (str.Length >= maxCharLen)
+                {
+                    nString += str.Substring(0, maxCharLen) + "\n";
+                    str = str.Substring(maxCharLen, str.Length - maxCharLen);
+                }
+                else
+                {
+                    addNLine = false;
+                }
+            }
+
+            str = nString;
+
             if (stringSplit)
             {
                 string[] nStr = str.Split(" ");
@@ -43,6 +60,7 @@ namespace rpg_game
                 }
             }
             Console.Write("\n");
+            Thread.Sleep(delay);
         }
     }
 }

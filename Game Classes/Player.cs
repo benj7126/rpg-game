@@ -16,8 +16,16 @@ namespace rpg_game.Game_Classes
             Amulet
         }
         public int health = 16;
+        public int maxHealth = 16;
 
-        public Vector pos = new Vector(0, 0);
+        public ConsoleKey up = ConsoleKey.UpArrow;
+        public ConsoleKey down = ConsoleKey.DownArrow;
+        public ConsoleKey select = ConsoleKey.Enter;
+
+        public Location playerLocation = null;
+
+        public Vector pos = new Vector(100, 0);
+        public List<Location> possibleLocations = new List<Location>();
 
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
@@ -29,6 +37,8 @@ namespace rpg_game.Game_Classes
             equipped.Add(itemPlace.Armor, null);
             equipped.Add(itemPlace.Ring, null);
             equipped.Add(itemPlace.Amulet, null);
+
+            possibleLocations.Add(Location.locations[0]);
         }
     }
 }
