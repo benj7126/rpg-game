@@ -147,6 +147,7 @@ namespace Fight_Engine
             int winWidth = GetWinWidth();
             int winHeight = GetWinHeight();
 
+            Console.CursorTop = 0;
             for(int y = 0; y <  winHeight; y++) {
                 string line = "";
                 for(int x = 0; x < winWidth; x++) {

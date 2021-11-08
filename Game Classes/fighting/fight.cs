@@ -87,7 +87,6 @@ namespace rpg_game.Game_Classes
                 intro += enemy.Introduction[i];
                 game.DrawText(intro, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - intro.Length / WrapLength)/2, WrapLength, true);
                 game.SwapBuffers();
-                Console.Clear();
                 game.DrawScreen();
                 Thread.Sleep(50);
             }
