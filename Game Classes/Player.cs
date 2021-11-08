@@ -16,12 +16,15 @@ namespace rpg_game.Game_Classes
             Amulet
         }
         public int health = 16;
+        public int maxHealth = 16;
 
-        ConsoleKey up = ConsoleKey.UpArrow;
-        ConsoleKey down = ConsoleKey.DownArrow;
-        ConsoleKey select = ConsoleKey.Enter;
+        public ConsoleKey up = ConsoleKey.UpArrow;
+        public ConsoleKey down = ConsoleKey.DownArrow;
+        public ConsoleKey select = ConsoleKey.Enter;
 
-        public Vector pos = new Vector(0, 0);
+        public Location playerLocation = null;
+
+        public Vector pos = new Vector(100, 0);
         public List<Location> possibleLocations = new List<Location>();
 
         public Item[] inventory = new Item[12];

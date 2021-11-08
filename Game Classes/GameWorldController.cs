@@ -11,7 +11,7 @@ namespace rpg_game.Game_Classes
         Traveling,
         Labyrinth,
         Other,
-        Optoions
+        Options
     }
 
     class GameWorldController
@@ -32,22 +32,35 @@ namespace rpg_game.Game_Classes
                 case gameStates.Fighting:
                     break;
                 case gameStates.Traveling:
+                    List<Location> usableLocations = new List<Location>();
                     for (int i = 0; i < player.possibleLocations.Count; i++)
                     {
-                        Choices.Add(player.possibleLocations[i].name);
+                        if (player.playerLocation != null)
+                        {
+                            if (player.possibleLocations[i].name != player.playerLocation.name)
+                            {
+                                usableLocations.Add(player.possibleLocations[i]);
+                                Choices.Add(player.possibleLocations[i].name);
+                            }
+                        }
+                        else
+                        {
+                            usableLocations.Add(player.possibleLocations[i]);
+                            Choices.Add(player.possibleLocations[i].name);
+                        }
                     }
                     Choices.Add("Back");
 
                     chosen = Choice.update(ref player, ref gameState, Choices, "Where to go next?");
 
-                    if (chosen != player.possibleLocations.Count)
+                    if (chosen != usableLocations.Count)
                     {
                         Travel curTravel = new Travel();
-                        curTravel.run(ref player, Location.locations[1]);
+                        curTravel.run(ref player, usableLocations[chosen]);
+                        gameState = gameStates.Other;
                     }
                     else
                     {
-                        Console.Clear();
                         gameState = gameStates.Other;
                     }
                     break;
@@ -65,14 +78,42 @@ namespace rpg_game.Game_Classes
                             gameState = gameStates.Traveling;
                             break;
                         case 1:
-                            gameState = gameStates.Optoions;
+                            gameState = gameStates.Options;
                             break;
                     }
-                    Console.Clear();
                     break;
-                case gameStates.Optoions:
+                case gameStates.Options:
+                    Choices.Add("Controls");
+                    Choices.Add("Back");
+
+                    chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
+
+                    switch (chosen)
+                    {
+                        case 0:
+
+                            Console.Write("Up - ");
+                            player.up = Console.ReadKey(true).Key;
+                            Console.WriteLine(player.up);
+
+
+                            Console.Write("Down - ");
+                            player.down = Console.ReadKey(true).Key;
+                            Console.WriteLine(player.down);
+
+
+                            Console.Write("Select - ");
+                            player.select = Console.ReadKey(true).Key;
+                            Console.WriteLine(player.select);
+
+                            break;
+                        case 1:
+                            gameState = gameStates.Other;
+                            break;
+                    }
                     break;
             }
+            Console.WriteLine("");
         }
     }
 }

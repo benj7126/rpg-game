@@ -37,17 +37,18 @@ namespace rpg_game.Game_Classes
                     Console.ResetColor();
                 }
 
-                switch (Console.ReadKey(true).Key)
+                ConsoleKey ck = Console.ReadKey(true).Key;
+                if (player.up == ck)
                 {
-                    case ConsoleKey.UpArrow:
-                        selected = Math.Max(0, selected - 1);
-                        break;
-                    case ConsoleKey.DownArrow:
-                        selected = Math.Min(optionsCount - 1, selected + 1);
-                        break;
-                    case ConsoleKey.Enter:
-                        done = true;
-                        break;
+                    selected = Math.Max(0, selected - 1);
+                }
+                else if (player.down == ck)
+                {
+                    selected = Math.Min(optionsCount - 1, selected + 1);
+                }
+                else if (player.select == ck)
+                {
+                    done = true;
                 }
 
                 if (!done)
