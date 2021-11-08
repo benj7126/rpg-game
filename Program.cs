@@ -30,6 +30,7 @@ namespace rpg_game
                 }
                 else
                 {
+                    nString += str.Substring(0, str.Length);
                     addNLine = false;
                 }
             }
