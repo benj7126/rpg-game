@@ -26,9 +26,9 @@ namespace rpg_game.Game_Classes
         public ConsoleKey right = ConsoleKey.RightArrow;
         public ConsoleKey select = ConsoleKey.Enter;
 
-        public Location playerLocation = Location.getLocationByName("Midt ude i ingenting");
+        public Location playerLocation = Location.getLocationByName("The town of beginnings");
 
-        public Vector pos = new Vector(100, 0);
+        public Vector pos = new Vector(0, 0);
         public List<Location> possibleLocations = new List<Location>();
 
         public Item[] inventory = new Item[12];

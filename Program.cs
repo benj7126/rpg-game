@@ -17,9 +17,15 @@ namespace rpg_game
             }
         }
 
-        public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80, bool withNLine = true)
+        public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "")
         {
-            str = convertToLen(str, maxCharLen);
+            if (name != "")
+            {
+                Console.Write("[" + name + "]: ");
+                Thread.Sleep(150);
+            }
+
+            str = convertToLen(str, maxCharLen, startVal: name.Length+2);
 
             if (stringSplit)
             {
@@ -44,10 +50,10 @@ namespace rpg_game
                 Console.Write("\n");
             Thread.Sleep(delay);
         }
-        public static string convertToLen(string str, int maxCharLen)
+        public static string convertToLen(string str, int maxCharLen, int startVal = 0)
         {
             string[] nStr = str.Split(" ");
-            int totalNR = 0;
+            int totalNR = startVal;
             string nString = "";
 
             foreach (string word in nStr)

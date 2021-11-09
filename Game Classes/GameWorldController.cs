@@ -53,7 +53,7 @@ namespace rpg_game.Game_Classes
                     }
                     Choices.Add("Back");
 
-                    chosen = Choice.update(ref player, ref gameState, Choices, "Where to go next?");
+                    chosen = Choice.update(ref player, Choices, "Where to go next?");
 
                     if (chosen != usableLocations.Count)
                     {
@@ -73,7 +73,7 @@ namespace rpg_game.Game_Classes
                     Choices.Add("Manage inventory");
                     Choices.Add("Options");
 
-                    chosen = Choice.update(ref player, ref gameState, Choices, "What to do now?");
+                    chosen = Choice.update(ref player, Choices, "What to do now?");
 
                     switch (chosen)
                     {
@@ -92,7 +92,7 @@ namespace rpg_game.Game_Classes
                     Choices.Add("Controls");
                     Choices.Add("Back");
 
-                    chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
+                    chosen = Choice.update(ref player, Choices, "Options:");
 
                     switch (chosen)
                     {
@@ -139,7 +139,7 @@ namespace rpg_game.Game_Classes
 
                     while (doContinue)
                     {
-                        chosen = Choice.update(ref player, ref gameState, Choices, "Options:");
+                        chosen = Choice.update(ref player, Choices, "Options:");
                         switch (chosen)
                         {
                             case 0:

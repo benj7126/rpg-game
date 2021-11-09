@@ -8,7 +8,7 @@ namespace rpg_game.Game_Classes
     {
         public List<string> options = new List<string>();
         public int optionSelected = 0;
-        public int update(ref Player player, ref gameStates gameState, List<string> allOptions, string preText="")
+        public int update(ref Player player, List<string> allOptions, string preText="")
         {
             options = allOptions;
             int optionsCount = options.Count;
