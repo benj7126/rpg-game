@@ -9,6 +9,18 @@ namespace rpg_game.Game_Classes
 {
     class Fight
     {
+
+        private static ListItem[] HitLocations = {
+            new ListItem("Head"),
+            new ListItem("Torso"),
+            new ListItem("Legs"),
+        };
+
+        enum AttackableLocations {
+            Head,
+            Torso,
+            Legs
+        };
         public static void update() {
             /*
             Engine game = new Fight_Engine.Engine(80, 40, "Fight");
@@ -112,12 +124,6 @@ namespace rpg_game.Game_Classes
         private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
             int enemyHP = enemy.Health;
 
-            ListItem[] controlList = {
-                new ListItem("Head"),
-                new ListItem("Torso"),
-                new ListItem("Legs"),
-            };
-            MenuList menu = new MenuList(controlList);
 
             while(true) {
                 game.DrawText("playername", 2, 1);
@@ -126,13 +132,10 @@ namespace rpg_game.Game_Classes
                 FightHelpers.DrawHealthBar(player.health, player.maxHealth, 2, 2, ref game, playerHB);
                 FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 4, ref game, enemyHB);
 
-                game.DrawText("Where do you want to attack?", 2, 6);
-                menu.DrawList(ref game, 2, 7);
+                PlayerAttack(ref game, player);
 
                 game.SwapBuffers();
                 game.DrawScreen();
-
-                HandleInput(ref menu, player);
             }
         }
 
@@ -150,22 +153,43 @@ namespace rpg_game.Game_Classes
             Thread.Sleep(1000);
         }
 
-        private static void HandleInput(ref MenuList menu, Player player) {
+        private static void PlayerAttack(ref Engine game, Player player) {
+            MenuList menu = new MenuList(HitLocations);
+
+            ListItem attackLoc = HandleInput(ref menu, player);
+            AttackableLocations attacked;
+            if(attackLoc != null) {
+                Enum.TryParse(attackLoc.name, true, out attacked);
+                Console.WriteLine(attacked);
+            }
+
+            game.DrawText("Where do you want to attack?", 2, 6);
+            menu.DrawList(ref game, 2, 7);
+
+
+        }
+
+        private static ListItem HandleInput(ref MenuList menu, Player player) {
             // The following line stops blocking the executing thread, if no key
-            // has been pressed.
+            // has been pressed. It has been commented out, since it is no
+            // longer useful, but might be later.
             //if (!Console.KeyAvailable) return;
+
+            ListItem selectedItem = null;
 
             // Reads and saves pressed key
             ConsoleKeyInfo key = Console.ReadKey();
             // Checks the pressed key. Sends press to menu.
             if(key.Key == player.up) {
-                menu.HandleInput(MenuList.InputType.Up);
+                selectedItem = menu.HandleInput(MenuList.InputType.Up);
             } else if(key.Key == player.down) {
-                menu.HandleInput(MenuList.InputType.Down);
+                selectedItem = menu.HandleInput(MenuList.InputType.Down);
             } else if(key.Key == player.select) {
                 player.health -= 1;
-                menu.HandleInput(MenuList.InputType.Ok);
+                selectedItem = menu.HandleInput(MenuList.InputType.Ok);
             }
+
+            return selectedItem;
         }
     }
 }

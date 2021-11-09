@@ -233,7 +233,7 @@ namespace Fight_Engine
             this.items = items.ToList();
         }
 
-        public void HandleInput(InputType ipt) {
+        public ListItem HandleInput(InputType ipt) {
             switch(ipt) {
                 case InputType.Up:
                     SelectedItemIdx--;
@@ -242,12 +242,15 @@ namespace Fight_Engine
                     SelectedItemIdx++;
                     break;
                 case InputType.Ok:
+                    return items[SelectedItemIdx];
                     break;
                 case InputType.Cancel:
                     break;
             }
-
             WrapIdx();
+            Console.WriteLine(SelectedItemIdx);
+
+            return null;
         }
 
         private void WrapIdx() {

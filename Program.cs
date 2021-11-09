@@ -9,7 +9,9 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
+            rpg_game.Game_Classes.maze.Maze.Start();
             Console.CursorVisible = false;
+            Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {
