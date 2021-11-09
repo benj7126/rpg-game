@@ -71,6 +71,7 @@ namespace rpg_game.Game_Classes
 
                     plr.pos = dest.pos;
                     plr.playerLocation = dest;
+                    plr.playerLocation.enterLocation(ref plr, ref plr.playerLocation);
                 }
             }
         }

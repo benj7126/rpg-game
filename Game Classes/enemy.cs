@@ -47,7 +47,7 @@ namespace rpg_game.Game_Classes
                 "You've defeated me human, I wonder where I'll go now that I'm dead, Hells Hell? I guess I'll see"),
 
             new Enemy("BIG ASS Demon", "I'm terribly sorry but you're not on the list to get out of hell. Did you send in your appeal on our website? Ahhh screw it. I'll just beat the shit out of you"
-                ,20, 5,"HOW! It can't be. A puny human like you defeating me, I was the unstoppable guy protecting the door. I guess I'll have to allow you through the door. Have fun going back to that hellhole called earth.")
+                ,500, 20,"HOW! It can't be. A puny human like you defeating me, I was the unstoppable guy protecting the door. I guess I'll have to allow you through the door. Have fun going back to that hellhole called earth.")
         };
 
     }

@@ -12,6 +12,7 @@ namespace rpg_game.Game_Classes
         Traveling,
         Labyrinth,
         Other,
+        Inv,
         Options
     }
 
@@ -69,6 +70,7 @@ namespace rpg_game.Game_Classes
                     break;
                 case gameStates.Other:
                     Choices.Add("Travel");
+                    Choices.Add("Manage inventory");
                     Choices.Add("Options");
 
                     chosen = Choice.update(ref player, ref gameState, Choices, "What to do now?");
@@ -79,6 +81,9 @@ namespace rpg_game.Game_Classes
                             gameState = gameStates.Traveling;
                             break;
                         case 1:
+                            gameState = gameStates.Inv;
+                            break;
+                        case 2:
                             gameState = gameStates.Options;
                             break;
                     }
@@ -101,6 +106,15 @@ namespace rpg_game.Game_Classes
                             Console.Write("Down - ");
                             player.down = Console.ReadKey(true).Key;
                             Console.WriteLine(player.down);
+
+                            Console.Write("Left - ");
+                            player.left = Console.ReadKey(true).Key;
+                            Console.WriteLine(player.left);
+
+
+                            Console.Write("Right - ");
+                            player.right = Console.ReadKey(true).Key;
+                            Console.WriteLine(player.right);
 
 
                             Console.Write("Select - ");
@@ -139,6 +153,15 @@ namespace rpg_game.Game_Classes
                                 player.down = Console.ReadKey(true).Key;
                                 Console.WriteLine(player.down);
 
+                                Console.Write("Left - ");
+                                player.left = Console.ReadKey(true).Key;
+                                Console.WriteLine(player.left);
+
+
+                                Console.Write("Right - ");
+                                player.right = Console.ReadKey(true).Key;
+                                Console.WriteLine(player.right);
+
 
                                 Console.Write("Select - ");
                                 player.select = Console.ReadKey(true).Key;
@@ -153,6 +176,12 @@ namespace rpg_game.Game_Classes
 
                     Game_Scenes.Beginning scene = new Game_Scenes.Beginning();
                     scene.Start(ref player);
+                    gameState = gameStates.Other;
+                    break;
+                case gameStates.Inv:
+                    InvScreen invS = new InvScreen();
+                    invS.inv(ref player);
+                    Console.Clear();
                     gameState = gameStates.Other;
                     break;
             }

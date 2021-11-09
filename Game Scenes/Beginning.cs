@@ -8,7 +8,7 @@ namespace rpg_game.Game_Scenes
 {
     class Beginning : Scene
     {
-        public override void Start(ref Player plr)
+        public override bool Start(ref Player plr)
         {        
             Program.print($"Hello {plr.name} You've died \n", delay: 1000);
             Program.print("You've died and gone to hell", delay: 500);
@@ -29,6 +29,8 @@ namespace rpg_game.Game_Scenes
             Program.print("It's called the outpost for pineapple on pizza lovers", delay: 200);
             Program.print("It's up to you", delay: 100, withNLine: false);
             Program.print("take a look on your map and decide where to go. Warning some places are more dangerous than others.", delay: 200);
+
+            return false;
         }
     }
 }

@@ -18,6 +18,17 @@ namespace rpg_game.Game_Classes
             onEnter = scene;
         }
 
+        public void enterLocation(ref Player plr, ref Location self)
+        {
+            bool del = false;
+            if (onEnter != null)
+                del = onEnter.Start(ref plr); // return true if you want to delet location availability
+            if (del)
+            {
+                plr.possibleLocations.Remove(self);
+            }
+        }
+
         public static Location getLocationByName(string name)
         {
             foreach (Location l in locations)

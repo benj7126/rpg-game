@@ -22,6 +22,8 @@ namespace rpg_game.Game_Classes
 
         public ConsoleKey up = ConsoleKey.UpArrow;
         public ConsoleKey down = ConsoleKey.DownArrow;
+        public ConsoleKey left = ConsoleKey.LeftArrow;
+        public ConsoleKey right = ConsoleKey.RightArrow;
         public ConsoleKey select = ConsoleKey.Enter;
 
         public Location playerLocation = Location.getLocationByName("Midt ude i ingenting");
@@ -34,6 +36,10 @@ namespace rpg_game.Game_Classes
 
         public Player()
         {
+            inventory[0] = Item.getItemByID(1);
+            inventory[1] = Item.getItemByID(1);
+            inventory[6] = Item.getItemByID(1);
+
             equipped.Add(itemPlace.MainHand, null);
             equipped.Add(itemPlace.OffHand, null);
             equipped.Add(itemPlace.Armor, null);

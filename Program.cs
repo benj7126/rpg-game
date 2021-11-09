@@ -9,6 +9,7 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             GameWorldController game = new GameWorldController();
             while (true)
             {
@@ -18,27 +19,11 @@ namespace rpg_game
 
         public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80, bool withNLine = true)
         {
-            string[] nStr = str.Split(" ");
-            int totalNR = 0;
-            string nString = "";
-
-            foreach (string word in nStr)
-            {
-                if (totalNR + word.Length > maxCharLen)
-                {
-                    nString = nString + "\n";
-                    totalNR = 0;
-                }
-                
-                nString = nString + word + " ";
-                totalNR = totalNR + word.Length;
-            }
-
-            str = nString;
+            str = convertToLen(str, maxCharLen);
 
             if (stringSplit)
             {
-                nStr = str.Split(" ");
+                string[] nStr = str.Split(" ");
                 for (int i = 0; i < nStr.Length-1; i++)
                 {
                     Console.Write(nStr[i]);
@@ -58,6 +43,26 @@ namespace rpg_game
             if (withNLine)
                 Console.Write("\n");
             Thread.Sleep(delay);
+        }
+        public static string convertToLen(string str, int maxCharLen)
+        {
+            string[] nStr = str.Split(" ");
+            int totalNR = 0;
+            string nString = "";
+
+            foreach (string word in nStr)
+            {
+                if (totalNR + word.Length > maxCharLen)
+                {
+                    nString = nString + "\n";
+                    totalNR = 0;
+                }
+
+                nString = nString + word + " ";
+                totalNR = totalNR + word.Length;
+            }
+
+            return nString;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace rpg_game.Game_Scenes
 {
     abstract class Scene
     {
-        public abstract void Start(ref Player plr);
+        public abstract bool Start(ref Player plr);
     }
 }
