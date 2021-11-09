@@ -19,7 +19,7 @@ namespace rpg_game.Game_Classes
         public int defence;
         public int[] specialEffects; // currently not implimented at all, but could be used as a "if you have this item i will be weaker thingy..."
 
-        public void equip(ref Player plr, int pos)
+        public void equip(ref Player plr, int pos) // B - calls when player wants to equip an item, place is where this item needs to go to be equiped
         {
             Item savedItem = null;
             if (plr.equipped[place] != null)
@@ -30,7 +30,11 @@ namespace rpg_game.Game_Classes
             plr.equipped[place] = plr.inventory[pos];
             plr.inventory[pos] = savedItem;
         }
-        public void unequip(ref Player plr)
+        public void remove(ref Player plr, int pos) // B - calls when player wants to equip an item, place is where this item needs to go to be equiped
+        {
+            plr.inventory[pos] = null;
+        }
+        public void unequip(ref Player plr) // B - finds the first free possition in you inventroy and moves item there, if there are no free space nothing happens
         {
             for (int i = 0; i < 12; i++)
             {
@@ -43,7 +47,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
-        public static Item getItemByName(string name)
+        public static Item getItemByName(string name) // B - look thru all items and return the first item with the given name
         {
             foreach (Item i in items)
             {
@@ -54,7 +58,7 @@ namespace rpg_game.Game_Classes
             }
             return null;
         }
-        public static Item getItemByID(int id)
+        public static Item getItemByID(int id) // B - look thru all items and return the first item with the given id
         {
             foreach (Item i in items)
             {
@@ -77,6 +81,7 @@ namespace rpg_game.Game_Classes
             specialEffects = sEffx;
         }
 
+        // B - list of all items in game
         public static Item[] items =
         {
             new Item("Plep's sword", 1, "You found this sword laying on the ground, it looks like it has a bad quality and for some reason there carved the word Plep into it", 1, 0, Player.itemPlace.MainHand),

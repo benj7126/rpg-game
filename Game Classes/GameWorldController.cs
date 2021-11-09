@@ -18,6 +18,7 @@ namespace rpg_game.Game_Classes
 
     class GameWorldController
     {
+        // B - the core of the game
         public gameStates gameState = gameStates.Other;
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
@@ -37,19 +38,8 @@ namespace rpg_game.Game_Classes
                     List<Location> usableLocations = new List<Location>();
                     for (int i = 0; i < player.possibleLocations.Count; i++)
                     {
-                        if (player.playerLocation != null)
-                        {
-                            if (player.possibleLocations[i].name != player.playerLocation.name)
-                            {
-                                usableLocations.Add(player.possibleLocations[i]);
-                                Choices.Add(player.possibleLocations[i].name + " - " + MathF.Floor(Vector.distance(player.possibleLocations[i].pos, player.pos)) + "m");
-                            }
-                        }
-                        else
-                        {
-                            usableLocations.Add(player.possibleLocations[i]);
-                            Choices.Add(player.possibleLocations[i].name + " - " + MathF.Floor(Vector.distance(player.possibleLocations[i].pos, player.pos)) + "m");
-                        }
+                        usableLocations.Add(player.possibleLocations[i]);
+                        Choices.Add(player.possibleLocations[i].name + " - " + MathF.Floor(Vector.distance(player.possibleLocations[i].pos, player.pos)) + "m");
                     }
                     Choices.Add("Back");
 
@@ -90,6 +80,7 @@ namespace rpg_game.Game_Classes
                     break;
                 case gameStates.Options:
                     Choices.Add("Controls");
+                    Choices.Add("Text speed");
                     Choices.Add("Back");
 
                     chosen = Choice.update(ref player, Choices, "Options:");
@@ -97,32 +88,12 @@ namespace rpg_game.Game_Classes
                     switch (chosen)
                     {
                         case 0:
-
-                            Console.Write("Up - ");
-                            player.up = Console.ReadKey(true).Key;
-                            Console.WriteLine(player.up);
-
-
-                            Console.Write("Down - ");
-                            player.down = Console.ReadKey(true).Key;
-                            Console.WriteLine(player.down);
-
-                            Console.Write("Left - ");
-                            player.left = Console.ReadKey(true).Key;
-                            Console.WriteLine(player.left);
-
-
-                            Console.Write("Right - ");
-                            player.right = Console.ReadKey(true).Key;
-                            Console.WriteLine(player.right);
-
-
-                            Console.Write("Select - ");
-                            player.select = Console.ReadKey(true).Key;
-                            Console.WriteLine(player.select);
-
+                            controls();
                             break;
                         case 1:
+                            speed();
+                            break;
+                        case 2:
                             gameState = gameStates.Other;
                             break;
                     }
@@ -135,6 +106,7 @@ namespace rpg_game.Game_Classes
                     bool doContinue = true;
 
                     Choices.Add("Controls");
+                    Choices.Add("Text speed");
                     Choices.Add("Start");
 
                     while (doContinue)
@@ -143,32 +115,12 @@ namespace rpg_game.Game_Classes
                         switch (chosen)
                         {
                             case 0:
-
-                                Console.Write("Up - ");
-                                player.up = Console.ReadKey(true).Key;
-                                Console.WriteLine(player.up);
-
-
-                                Console.Write("Down - ");
-                                player.down = Console.ReadKey(true).Key;
-                                Console.WriteLine(player.down);
-
-                                Console.Write("Left - ");
-                                player.left = Console.ReadKey(true).Key;
-                                Console.WriteLine(player.left);
-
-
-                                Console.Write("Right - ");
-                                player.right = Console.ReadKey(true).Key;
-                                Console.WriteLine(player.right);
-
-
-                                Console.Write("Select - ");
-                                player.select = Console.ReadKey(true).Key;
-                                Console.WriteLine(player.select);
-
+                                controls();
                                 break;
                             case 1:
+                                speed();
+                                break;
+                            case 2: // del
                                 doContinue = false;
                                 break;
                         }
@@ -186,6 +138,60 @@ namespace rpg_game.Game_Classes
                     break;
             }
             Console.WriteLine("");
+        }
+        public void controls()
+        {
+            Console.Write("Up - ");
+            Player.up = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.up);
+
+
+            Console.Write("Down - ");
+            Player.down = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.down);
+
+            Console.Write("Left - ");
+            Player.left = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.left);
+
+
+            Console.Write("Right - ");
+            Player.right = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.right);
+
+
+            Console.Write("Select - ");
+            Player.select = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.select);
+
+
+            Console.Write("Delete - ");
+            Player.del = Console.ReadKey(true).Key;
+            Console.WriteLine(Player.del);
+        }
+        public void speed()
+        {
+            Console.WriteLine("Lower procent = faster text, 0 is the same as instant but not recomended\nsince you might come to regret half skipping some of the story and therefore missing some items\n");
+            bool changing = true;
+            while (changing)
+            {
+                Console.WriteLine("Text speed is currently at " + MathF.Round(Player.textSpeedMulti * 100) + "%    ");
+                ConsoleKey ck = Console.ReadKey(true).Key; // B - wait for the next key and do stuff based on what was pressed
+                if (Player.up == ck)
+                {
+                    Player.textSpeedMulti = MathF.Min(Player.textSpeedMulti + 0.01f, 2f);
+                }
+                else if (Player.down == ck)
+                {
+                    Player.textSpeedMulti = MathF.Max(Player.textSpeedMulti-0.01f, 0f);
+                }
+                else if (Player.select == ck)
+                {
+                    changing = false;
+                }
+                Console.CursorTop = Console.CursorTop - 1;
+            }
+            Console.CursorTop = Console.CursorTop + 1;
         }
     }
 }

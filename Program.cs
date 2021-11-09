@@ -9,9 +9,11 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            rpg_game.Game_Classes.maze.Maze.Start();
+
+
+            //rpg_game.Game_Classes.maze.Maze.Start();
             Console.CursorVisible = false;
-            Fight.update();
+            //Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {
@@ -19,24 +21,30 @@ namespace rpg_game
             }
         }
 
+        public static void sleep(int ms)
+        {
+            Thread.Sleep((int)MathF.Floor(ms*Player.textSpeedMulti));
+        }
+
         public static void print(string str, int ms = 50, bool stringSplit = false, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "")
         {
-            if (name != "")
+            // B - making a print function to make story telling easier (hopefully)
+            if (name != "") // B - if theres someone talking you can define their name and it will be added to the wraping of text
             {
                 Console.Write("[" + name + "]: ");
-                Thread.Sleep(150);
+                sleep(150);
             }
 
-            str = convertToLen(str, maxCharLen, startVal: name.Length+2);
+            str = convertToLen(str, maxCharLen, startVal: name.Length+3); // B - wrap text
 
-            if (stringSplit)
+            if (stringSplit) // B - if it should write it word for word or if it should be char for char
             {
                 string[] nStr = str.Split(" ");
                 for (int i = 0; i < nStr.Length-1; i++)
                 {
                     Console.Write(nStr[i]);
                     Console.Write(" ");
-                    Thread.Sleep(ms);
+                    sleep(ms);
                 }
                 Console.Write(nStr[nStr.Length-1]);
             }
@@ -45,14 +53,14 @@ namespace rpg_game
                 for (int i = 0; i < str.Length; i++)
                 {
                     Console.Write(str[i]);
-                    Thread.Sleep(ms);
+                    sleep(ms);
                 }
             }
             if (withNLine)
                 Console.Write("\n");
-            Thread.Sleep(delay);
+            sleep(delay);
         }
-        public static string convertToLen(string str, int maxCharLen, int startVal = 0)
+        public static string convertToLen(string str, int maxCharLen, int startVal = 0) // B - takes a string and makes sure it wraps
         {
             string[] nStr = str.Split(" ");
             int totalNR = startVal;

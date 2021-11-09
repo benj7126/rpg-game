@@ -112,11 +112,14 @@ namespace rpg_game.Game_Classes
 
                 if (item != null)
                 {
-                    Console.WriteLine(item.name);
-                    Console.WriteLine(Program.convertToLen(item.description, 60));
+                    Console.WriteLine(item.name + "                                                                ");
+                    Console.WriteLine(Program.convertToLen(item.description, 60) + "                                                                ");
 
-                    Console.WriteLine("Damage: " + item.damage);
-                    Console.WriteLine("Defence: " + item.defence);
+                    Console.WriteLine("Damage: " + item.damage + "                                                                ");
+                    Console.WriteLine("Defence: " + item.defence + "                                                                ");
+                    if (selected >= 0)
+                        if (selected != 12)
+                            Console.WriteLine("\nPress [" + Player.del + "] to throw away");
                 }
 
 
@@ -126,7 +129,7 @@ namespace rpg_game.Game_Classes
                     Console.Write("                                                                           ");
 
                 ConsoleKey ck = Console.ReadKey(true).Key;
-                if (player.up == ck)
+                if (Player.up == ck)
                 {
                     if (selected < 1)
                     {
@@ -134,10 +137,10 @@ namespace rpg_game.Game_Classes
                     }
                     else
                     {
-                        selected = Math.Max(0, selected - 4);
+                        selected = Math.Max(-5, selected - 4);
                     }
                 }
-                else if (player.down == ck)
+                else if (Player.down == ck)
                 {
                     if (selected < 0)
                     {
@@ -148,16 +151,16 @@ namespace rpg_game.Game_Classes
                         selected = Math.Min(12, selected + 4);
                     }
                 }
-                else if (player.left == ck)
+                else if (Player.left == ck)
                 {
                     if (selected > -1)
                         selected = Math.Max(0, selected - 1);
                 }
-                else if (player.right == ck)
+                else if (Player.right == ck)
                 {
                     selected = Math.Min(12, selected + 1);
                 }
-                else if (player.select == ck)
+                else if (Player.select == ck)
                 {
 
                     if (selected >= 0)
@@ -176,6 +179,14 @@ namespace rpg_game.Game_Classes
                     {
                         if (player.equipped[convert[selected]] != null)
                             player.equipped[convert[selected]].unequip(ref player);
+                    }
+                }
+                else if (Player.del == ck)
+                {
+                    if (selected != 12)
+                    {
+                        if (player.inventory[selected] != null)
+                            player.inventory[selected].remove(ref player, selected);
                     }
                 }
             }

@@ -11,7 +11,7 @@ namespace rpg_game.Game_Classes
         public float travelLeft = 0;
         public float travelTotal = 0;
         public Location destination = null;
-        private int size = 50;
+        private int size = 100;
 
         public void run(ref Player plr, Location dest)
         {
@@ -64,14 +64,11 @@ namespace rpg_game.Game_Classes
                 if (travelLeft <= 0)
                 {
                     Console.CursorTop = Console.CursorTop - 1;
-                    int tempInt = (int)MathF.Floor((MathF.Abs(travelLeft / travelTotal - 1) * 100));
-                    tempInt = Math.Max(Math.Min(tempInt, 100), 0);
-                    Console.WriteLine(str + " " + tempInt.ToString() + "/100%");
+                    Console.WriteLine(str + " 100/100%");
                     doneTraveling = true;
 
                     plr.pos = dest.pos;
-                    plr.playerLocation = dest;
-                    plr.playerLocation.enterLocation(ref plr, ref plr.playerLocation);
+                    dest.enterLocation(ref plr, ref dest);
                 }
             }
         }
