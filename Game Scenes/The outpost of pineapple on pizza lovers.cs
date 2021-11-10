@@ -19,9 +19,13 @@ namespace rpg_game.Game_Scenes
             Program.print("You are, arent you", withNLine: false, ms: 20, name: "Stranger", delay: 200);
             Program.print("...", ms: 200, delay: 200);
             Program.print("You're never gonna get me alive!", ms: 40, name: "Stranger", delay: 300);
-            Program.print("The strange man comes charging at you with his sword in hand", delay: 2000);
-            Fight.StartFight(ref plr, Enemy.getById(2));
-            
+            Program.print("The strange man comes charging at you with his sword in hand");
+            Fight.StartFight(ref plr, Enemy.getById(1));
+            Program.print("After you defeated the Pinapple on pizza hater, you continue to walk towards your destination", delay: 200);
+            Program.print("...", ms: 300, delay: 200);
+            Program.print("You arrive at a fort of sorts, it looks right out of the middle ages", delay: 200);
+
+
 
             return false;
         }

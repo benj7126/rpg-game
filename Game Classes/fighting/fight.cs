@@ -71,6 +71,8 @@ namespace rpg_game.Game_Classes
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
+            Console.WriteLine("A fight is beginnig, make sure you have read what you must.\nPress any key to continue");
+            Console.ReadKey(true);
             Engine game = new Fight_Engine.Engine(80, 40, "Fighting " + enemy.Name);
             HBColor[] playerHBCol = {
                 new HBColor(15, ConsoleColor.Red),

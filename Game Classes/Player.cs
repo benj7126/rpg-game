@@ -39,6 +39,21 @@ namespace rpg_game.Game_Classes
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
+        public bool hasTag(int tagID)
+        {
+            foreach (KeyValuePair<itemPlace, Item> vals in equipped)
+            {
+                if (vals.Value != null)
+                {
+                    foreach (int id in vals.Value.specialEffects)
+                        if (id == tagID)
+                            return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool pickupItem(Item item)
         {
             for (int i = 0; i < 12; i++)
