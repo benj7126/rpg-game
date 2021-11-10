@@ -92,7 +92,7 @@ namespace rpg_game.Game_Scenes
                 Program.print("Which Distro?!?!", name: "LinuxOS User");
                 bool rightanswer = false;
                 ChoiceSelector distroanswer = new ChoiceSelector();
-                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo", "Mint", "Kali Linux", "Ubuntu Satanic Edition", "Ubuntu Christian Edition", "POP!" }, "What do you say?");
+                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo", "Mint", "Kali Linux", "Ubuntu Satanic Edition", "Ubuntu Christian Edition", "POP!_OS", "Hannah Montana Linux" }, "What do you say?");
                 switch (distrochoice)
                 {
                     case 0:
@@ -118,6 +118,9 @@ namespace rpg_game.Game_Scenes
                         break;
                     case 7:
                         Program.print("Really? cmon man with that you might aswell be using Windows, get on something better", name: "LinuxOS User");
+                        break;
+                    case 8:
+                        Program.print("You might get along well with my daughter.", name: "LinuxOS User");
                         break;
                 }
             }
