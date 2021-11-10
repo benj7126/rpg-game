@@ -9,14 +9,18 @@ namespace rpg_game.Game_Scenes
 {
     class DemonHighSchool : Scene
     {
+        public Dictionary<string, bool> flags = new Dictionary<string, bool>();
+
         public override bool Start(ref Player plr)
-        {        
+        {
+            flags.Add("Ubuntu user", false);
+
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
             Program.print("Under that there's a motto that says", delay: 200);
             Program.print("    'Dream of a better future'", delay: 200);
             Program.print("'Because that's where it'll stay'", delay: 200);
             Program.print("        'In your dreams'\n", delay: 400);
-            Program.print("You think to yourself, 'this is probably where PE teachers when they die'", delay: 200)
+            Program.print("You think to yourself, 'this is probably where PE teachers when they die'", delay: 200);
 
             Program.print("You walk inside the high school and you find yourself in the main hall");
             Program.print("There's an tired looking demon mopping the floors in a green jumpsuit");
@@ -45,8 +49,42 @@ namespace rpg_game.Game_Scenes
 
 
             Program.print("Well it's all over now, you shoulda come earlier");
-            Program.print("I think the only people still here are the nerds who didn't go to the event, sitting over in the computer science room"); 
-            Program.print("Perhaps you can still find some Devil schoolgirls who didn't go home yet if you're lucky")
+            Program.print("I think the only people still here are the nerds who didn't go to the event, sitting over in the computer science room");
+            Program.print("Perhaps you can still find some Devil schoolgirls who didn't go home yet if you're lucky");
+
+            bool atSchool = true;
+            while (atSchool)
+            {
+                ChoiceSelector destination = new ChoiceSelector();
+                int dest = destination.update(ref plr, new List<string>() { "To the computer science room", "Leave school" }, "Where will you go?");
+
+                switch (dest)
+                {
+                    case 0:
+                        ComputerScienceRoom(ref plr);
+                        break;
+                    case 1:
+                        Console.WriteLine("If you leave you will never be able to come back");
+                        ChoiceSelector confirm = new ChoiceSelector();
+                        int choice = confirm.update(ref plr, new List<string>() { "Yes", "No" }, "Are you sure?");
+                        if (choice == 0)
+                            return true; // delete the place form list of places to go
+                        break;
+                }
+            }
+            return false;
+        }
+
+        private void ComputerScienceRoom(ref Player plr)
+        {
+            if (flags["Ubuntu user"])
+            {
+                Program.print("Coming to flaunt now?", name: "LinuxOS User");
+                Program.print("Get out of my sight", name: "LinuxOS User", delay: 300);
+                return;
+            }
+
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 Program.print("OH! You're a fellow Linux user!!!", name: "LinuxOS User");
@@ -54,34 +92,34 @@ namespace rpg_game.Game_Scenes
                 Program.print("Which Distro?!?!", name: "LinuxOS User");
                 bool rightanswer = false;
                 ChoiceSelector distroanswer = new ChoiceSelector();
-                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo","Mint","Kali Linux", "Ubuntu Satanic Edition","Ubuntu Christian Edition", "POP!" }, "What do you say?");
+                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo", "Mint", "Kali Linux", "Ubuntu Satanic Edition", "Ubuntu Christian Edition", "POP!" }, "What do you say?");
                 switch (distrochoice)
-            {
-                case 0:
-                    rightanswer = true;
-                    return false;
-                case 1:
-                    rightanswer = true;
-                    break;
-                case 2:
+                {
+                    case 0:
+                        rightanswer = true;
+                        break;
+                    case 1:
+                        rightanswer = true;
+                        break;
+                    case 2:
                         Program.print("Gentoo!?! Just... WHY?", name: "LinuxOS User");
-                    break;
-                case 3:
-                    break;
-                case 4:
-                       Program.print("Kali Linux?! What the hell are you tryna do?", name: "LinuxOS User"); 
-                    break;
-                case 5:
-                    Program.print("I personally use this one myself actually", name: "LinuxOS User");
-                    rightanswer = true;
-                    break;
-                case 6:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        Program.print("Kali Linux?! What the hell are you tryna do?", name: "LinuxOS User");
+                        break;
+                    case 5:
+                        Program.print("I personally use this one myself actually", name: "LinuxOS User");
+                        rightanswer = true;
+                        break;
+                    case 6:
                         Program.print("UBUNTU CHRISTIAN EDITION!?! YOU HOLY FIEND, I CAN'T HAVE THIS. FACE ME IN BATTLE!", name: "LinuxOS User");
-                    break;
-                case 7:
+                        break;
+                    case 7:
                         Program.print("Really? cmon man with that you might aswell be using Windows, get on something better", name: "LinuxOS User");
-                    break;
-            }
+                        break;
+                }
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -92,7 +130,8 @@ namespace rpg_game.Game_Scenes
             {
                 Program.print("What the hell are you running?", name: "LinuxOS User");
             }
-            return false;
+
+            flags["Ubuntu user"] = true;
         }
     }
 }
