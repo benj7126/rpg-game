@@ -16,7 +16,6 @@ namespace rpg_game
             GameWorldController game = new GameWorldController();
             while (true)
             {
-                print("asdasdd ms1000 aasda... well time ms520 is a time and ms100 time is wastin ms30 asdasdd ms1000 aasda... well time ms520 is a time and ms100 time is wastin ms30 asdasdd ms1000 aasda... well time ms520 is a time and ms100 time is wastin ms30");
                 game.updateWorld();
             }
         }
