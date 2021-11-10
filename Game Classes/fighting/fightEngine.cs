@@ -242,6 +242,7 @@ namespace Fight_Engine
                     SelectedItemIdx++;
                     break;
                 case InputType.Ok:
+                    Console.WriteLine("returned item");
                     return items[SelectedItemIdx];
                     break;
                 case InputType.Cancel:

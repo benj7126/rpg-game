@@ -5,10 +5,6 @@ using rpg_game;
 
 namespace rpg_game.Game_Classes
 {
-    public enum itemTypes
-    {
-
-    }
     class Item
     {
         public string name;
