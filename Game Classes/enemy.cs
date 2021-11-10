@@ -47,7 +47,7 @@ namespace rpg_game.Game_Classes
 
         public static Enemy[] enemies =
         {
-            new Enemy("ERROR","Your did something you should not",
+            new Enemy("ERROR","You did something you should not",
                 999999, 999999, 0,
                 "how..?"),
 
