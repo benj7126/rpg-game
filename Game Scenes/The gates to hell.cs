@@ -36,11 +36,11 @@ namespace rpg_game.Game_Scenes
                     Program.print("...", ms: 200, name: "Demon Of The Gate", delay: 100);
                     Program.print("It seems that my title has begin to lose its meaning here in the underworld", name: "Demon Of The Gate", delay: 100);
                     Program.print("I will have to make an example", name: "Demon Of The Gate", delay: 1000);
-                    Fight.update();
+                    Fight.StartFight(ref plr, Enemy.getById(5));
                     break;
                 case 2:
                     Program.print("Well, if you insist on dying, be my guest", name: "Demon Of The Gate", delay: 1000);
-                    Fight.update();
+                    Fight.StartFight(ref plr, Enemy.getById(5));
                     break;
             }
             return false;
