@@ -144,6 +144,8 @@ namespace rpg_game.Game_Classes
                         attackLoc = PlayerAttack(ref game, player);
                     } else {
                         //Deal damage to enemy
+
+                        menu.Reset();
                         attackLoc = AttackableLocations.Null;
                         attacking = false;
                     }
@@ -152,11 +154,12 @@ namespace rpg_game.Game_Classes
                         defLoc = PlayerAttack(ref game, player, false);
                     } else {
                         //Deal damage to player
+
+                        menu.Reset();
                         defLoc = AttackableLocations.Null;
                         attacking = true;
                     }
                 }
-
                 game.SwapBuffers();
                 game.DrawScreen();
             }
