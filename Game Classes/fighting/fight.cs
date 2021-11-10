@@ -67,7 +67,7 @@ namespace rpg_game.Game_Classes
             }*/
 
             var player = new Player();
-            StartFight(ref player, Enemy.enemies[1]);
+            StartFight(ref player, Enemy.enemies[2]);
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
@@ -84,7 +84,7 @@ namespace rpg_game.Game_Classes
 
             Console.Clear();
 
-            //FightBeginning(ref game, enemy);
+            FightBeginning(ref game, enemy);
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
             FightEnding(ref game, enemy);
 
@@ -116,12 +116,16 @@ namespace rpg_game.Game_Classes
                     Thread.Sleep(500);
                 }
 
-                if(Console.KeyAvailable) {
-                    break;
-                }
-
                 game.SwapBuffers();
                 game.DrawScreen();
+
+
+                if(Console.KeyAvailable) {
+                    while(Console.KeyAvailable) {
+                        Console.ReadKey();
+                    }
+                    break;
+                }
             }
         }
 
@@ -144,6 +148,9 @@ namespace rpg_game.Game_Classes
                         attackLoc = PlayerAttack(ref game, player);
                     } else {
                         //Deal damage to enemy
+                        enemyHP -= player.getAttack();
+
+                        menu.Reset();
                         attackLoc = AttackableLocations.Null;
                         attacking = false;
                     }
@@ -152,13 +159,18 @@ namespace rpg_game.Game_Classes
                         defLoc = PlayerAttack(ref game, player, false);
                     } else {
                         //Deal damage to player
+                        player.health -= (enemy.Damage - player.getDefence());
+
+                        menu.Reset();
                         defLoc = AttackableLocations.Null;
                         attacking = true;
                     }
                 }
-
                 game.SwapBuffers();
                 game.DrawScreen();
+                if(enemyHP <= 0) {
+                    return;
+                }
             }
         }
 

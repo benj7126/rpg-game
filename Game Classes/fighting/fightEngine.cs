@@ -271,6 +271,10 @@ namespace Fight_Engine
 
             game.SetLineColor(y+SelectedItemIdx, ConsoleColor.Green);
         }
+
+        public void Reset() {
+            SelectedItemIdx = 0;
+        }
     }
 
     class ListItem {
