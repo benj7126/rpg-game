@@ -13,7 +13,7 @@ namespace rpg_game.Game_Scenes
 
         public override bool Start(ref Player plr)
         {
-            flags.Add("Ubuntu user", false);
+            flags.Add("Defeated Linux user", false);
 
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
             Program.print("Under that there's a motto that says", delay: 200);
@@ -84,7 +84,9 @@ namespace rpg_game.Game_Scenes
                 return;
             }
 
-
+            Program.print("You walk down the hall to arrive to a room with a sign that says computer science", delay: 200);
+            Program.print("The door is closed but you hear a bunch of comotion going on inside ", delay: 200);
+            Program.print("You slowly open the door and you're greeted with a smell of ");
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 Program.print("OH! You're a fellow Linux user!!!", name: "LinuxOS User");
@@ -92,7 +94,7 @@ namespace rpg_game.Game_Scenes
                 Program.print("Which Distro?!?!", name: "LinuxOS User");
                 bool rightanswer = false;
                 ChoiceSelector distroanswer = new ChoiceSelector();
-                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo", "Mint", "Kali Linux", "Ubuntu Satanic Edition", "Ubuntu Christian Edition", "POP!" }, "What do you say?");
+                int distrochoice = distroanswer.update(ref plr, new List<string>() { "Ubuntu", "Arch", "Gentoo", "Mint", "Kali Linux", "Ubuntu Satanic Edition", "Ubuntu Christian Edition", "POP!_OS", "Hannah Montana Linux" }, "What do you say?");
                 switch (distrochoice)
                 {
                     case 0:
@@ -117,7 +119,10 @@ namespace rpg_game.Game_Scenes
                         Program.print("UBUNTU CHRISTIAN EDITION!?! YOU HOLY FIEND, I CAN'T HAVE THIS. FACE ME IN BATTLE!", name: "LinuxOS User");
                         break;
                     case 7:
-                        Program.print("Really? cmon man with that you might aswell be using Windows, get on something better", name: "LinuxOS User");
+                        Program.print("Really? come on man with that you might aswell be using Windows smh, get on something better", name: "LinuxOS User");
+                        break;
+                    case 8:
+                        Program.print("You might get along well with my daughter.", name: "LinuxOS User");
                         break;
                 }
             }
@@ -131,7 +136,7 @@ namespace rpg_game.Game_Scenes
                 Program.print("What the hell are you running?", name: "LinuxOS User");
             }
 
-            flags["Ubuntu user"] = true;
+            flags["Defeated Linux user"] = true;
         }
     }
 }
