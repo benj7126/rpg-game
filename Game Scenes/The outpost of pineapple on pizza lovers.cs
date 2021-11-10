@@ -23,7 +23,10 @@ namespace rpg_game.Game_Scenes
             Fight.StartFight(ref plr, Enemy.getById(1));
             Program.print("After you defeated the Pinapple on pizza hater, you continue to walk towards your destination", delay: 200);
             Program.print("...", ms: 300, delay: 200);
-            Program.print("You arrive at a fort of sorts, it looks right out of the middle ages", delay: 200);
+            Program.print("You arrive at a fort of sorts, it looks right out of the middle ages or maby somehting you've seen in a fantasy game at some point, you can't really tell.", delay: 200);
+            Program.print("What you do see thou is a giant wall made purely of wooden poles with spikes on top, while it's a mystery how it hasen't burned, it's also a mystery where they got the wood from.", delay: 200);
+            Program.print("You start pondering over those question ms100 suddenly a loud noise comes from above the wooden spikes", delay: 200);
+            Program.print("");
 
 
 
