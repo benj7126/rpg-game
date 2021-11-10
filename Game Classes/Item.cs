@@ -85,6 +85,8 @@ namespace rpg_game.Game_Classes
         public static Item[] items =
         {
             new Item("Plep's sword", 1, "You found this sword laying on the ground, it looks like it has a bad quality and for some reason there carved the word Plep into it", 1, 0, Player.itemPlace.MainHand),
+            new Item("Demon's Trident", 2, "A normal sized trident used by a small sized demon, But now it's yours", 3, -1, Player.itemPlace.MainHand),
+            new Item("Huge shield with 4 normal sized shields on top of the shield", 3, "The name says it all really.", 0, 20, Player.itemPlace.OffHand),
         };
     }
 }
