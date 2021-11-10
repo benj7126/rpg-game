@@ -248,7 +248,6 @@ namespace Fight_Engine
                     break;
             }
             WrapIdx();
-            Console.WriteLine(SelectedItemIdx);
 
             return null;
         }

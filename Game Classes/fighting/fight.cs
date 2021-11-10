@@ -16,6 +16,9 @@ namespace rpg_game.Game_Classes
             new ListItem("Legs"),
         };
 
+        private static MenuList menu = new MenuList(HitLocations);
+
+
         enum AttackableLocations {
             Head,
             Torso,
@@ -153,27 +156,24 @@ namespace rpg_game.Game_Classes
             Thread.Sleep(1000);
         }
 
-        private static void PlayerAttack(ref Engine game, Player player) {
-            MenuList menu = new MenuList(HitLocations);
-
+        private static AttackableLocations PlayerAttack(ref Engine game, Player player) {
             ListItem attackLoc = HandleInput(ref menu, player);
             AttackableLocations attacked;
             if(attackLoc != null) {
                 Enum.TryParse(attackLoc.name, true, out attacked);
-                Console.WriteLine(attacked);
+                return attacked;
             }
 
             game.DrawText("Where do you want to attack?", 2, 6);
             menu.DrawList(ref game, 2, 7);
-
-
+            return null;
         }
 
         private static ListItem HandleInput(ref MenuList menu, Player player) {
             // The following line stops blocking the executing thread, if no key
             // has been pressed. It has been commented out, since it is no
             // longer useful, but might be later.
-            //if (!Console.KeyAvailable) return;
+            //if (!Console.KeyAvailable) return null;
 
             ListItem selectedItem = null;
 
