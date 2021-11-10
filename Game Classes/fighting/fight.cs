@@ -67,7 +67,7 @@ namespace rpg_game.Game_Classes
             }*/
 
             var player = new Player();
-            StartFight(ref player, Enemy.enemies[1]);
+            StartFight(ref player, Enemy.enemies[6]);
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
@@ -144,6 +144,7 @@ namespace rpg_game.Game_Classes
                         attackLoc = PlayerAttack(ref game, player);
                     } else {
                         //Deal damage to enemy
+                        enemyHP -= player.getAttack();
 
                         menu.Reset();
                         attackLoc = AttackableLocations.Null;
@@ -154,6 +155,7 @@ namespace rpg_game.Game_Classes
                         defLoc = PlayerAttack(ref game, player, false);
                     } else {
                         //Deal damage to player
+                        player.health -= (enemy.Damage - player.getDefence());
 
                         menu.Reset();
                         defLoc = AttackableLocations.Null;
