@@ -39,6 +39,18 @@ namespace rpg_game.Game_Classes
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
+        public bool pickupItem(Item item)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                if (inventory[i] == null)
+                {
+                    inventory[i] = item;
+                    return true;
+                }
+            }
+            return true;
+        }
         public Player()
         {
             // B - make item slot item slots...

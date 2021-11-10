@@ -54,8 +54,8 @@ namespace rpg_game
                     sleep(ms);
                 }
             }
+            Console.CursorLeft = Console.CursorLeft - 1;
             if (withNLine)
-                Console.CursorLeft = Console.CursorLeft - 1;
                 Console.Write("\n");
             sleep(delay);
         }
