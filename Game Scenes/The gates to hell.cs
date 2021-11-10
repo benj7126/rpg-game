@@ -10,12 +10,12 @@ namespace rpg_game.Game_Scenes
     {
         public override bool Start(ref Player plr)
         {
-            Program.print("As you approact the spot marked on your map", delay: 1000);
+            Program.print("As you approach the spot marked on your map", delay: 1000);
             Program.print("You look into the horizon and see a grand door\n", delay: 500);
 
-            Program.print("And infront of it, and even grander figure\n", delay: 500);
+            Program.print("And in front of it, an even grander figure\n", delay: 500);
 
-            Program.print("An earth shaking sound echoes thru the barren plains surrounding you\n\n", delay: 1000);
+            Program.print("Earth shaking sound echoes through the barren plains surrounding you\n\n", delay: 1000);
 
 
             Program.print("How dare a mere mortal try to breach my gate?", name: "Demon Of The Gate", delay: 100);
@@ -43,7 +43,6 @@ namespace rpg_game.Game_Scenes
                     Fight.update();
                     break;
             }
-
             return false;
         }
     }
