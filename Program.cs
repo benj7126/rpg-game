@@ -65,11 +65,11 @@ namespace rpg_game
             string[] nStr = str.Split(" ");
             foreach (string word in nStr)
             {
-                if (word.Length >= 2)
+                if (word.Length >= 3)
                 {
-                    if (word.Substring(0, 2) == "ms")
+                    if (word.Substring(0, 2) == "ms" || word.Substring(1, 2) == "ms")
                     {
-                        int ms = Int32.Parse(word.Substring(2, word.Length - 2));
+                        int ms = Int32.Parse(word.Substring(0, 2) == "ms" ? word.Substring(2, word.Length - 2) : word.Substring(3, word.Length - 3));
                         delays.Add(nString.Length, ms);
                     }
                     else
@@ -95,11 +95,15 @@ namespace rpg_game
 
             foreach (string word in nStr)
             {
-                if (word.Length >= 2)
+                if (word.Length >= 3)
                 {
-                    if (word.Substring(0, 2) != "ms")
+                    if (word.Substring(0, 2) != "ms" && word.Substring(1, 2) != "ms")
                     {
                         nString += word + " ";
+                    }
+                    if (word.Substring(1, 2) == "ms")
+                    {
+                        nString += "\n";
                     }
                 }
                 else
