@@ -25,7 +25,7 @@ namespace rpg_game.Game_Classes.maze
 
             Map map = new Map(9, 10, mapArr);
 
-            double posX = 6, posY = 8;
+            double posX = 1, posY = 1;
             double dirX = -1, dirY = 0;
             double planeX = 0, planeY = 0.66;
 
@@ -88,7 +88,12 @@ namespace rpg_game.Game_Classes.maze
                         perpWallDist = (sideDistX - deltaDistX);
                     else
                         perpWallDist = (sideDistY - deltaDistY);
-                    int lineHeight = Convert.ToInt32(game.GetWinHeight() / perpWallDist);
+                    int lineHeight;
+                    try {
+                        lineHeight = Convert.ToInt32(game.GetWinHeight() / perpWallDist);
+                    } catch (Exception e) {
+                        lineHeight = 1000;
+                    }
                     game.DrawVerLine(x, lineHeight);
                 }
 
@@ -123,6 +128,8 @@ namespace rpg_game.Game_Classes.maze
                 game.DrawBorder();
                 game.SwapBuffers();
                 game.DrawScreen();
+
+                Console.WriteLine(posX + " : " + posY);
             }
         }
     }
