@@ -180,11 +180,11 @@ namespace rpg_game.Game_Classes
             // Reads and saves pressed key
             ConsoleKeyInfo key = Console.ReadKey();
             // Checks the pressed key. Sends press to menu.
-            if(key.Key == player.up) {
+            if(key.Key == Player.up) {
                 selectedItem = menu.HandleInput(MenuList.InputType.Up);
-            } else if(key.Key == player.down) {
+            } else if(key.Key == Player.down) {
                 selectedItem = menu.HandleInput(MenuList.InputType.Down);
-            } else if(key.Key == player.select) {
+            } else if(key.Key == Player.select) {
                 player.health -= 1;
                 selectedItem = menu.HandleInput(MenuList.InputType.Ok);
             }
