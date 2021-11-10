@@ -80,9 +80,12 @@ namespace rpg_game.Game_Classes
         // B - list of all items in game
         public static Item[] items =
         {
-            new Item("Plep's sword", 1, "You found this sword laying on the ground, it looks like it has a bad quality and for some reason there carved the word Plep into it", 1, 0, Player.itemPlace.MainHand),
+            new Item("Plep's sword", 1, "You found this sword laying on the ground, It's really bad quality and for some reason there's carved the word Plep into it", 1, 0, Player.itemPlace.MainHand),
             new Item("Demon's Trident", 2, "A normal sized trident used by a small sized demon, But now it's yours", 3, -1, Player.itemPlace.MainHand),
             new Item("Huge shield with 4 normal sized shields on top of the shield", 3, "The name says it all really.", 0, 20, Player.itemPlace.OffHand),
+            new Item("Super Shotgun", 4, "For some reason Everyone here who sees you walk around with this turns around and runs away in fear", 5, 0, Player.itemPlace.OffHand),
+            new Item("Male School uniform", 5,"Pair of pants and a nice shirt with a tie and a little label that says Evil High on it", 1,5, Player.itemPlace.Armor),
+            new Item("Female School uniform", 6,"A nice shirt with a plaid skirt tucked in, the shirt has a little label that says Evil High on it", 2,4, Player.itemPlace.Armor),
         };
     }
 }
