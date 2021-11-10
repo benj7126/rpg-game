@@ -51,6 +51,37 @@ namespace rpg_game.Game_Classes
             }
             return true;
         }
+
+        public int getAttack()
+        {
+            int attack = 0;
+
+            foreach(KeyValuePair<itemPlace, Item> vals in equipped)
+            {
+                if (vals.Value != null)
+                {
+                    Math.Max(attack += vals.Value.damage, 0);
+                }
+            }
+
+            return attack;
+        }
+
+        public int getDefence()
+        {
+            int defence = 0;
+
+            foreach (KeyValuePair<itemPlace, Item> vals in equipped)
+            {
+                if (vals.Value != null)
+                {
+                    Math.Max(defence += vals.Value.defence, 0);
+                }
+            }
+
+            return defence;
+        }
+
         public Player()
         {
             // B - make item slot item slots...
@@ -65,6 +96,9 @@ namespace rpg_game.Game_Classes
             {
                 possibleLocations.Add(l);
             }
+
+            inventory[1] = Item.getItemByID(2);
+            inventory[2] = Item.getItemByID(3);
         }
     }
 }

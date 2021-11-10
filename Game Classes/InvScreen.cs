@@ -69,13 +69,13 @@ namespace rpg_game.Game_Classes
                         string addStr = "";
                         if (player.inventory[i].name.Length < 20)
                         {
-                            for (int i2 = 0; i2< 20-player.inventory[i].name.Length; i2+=2)
+                            for (int i2 = 0; i2< 20-player.inventory[i].name.Length- (player.inventory[i].name.Length % 2 == 0 ? 0 : 2); i2+=2)
                             {
                                 addStr += " ";
                             }
                         }
 
-                        str = "  [" + addStr + player.inventory[i].name + addStr + "] ";
+                        str = "  [" + (player.inventory[i].name.Length % 2 == 0 ? "" : " ") + addStr + player.inventory[i].name + addStr + "] ";
                     }
                     else
                     {
@@ -116,11 +116,18 @@ namespace rpg_game.Game_Classes
                     Console.WriteLine(Program.convertToLen(item.description, 60) + "                                                                ");
 
                     Console.WriteLine("Damage: " + item.damage + "                                                                ");
-                    Console.WriteLine("Defence: " + item.defence + "                                                                ");
+                    Console.WriteLine("Defense: " + item.defence + "                                                                ");
                     if (selected >= 0)
                         if (selected != 12)
-                            Console.WriteLine("\nPress [" + Player.del + "] to throw away");
+                        {
+                            Console.WriteLine("                                                                           ");
+                            Console.WriteLine("Press [" + Player.del + "] to throw away");
+                        }
                 }
+
+                Console.WriteLine("                                                                           ");
+                Console.WriteLine("Player Attack: " + player.getAttack() + "                                                                           ");
+                Console.WriteLine("Player Defence: " + player.getDefence() + "                                                                           ");
 
 
 
