@@ -147,6 +147,21 @@ namespace rpg_game.Game_Classes
                     if(attackLoc == AttackableLocations.Null) {
                         attackLoc = PlayerAttack(ref game, player);
                     } else {
+                        AttackableLocations def;
+                        Random rng = new Random();
+                        if(rng.Next(2) == 0) {
+                            // Defend head
+                            def = AttackableLocations.Head;
+                        } else {
+                            if (rng.Next(2) == 0) {
+                                // Defend torso
+                                def = AttackableLocations.Torso;
+                            } else {
+                                // Defend Legs
+                                def = AttackableLocations.Legs;
+                            }
+                        }
+
                         //Deal damage to enemy
                         enemyHP -= player.getAttack();
 
@@ -186,6 +201,12 @@ namespace rpg_game.Game_Classes
             }
 
             Thread.Sleep(1000);
+
+            while(Console.KeyAvailable) {
+                Console.ReadKey();
+            }
+
+            Console.Clear();
         }
 
         private static AttackableLocations PlayerAttack(ref Engine game, Player player, bool attack = true) {
