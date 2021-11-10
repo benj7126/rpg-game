@@ -22,7 +22,8 @@ namespace rpg_game.Game_Classes
         enum AttackableLocations {
             Head,
             Torso,
-            Legs
+            Legs,
+            Null
         };
         public static void update() {
             /*
@@ -127,6 +128,9 @@ namespace rpg_game.Game_Classes
         private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
             int enemyHP = enemy.Health;
 
+            bool attacking = true;
+            AttackableLocations attackLoc = AttackableLocations.Null;
+            AttackableLocations defLoc = AttackableLocations.Null;
 
             while(true) {
                 game.DrawText("playername", 2, 1);
@@ -135,7 +139,23 @@ namespace rpg_game.Game_Classes
                 FightHelpers.DrawHealthBar(player.health, player.maxHealth, 2, 2, ref game, playerHB);
                 FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 4, ref game, enemyHB);
 
-                PlayerAttack(ref game, player);
+                if(attacking) {
+                    if(attackLoc == AttackableLocations.Null) {
+                        attackLoc = PlayerAttack(ref game, player);
+                    } else {
+                        //Deal damage to enemy
+                        attackLoc = AttackableLocations.Null;
+                        attacking = false;
+                    }
+                } else {
+                    if(defLoc == AttackableLocations.Null) {
+                        defLoc = PlayerAttack(ref game, player, false);
+                    } else {
+                        //Deal damage to player
+                        defLoc = AttackableLocations.Null;
+                        attacking = true;
+                    }
+                }
 
                 game.SwapBuffers();
                 game.DrawScreen();
@@ -156,7 +176,14 @@ namespace rpg_game.Game_Classes
             Thread.Sleep(1000);
         }
 
-        private static AttackableLocations PlayerAttack(ref Engine game, Player player) {
+        private static AttackableLocations PlayerAttack(ref Engine game, Player player, bool attack = true) {
+            string attackText = attack ? "attack" : "defend";
+            game.DrawText($"Where do you want to {attackText}?", 2, 6);
+            menu.DrawList(ref game, 2, 7);
+
+            game.SwapBuffers();
+            game.DrawScreen();
+
             ListItem attackLoc = HandleInput(ref menu, player);
             AttackableLocations attacked;
             if(attackLoc != null) {
@@ -164,9 +191,7 @@ namespace rpg_game.Game_Classes
                 return attacked;
             }
 
-            game.DrawText("Where do you want to attack?", 2, 6);
-            menu.DrawList(ref game, 2, 7);
-            return null;
+            return AttackableLocations.Null;
         }
 
         private static ListItem HandleInput(ref MenuList menu, Player player) {
