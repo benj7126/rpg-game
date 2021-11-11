@@ -14,23 +14,24 @@ namespace rpg_game.Game_Scenes
         public override bool Start(ref Player plr)
         {
             flags.Add("Defeated Linux user", false);
+            flags.Add("Talked to Girl", false);
 
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
             Program.print("Under that there's a motto that says", delay: 200);
             Program.print("    'Dream of a better future'", delay: 200);
             Program.print("'Because that's where it'll stay'", delay: 200);
             Program.print("        'In your dreams'\n", delay: 400);
-            Program.print("You think to yourself, 'this is probably where PE teachers when they die'", delay: 200);
+            Program.print("You think to yourself, 'this is probably where PE teachers go when they die'", delay: 200);
 
             Program.print("You walk inside the high school and you find yourself in the main hall");
-            Program.print("There's an tired looking demon mopping the floors in a green jumpsuit");
+            Program.print("There's a tired looking demon mopping the floors in a green jumpsuit");
             Program.print("He notices you and signals you over, so with nothing better to do you walk over to him", delay: 200);
             Program.print("Hey man, I'm sorry but you came too late for the devil schoolgirl cosplaying event, it ended like 5 minutes ago", name:"Devious Janitor", delay: 200);
             Program.print("That IS what you were here for right?", name:"Devious Janitor", delay: 200);
-            Program.print("Man, what a sight to behold. All the devil schoolgirls of Evil High cosplaying as everyones favorite heroes",name:"Devious Janitor", delay: 200);
-            Program.print("I saw Jason Vorhees cosplay, ", delay:200);
-            Program.print("One of them even dressed up as that one infamous villain, you know the guy, the one with the green armor and the shotgun, I can't remember the name", delay:200);
-            Console.Write("Was his name not ");
+            Program.print("Man, what a sight to behold. All the devil schoolgirls of Evil High cosplaying as everyones favorite characters",name:"Devious Janitor", delay: 200);
+            Program.print("One of them even dressed up as that one infamous villain, you know the guy, the one with the green armor and the shotgun, I can't remember the name", name: "Devious Janitor", delay:200);
+            Program.print("You think to yourself. And answer");
+            Console.Write("Was his name not:");
             string doomGuy = Console.ReadLine();
 
             if(doomGuy.ToLower() == "doom guy" || doomGuy.ToLower() == "doomguy" || doomGuy.ToLower() == "the guy from doom" || doomGuy.ToLower() == "doom" ||doomGuy.ToLower() == "doom marine" || doomGuy.ToLower() == "doom slayer" || doomGuy.ToLower() == "slayer")
@@ -122,8 +123,15 @@ namespace rpg_game.Game_Scenes
                         Program.print("Really? come on man with that you might aswell be using Windows smh, get on something better", name: "LinuxOS User");
                         break;
                     case 8:
+                        // Hannah Montana Linux
+                        // http://hannahmontana.sourceforge.net/
                         Program.print("You might get along well with my daughter.", name: "LinuxOS User");
+                        rightanswer = true;
                         break;
+                }
+                if (rightanswer == false)
+                {
+                    Fight.update
                 }
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
