@@ -51,7 +51,8 @@ namespace rpg_game.Game_Classes
                     return true;
                 }
             }
-            return true;
+            Program.print("But you had a full inventory so you left it behind");
+            return false;
         }
 
         public int getAttack()

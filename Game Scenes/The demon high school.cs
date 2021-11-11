@@ -131,7 +131,7 @@ namespace rpg_game.Game_Scenes
                 }
                 if (rightanswer == false)
                 {
-                    Fight.update
+
                 }
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
