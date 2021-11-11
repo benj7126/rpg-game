@@ -17,6 +17,9 @@ namespace rpg_game.Game_Classes
 
         public void equip(ref Player plr, int pos) // B - calls when player wants to equip an item, place is where this item needs to go to be equiped
         {
+            if (place == Player.itemPlace.unEquippable)
+                return;
+
             Item savedItem = null;
             if (plr.equipped[place] != null)
             {

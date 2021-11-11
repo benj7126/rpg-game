@@ -20,6 +20,17 @@ namespace rpg_game
             }
         }
 
+        public static void clearKeys()
+        {
+            if (Console.KeyAvailable)
+            {
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey();
+                }
+            }
+        }
+
         public static void sleep(int ms)
         {
             Thread.Sleep((int)MathF.Floor(ms*Player.textSpeedMulti));
@@ -52,6 +63,8 @@ namespace rpg_game
             if (withNLine)
                 Console.Write("\n");
             sleep(delay);
+
+            clearKeys();
         }
 
         public static Dictionary<int, int> otherConvert(string str)

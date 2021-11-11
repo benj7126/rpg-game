@@ -122,8 +122,10 @@ namespace rpg_game.Game_Classes
                 game.DrawScreen();
 
 
-                if(Console.KeyAvailable) {
-                    while(Console.KeyAvailable) {
+                if (Console.KeyAvailable)
+                {
+                    while (Console.KeyAvailable)
+                    {
                         Console.ReadKey();
                     }
                     break;
