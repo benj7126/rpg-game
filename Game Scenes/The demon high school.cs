@@ -74,7 +74,7 @@ namespace rpg_game.Game_Scenes
                         break;
                     case 3:
                         InvScreen invS = new InvScreen();
-                        invS.inv(ref player);
+                        invS.inv(ref plr);
                         Console.Clear();
                         break;
                     case 4:
@@ -184,8 +184,36 @@ namespace rpg_game.Game_Scenes
             if (flags["Been to lockers"])
             {
                 Program.print("You've already been here", delay: 100);
-                Program.print("You should go somewhere else", delay: 100);
-                return;
+
+                if (flags["pickup"] == false)
+                {
+                    Program.print("But it seems theres still more to do", delay: 100);
+                    Program.print("Have you come back to steal a school uniform?", delay: 100);
+                    ChoiceSelector uniform2 = new ChoiceSelector();
+                    int uniformchoice2 = uniform2.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
+                    if (uniformchoice2 == 0)
+                    {
+                        Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
+                        flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
+
+                    }
+                    else if (uniformchoice2 == 1)
+                    {
+                        Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
+                        flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
+
+                    }
+                    else
+                    {
+                        Program.print("It's not nice to steal. I'll just wear my own clothes for now", delay: 100);
+                    }
+                    return;
+                }
+                else
+                {
+                    Program.print("You should go somewhere else", delay: 100);
+                    return;
+                }
             }
             Program.print("You walk down the hallway to the lockers", delay: 100);
             Program.print("You see a long line of closed lockers", delay: 100);
@@ -196,23 +224,25 @@ namespace rpg_game.Game_Scenes
             Program.print("You have been feeling quite weird about walking around school without wearing a uniform", delay: 100);
             Program.print("I think it'd be okay if you took one of them", delay: 100);
             ChoiceSelector uniform = new ChoiceSelector();
-                        int uniformchoice = uniform.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
-                        if (uniformchoice == 0)
-                            {
-                            Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
-                            flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
+            int uniformchoice = uniform.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
+            if (uniformchoice == 0)
+            {
+                Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
+                flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
                             
-                            }
-                        else if (uniformchoice == 1)
-                            {
-                            Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
-                            flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
+            }
+            else if (uniformchoice == 1)
+            {
+                Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
+                flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
                             
-                            }
-                        else
-                            {
-                            Program.print("It's not nice to steal. I'll just wear my own clothes for now", delay: 100);
-                            }
+            }
+            else
+            {
+                Program.print("It's not nice to steal. I'll just wear my own clothes for now", delay: 100);
+            }
+
+            flags["Been to lockers"] = true;
 
         }
 

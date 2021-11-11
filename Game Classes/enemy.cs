@@ -77,7 +77,7 @@ namespace rpg_game.Game_Classes
 
             new Enemy("LinuxOS user","What you're referring to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX. But what do you know about that?",
                 15, 4, 6,
-                "If this game was running on Linux I would've beaten you")
+                "If this game was running on Linux I would've beaten you"),
             new Enemy("Demon","I'm just a vanilla demon guy. Nothing special about me at all really. My views on life are just generally evil and I just don't like humans. You know pretty much what you would expect",
                 9, 5, 7,
                 "GAAH! THAT HURTS. TIME OUT! TIME OUT! This isn't funny I'm seriously hurt. Someone call the ambulance please."),
