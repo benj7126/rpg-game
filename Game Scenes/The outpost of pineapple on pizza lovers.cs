@@ -60,9 +60,22 @@ namespace rpg_game.Game_Scenes
             }
 
             Program.print("That is ms400 right, ms100 welcome to the outpost", name: "Pizza Guard", delay: 200);
+            Program.print("Open the gates!", name: "Pizza Guard", delay: 200);
+            Program.print("As the pizza guard shouts the big wooden gates slowly begins moving, ms200 after they've open a certain amount you begin making your way into the outpost.", delay: 200);
+
+            bool atOutpost = true;
+            while (atOutpost)
+            {
+
+            }
 
 
             return true;
+        }
+
+        private void Barracks()
+        {
+
         }
     }
 }

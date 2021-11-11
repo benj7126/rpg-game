@@ -20,5 +20,13 @@ namespace rpg_game.Game_Classes
         {
             return MathF.Sqrt(MathF.Pow(pos2.x - pos1.x, 2) + MathF.Pow(pos2.y - pos1.y, 2));
         }
+
+        public void moveTowards(Vector moveTowardsPos, float dist)
+        {
+            float distBetween = distance(moveTowardsPos, new Vector(x, y));
+
+            x -= (x - moveTowardsPos.x) / distBetween * dist;
+            y -= (y - moveTowardsPos.y) / distBetween * dist;
+        }
     }
 }

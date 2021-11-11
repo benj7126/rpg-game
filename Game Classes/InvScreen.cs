@@ -24,33 +24,34 @@ namespace rpg_game.Game_Classes
             int selected = 0; // where the cursor is
             while (inInv)
             {
+                string strSpace = "                                                                ";
                 Console.CursorTop = 0;
                 Console.CursorLeft = 0;
 
                 if (selected == -5)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Main hand > ");
-                Console.Write(player.equipped[Player.itemPlace.MainHand] != null ? player.equipped[Player.itemPlace.MainHand].name : "                                                                ");
+                Console.Write(player.equipped[Player.itemPlace.MainHand] != null ? player.equipped[Player.itemPlace.MainHand].name + strSpace : strSpace);
                 Console.ForegroundColor = ConsoleColor.White;
                 if (selected == -4)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\nOff hand > ");
-                Console.Write(player.equipped[Player.itemPlace.OffHand] != null ? player.equipped[Player.itemPlace.OffHand].name : "                                                                ");
+                Console.Write(player.equipped[Player.itemPlace.OffHand] != null ? player.equipped[Player.itemPlace.OffHand].name + strSpace : strSpace);
                 Console.ForegroundColor = ConsoleColor.White;
                 if (selected == -3)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\nArmor > ");
-                Console.Write(player.equipped[Player.itemPlace.Armor] != null ? player.equipped[Player.itemPlace.Armor].name : "                                                                ");
+                Console.Write(player.equipped[Player.itemPlace.Armor] != null ? player.equipped[Player.itemPlace.Armor].name + strSpace : strSpace);
                 Console.ForegroundColor = ConsoleColor.White;
                 if (selected == -2)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\nAmulet > ");
-                Console.Write(player.equipped[Player.itemPlace.Amulet] != null ? player.equipped[Player.itemPlace.Amulet].name : "                                                                ");
+                Console.Write(player.equipped[Player.itemPlace.Amulet] != null ? player.equipped[Player.itemPlace.Amulet].name + strSpace : strSpace);
                 Console.ForegroundColor = ConsoleColor.White;
                 if (selected == -1)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\nRing > ");
-                Console.Write(player.equipped[Player.itemPlace.Ring] != null ? player.equipped[Player.itemPlace.Ring].name : "                                                                ");
+                Console.Write(player.equipped[Player.itemPlace.Ring] != null ? player.equipped[Player.itemPlace.Ring].name + strSpace : strSpace);
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.Write("\n\n");
@@ -112,11 +113,11 @@ namespace rpg_game.Game_Classes
 
                 if (item != null)
                 {
-                    Console.WriteLine(item.name + "                                                                ");
-                    Console.WriteLine(Program.convertToLen(item.description, 60) + "                                                                ");
+                    Console.WriteLine(item.name + strSpace);
+                    Console.WriteLine(Program.convertToLen(item.description, 60) + strSpace);
 
-                    Console.WriteLine("Damage: " + item.damage + "                                                                ");
-                    Console.WriteLine("Defense: " + item.defence + "                                                                ");
+                    Console.WriteLine("Damage: " + item.damage + strSpace);
+                    Console.WriteLine("Defense: " + item.defence + strSpace);
                     if (selected >= 0)
                         if (selected != 12)
                         {

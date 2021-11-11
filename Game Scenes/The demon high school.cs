@@ -77,7 +77,7 @@ namespace rpg_game.Game_Scenes
 
         private void ComputerScienceRoom(ref Player plr)
         {
-            if (flags["Ubuntu user"])
+            if (flags["Defeated Linux user"])
             {
                 Program.print("Coming to flaunt now?", name: "LinuxOS User");
                 Program.print("Get out of my sight", name: "LinuxOS User", delay: 300);

@@ -13,7 +13,8 @@ namespace rpg_game.Game_Classes
             OffHand,
             Armor,
             Ring,
-            Amulet
+            Amulet,
+            unEquippable
         }
         // B - some statn stuff
         public int health = 16;
@@ -61,7 +62,7 @@ namespace rpg_game.Game_Classes
             {
                 if (vals.Value != null)
                 {
-                    Math.Max(attack += vals.Value.damage, 0);
+                    attack = Math.Max(attack + vals.Value.damage, 0);
                 }
             }
 
@@ -76,7 +77,7 @@ namespace rpg_game.Game_Classes
             {
                 if (vals.Value != null)
                 {
-                    Math.Max(defence += vals.Value.defence, 0);
+                    defence = Math.Max(defence + vals.Value.defence, 0);
                 }
             }
 
