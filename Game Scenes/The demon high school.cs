@@ -249,13 +249,32 @@ namespace rpg_game.Game_Scenes
 
         private void Cafeteria(ref Player plr)
         {
+            int pickedupring = 0;
                         if (flags["Been to cafe"])
             {
                 Program.print("You've already been here,", delay: 100);
                 if (flags["Talked to Girl"])
             {
-                Program.print("and that girl already left", delay: 100);
-                Program.print("You should go somewhere else", delay: 100);
+                    if (pickedupring = 1;)
+                    {
+                        flags["pickup2"] = plr.pickupItem(Item.getItemByID(8));
+                        {
+                            if (flags["pickup2"] == false)
+                            {
+                                Program.print("You still don't have the inventory space, come back when you got some stupid!");
+                            }
+                            else if (flags["pickup2"] == true)
+                            {
+                                Program.print("you picked up the ring where you hid it");
+                            }
+                        }
+                    }
+                    else
+                    {
+                     Program.print("and that girl already left", delay: 100);
+                     Program.print("You should go somewhere else", delay: 100);
+                    }
+
             }
                 else
                 {
@@ -274,7 +293,14 @@ namespace rpg_game.Game_Scenes
                     Program.print("Oh wow, ms100 you want to escape hell? I heard that's a daunting task.", name: "Devil School girl", delay: 100);
                     Program.print("You're lucky you talked to me, I take a real liking to humans, here have this, it'll help you get through hell's dangers", name: "Devil School girl", delay: 100);
                     Program.print("You've received a Devilish ring of defense", delay: 100);
+                    pickedupring = 2;
                     flags["pickup2"] = plr.pickupItem(Item.getItemByID(8));
+                    flags["Talked to Girl"] = true;
+                            if (flags["pickup2"] == false)
+                            {
+                                Program.print("You didn't have inventory space so you take the ring and hid it. Come back here when you have inventory space");
+                                pickedupring = 1;
+                            }
                 }
                 else
                 {
