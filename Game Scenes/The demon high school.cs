@@ -122,6 +122,8 @@ namespace rpg_game.Game_Scenes
                         Program.print("Really? come on man with that you might aswell be using Windows smh, get on something better", name: "LinuxOS User");
                         break;
                     case 8:
+                        // Hannah Montana Linux
+                        // http://hannahmontana.sourceforge.net/
                         Program.print("You might get along well with my daughter.", name: "LinuxOS User");
                         break;
                 }
