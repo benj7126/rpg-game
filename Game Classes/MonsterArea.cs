@@ -21,7 +21,7 @@ namespace rpg_game.Game_Classes
         }
 
         public static MonsterArea[] areas =
-        {
+        { // 0.0003f = 0,3% chance pr monster
             new MonsterArea(new Vector(0, 0), 100, 0.0003f, new int[] {1, 2, 3}),
         };
     }
