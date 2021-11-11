@@ -15,6 +15,8 @@ namespace rpg_game.Game_Scenes
         {
             flags.Add("Defeated Linux user", false);
             flags.Add("Talked to Girl", false);
+            flags.Add("Been to lockers", false);
+            flags.Add("pickup", false);
 
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
             Program.print("Under that there's a motto that says", delay: 200);
@@ -57,7 +59,7 @@ namespace rpg_game.Game_Scenes
             while (atSchool)
             {
                 ChoiceSelector destination = new ChoiceSelector();
-                int dest = destination.update(ref plr, new List<string>() { "To the computer science room", "Leave school" }, "Where will you go?");
+                int dest = destination.update(ref plr, new List<string>() { "To the computer science room","To the lockers","To the cafeteria","Manage inventory", "Leave school" }, "Where will you go?");
 
                 switch (dest)
                 {
@@ -65,12 +67,27 @@ namespace rpg_game.Game_Scenes
                         ComputerScienceRoom(ref plr);
                         break;
                     case 1:
+                        Lockerhall(ref plr);
+                        break;
+                    case 2:
+                        Cafeteria(ref plr);
+                        break;
+                    case 3:
+                        InvScreen invS = new InvScreen();
+                        invS.inv(ref player);
+                        Console.Clear();
+                        break;
+                    case 4:
                         Console.WriteLine("If you leave you will never be able to come back");
                         ChoiceSelector confirm = new ChoiceSelector();
                         int choice = confirm.update(ref plr, new List<string>() { "Yes", "No" }, "Are you sure?");
                         if (choice == 0)
+                        {
+                            Program.print("We're done here, Leaving Demon High School...");
                             return true; // delete the place form list of places to go
+                        }
                         break;
+
                 }
             }
             return false;
@@ -87,7 +104,12 @@ namespace rpg_game.Game_Scenes
 
             Program.print("You walk down the hall to arrive to a room with a sign that says computer science", delay: 200);
             Program.print("The door is closed but you hear a bunch of comotion going on inside ", delay: 200);
-            Program.print("You slowly open the door and you're greeted with a smell of ");
+            Program.print("You slowly open the door and you're greeted by a few devils sitting at computers behind their desks.");
+            Program.print("One of them looks at you and says");
+            Program.print("Who are you?", name: "LinuxOS User",delay: 200);
+            Program.print("Ahh whatever it doesn't matter. If you want to be in here you have to show me what OS you run", name: "LinuxOS User",delay: 200);
+            Program.print("I'll check it real quick", name: "LinuxOS User",delay: 200);
+            Program.print(". ms100. ms100. ms100");
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 Program.print("OH! You're a fellow Linux user!!!", name: "LinuxOS User");
@@ -123,28 +145,88 @@ namespace rpg_game.Game_Scenes
                         Program.print("Really? come on man with that you might aswell be using Windows smh, get on something better", name: "LinuxOS User");
                         break;
                     case 8:
-                        // Hannah Montana Linux
-                        // http://hannahmontana.sourceforge.net/
                         Program.print("You might get along well with my daughter.", name: "LinuxOS User");
                         rightanswer = true;
                         break;
                 }
                 if (rightanswer == false)
                 {
-                    Fight.update
+                    Fight.StartFight(ref plr, Enemy.getById(6));
+                    Program.print("I can't believe your weird distro was better than mine. I guess you win. Have this and get outta here", name: "LinuxOS User");
+                plr.pickupItem(Item.getItemByID(7));
+                }
+                if (rightanswer == true)
+                {
+                    Program.print("Alright you pass. Here Linux users must stick together, ms100 have this", name: "LinuxOS User",delay: 200);
+                    plr.pickupItem(Item.getItemByID(7));
                 }
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Program.print("UGH DISGUSTING, You use Windows, I can't have this in my classroom, I ought to hack you for that, WITH MY SWORD THAT IS!", name: "LinuxOS User");
-
+                Program.print("WINDOWS?!?! UGH DISGUSTING, I can't have this in my classroom, I ought to hack you for that, WITH MY SWORD THAT IS!", name: "LinuxOS User");
+                Fight.StartFight(ref plr, Enemy.getById(6));
+                Program.print("I can't believe your inferior OS defeated me. I guess you win. Have this and get outta here", name: "LinuxOS User");
+                plr.pickupItem(Item.getItemByID(7));
             }
             else
             {
                 Program.print("What the hell are you running?", name: "LinuxOS User");
+                Fight.StartFight(ref plr, Enemy.getById(6));
+                Program.print("I can't believe your inferior OS defeated me. I guess you win. Have this and get outta here", name: "LinuxOS User");
+                plr.pickupItem(Item.getItemByID(7));
             }
 
             flags["Defeated Linux user"] = true;
         }
+
+        private void Lockerhall(ref Player plr) 
+        {
+            if (flags["Been to lockers"])
+            {
+                Program.print("You've already been here", delay: 100);
+                Program.print("You should go somewhere else", delay: 100);
+                return;
+            }
+            Program.print("You walk down the hallway to the lockers", delay: 100);
+            Program.print("You see a long line of closed lockers", delay: 100);
+            Program.print("The building is almost empty it must be late on the day", delay: 100);
+            Program.print("You walk down the hall and notice there's two lockers that are open", delay: 100);
+            Program.print("You look inside the lockers and see they both contain a bundle of school uniforms in them", delay: 100);
+            Program.print("One of the lockers contains a male School Uniform, and the other one, a female school uniform", delay: 100);
+            Program.print("You have been feeling quite weird about walking around school without wearing a uniform", delay: 100);
+            Program.print("I think it'd be okay if you took one of them", delay: 100);
+            ChoiceSelector uniform = new ChoiceSelector();
+                        int uniformchoice = uniform.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
+                        if (uniformchoice == 0)
+                            {
+                            Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
+                            flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
+                            
+                            }
+                        else if (uniformchoice == 1)
+                            {
+                            Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
+                            flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
+                            
+                            }
+                        else
+                            {
+                            Program.print("It's not nice to steal. I'll just wear my own clothes for now", delay: 100);
+                            }
+
+        }
+
+        private void Cafeteria(ref Player plr)
+        {
+            if (flags["Talked to Girl"])
+            {
+                Program.print("You've already been here", delay: 100);
+                Program.print("You should go somewhere else", delay: 100);
+                return;
+            }
+
+            Program.print("You've already been here", delay: 100);
+        }
+        
     }
 }

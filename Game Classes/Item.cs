@@ -86,6 +86,9 @@ namespace rpg_game.Game_Classes
             new Item("Super Shotgun", 4, "For some reason Everyone here who sees you walk around with this turns around and runs away in fear", 5, 0, Player.itemPlace.OffHand),
             new Item("Male School uniform", 5,"Pair of pants and a nice shirt with a tie and a little label that says Evil High on it", 1,5, Player.itemPlace.Armor),
             new Item("Female School uniform", 6,"A nice shirt with a plaid skirt tucked in, the shirt has a little label that says Evil High on it", 2,4, Player.itemPlace.Armor),
+            new Item("Penguin sword", 7,"If this weapon doesn't defeat your enemies. It can only be attributed to human error.", 8,2, Player.itemPlace.MainHand),
+            new Item("Devilish ring of defense", 8, "Given to you by an devishly cute schoolgirl. Its magic protect you from attacks",0,7, Player.itemPlace.Ring),
+
         };
     }
 }
