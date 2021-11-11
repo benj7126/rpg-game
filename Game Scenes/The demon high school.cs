@@ -111,7 +111,7 @@ namespace rpg_game.Game_Scenes
             Program.print("Who are you?", name: "LinuxOS User",delay: 200);
             Program.print("Ahh whatever it doesn't matter. If you want to be in here you have to show me what OS you run", name: "LinuxOS User",delay: 200);
             Program.print("I'll check it real quick", name: "LinuxOS User",delay: 200);
-            Program.print(". ms100. ms100. ms100");
+            Program.print(". ms100 . ms100 . ms100");
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 Program.print("OH! You're a fellow Linux user!!!", name: "LinuxOS User");
