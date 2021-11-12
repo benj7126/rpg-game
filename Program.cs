@@ -12,7 +12,7 @@ namespace rpg_game
         {
             //rpg_game.Game_Classes.maze.Maze.Start();
             Console.CursorVisible = false;
-            //Fight.update();
+            Fight.update();
             GameWorldController game = new GameWorldController();
             while (true)
             {

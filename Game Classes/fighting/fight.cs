@@ -67,7 +67,7 @@ namespace rpg_game.Game_Classes
             }*/
 
             var player = new Player();
-            StartFight(ref player, Enemy.enemies[2]);
+            StartFight(ref player, Enemy.enemies[6]);
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
@@ -86,7 +86,7 @@ namespace rpg_game.Game_Classes
 
             Console.Clear();
 
-            FightBeginning(ref game, enemy);
+            //FightBeginning(ref game, enemy);
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
             FightEnding(ref game, enemy);
 
@@ -138,12 +138,16 @@ namespace rpg_game.Game_Classes
             AttackableLocations attackLoc = AttackableLocations.Null;
             AttackableLocations defLoc = AttackableLocations.Null;
 
+            string InfoBox = "";
             while(true) {
-                game.DrawText("playername", 2, 1);
+
+                game.DrawText(player.name, 2, 1);
                 game.DrawText(enemy.Name, game.GetWinWidth() - enemy.Name.Length - 2, 3);
 
                 FightHelpers.DrawHealthBar(player.health, player.maxHealth, 2, 2, ref game, playerHB);
                 FightHelpers.DrawHealthBar(enemyHP, enemy.Health, game.GetWinWidth()-9, 4, ref game, enemyHB);
+
+                game.DrawText(InfoBox, 5, 16, 70);
 
                 if(attacking) {
                     if(attackLoc == AttackableLocations.Null) {
@@ -151,6 +155,7 @@ namespace rpg_game.Game_Classes
                     } else {
                         AttackableLocations def;
                         Random rng = new Random();
+
                         if(rng.Next(2) == 0) {
                             // Defend head
                             def = AttackableLocations.Head;
@@ -164,8 +169,31 @@ namespace rpg_game.Game_Classes
                             }
                         }
 
+                        bool defended = false;
+                        int defaultAtk = player.getAttack();
+                        switch(attackLoc) {
+                            case AttackableLocations.Head:
+                                defaultAtk+=2;
+                                break;
+                            case AttackableLocations.Torso:
+                                defaultAtk+=1;
+                                break;
+                        }
+
+
+                        while(Console.KeyAvailable) {
+                            Console.ReadKey();
+                        }
+
+                        if(attackLoc == def) {
+                            defended = true;
+                            defaultAtk = 0;
+                        }
+
+                        InfoBox = $"You attacked {enemy.Name}'s {attackLoc}. It defended {def}. You therefore dealt {defaultAtk} damage.";
+
                         //Deal damage to enemy
-                        enemyHP -= player.getAttack();
+                        enemyHP -= defaultAtk;
 
                         menu.Reset();
                         attackLoc = AttackableLocations.Null;
@@ -185,6 +213,7 @@ namespace rpg_game.Game_Classes
                 }
                 game.SwapBuffers();
                 game.DrawScreen();
+
                 if(enemyHP <= 0) {
                     return;
                 }
@@ -209,6 +238,7 @@ namespace rpg_game.Game_Classes
             }
 
             Console.Clear();
+            //enemy.Drop();
         }
 
         private static AttackableLocations PlayerAttack(ref Engine game, Player player, bool attack = true) {
