@@ -16,7 +16,6 @@ namespace rpg_game.Game_Classes
         public void run(ref Player plr, Location dest)
         {
             Console.Clear();
-            Console.WriteLine("Traveling to " + dest.name + ".");
             Console.WriteLine("");
             destination = dest;
             travelTotal = Vector.distance(destination.pos, plr.pos);
@@ -27,7 +26,34 @@ namespace rpg_game.Game_Classes
                 bool doWrite = false;
                 Thread.Sleep(10);
                 travelLeft -= 0.2f;
+                plr.pos.moveTowards(destination.pos, 0.2f);
 
+                List<procentNMonsters> encounterList = new List<procentNMonsters>();
+
+                foreach (MonsterArea ma in MonsterArea.areas)
+                {
+                    if (Vector.distance(ma.pos, plr.pos) < ma.radius)
+                    {
+                        foreach (int mid in ma.enemies)
+                        {
+                            encounterList.Add(new procentNMonsters(ma.encounterRate + (encounterList.Count == 0 ? 0 : encounterList[encounterList.Count - 1].chance), mid));
+                        }
+                    }
+                }
+
+                // do travel stuff
+                Random r = new Random();
+                float rNR = (float)r.Next(0, 10000) / 10000;
+                foreach (procentNMonsters procentNMonsters in encounterList)
+                {
+                    if (procentNMonsters.chance > rNR)
+                    {
+                        Program.print("While wandering the planes of hell you encounter a demon.");
+                        Program.print("The demon seems hungry, well, for you that is.");
+                        Fight.StartFight(ref plr, Enemy.getById(procentNMonsters.enemyId));
+                        break;
+                    }
+                }
 
                 float p = Math.Abs(travelLeft/travelTotal-1)* size;
                 string str = "[";
@@ -54,7 +80,8 @@ namespace rpg_game.Game_Classes
                 str += "]";
                 if (doWrite)
                 {
-                    Console.CursorTop = Console.CursorTop - 1;
+                    Console.CursorTop = 0;
+                    Console.WriteLine("Traveling to " + dest.name + ".");
                     int tempInt = (int)MathF.Floor((MathF.Abs(travelLeft / travelTotal-1)*100));
                     tempInt = Math.Max(Math.Min(tempInt, 100), 0);
                     Console.WriteLine(str + " " + tempInt.ToString() + "/100%");
@@ -63,7 +90,8 @@ namespace rpg_game.Game_Classes
 
                 if (travelLeft <= 0)
                 {
-                    Console.CursorTop = Console.CursorTop - 1;
+                    Console.CursorTop = 0;
+                    Console.WriteLine("Traveling to " + dest.name + ".");
                     Console.WriteLine(str + " 100/100%");
                     doneTraveling = true;
 
@@ -71,6 +99,17 @@ namespace rpg_game.Game_Classes
                     dest.enterLocation(ref plr, ref dest);
                 }
             }
+        }
+    }
+
+    class procentNMonsters
+    {
+        public int enemyId;
+        public float chance;
+        public procentNMonsters(float c, int id)
+        {
+            chance = c;
+            enemyId = id;
         }
     }
 }

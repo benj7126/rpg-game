@@ -13,7 +13,12 @@ namespace rpg_game.Game_Classes
         public int Damage;
         public int ID;
         public string Last_words;
-        //public Item[] Drops;
+        public Item[] Drops;
+
+        public void Drop()
+        {
+            
+        }
 
         public static Enemy getByName(string name)
         {
@@ -73,8 +78,35 @@ namespace rpg_game.Game_Classes
 
             new Enemy("Demon Of The Gate", "You seem quit confident, and, i must congratulate you. This will be your last fight here in hell. But, it wont end the way you think",
                 1000, 30, 5,
-                "HOW! It can't be. A puny human like you defeating me, I was the unstoppable demon protecting the gate. I guess I'll have to allow you through the gate. Have fun going back to that hellhole called earth. You will come to see, it is even worse up there than down here")
+                "HOW! It can't be. A puny human like you defeating me, I was the unstoppable demon protecting the gate. I guess I'll have to allow you through the gate. Have fun going back to that hellhole called earth. You will come to see, it is even worse up there than down here"),
+
+            new Enemy("LinuxOS user","What you're referring to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX. But what do you know about that?",
+                15, 4, 6,
+                "If this game was running on Linux I would've beaten you"),
+            new Enemy("Demon","I'm just a vanilla demon guy. Nothing special about me at all really. My views on life are just generally evil and I just don't like humans. You know pretty much what you would expect",
+                9, 5, 7,
+                "GAAH! THAT HURTS. TIME OUT! TIME OUT! This isn't funny I'm seriously hurt. Someone call the ambulance please."),
+            new Enemy ("Cyclops","Eye see you! Get it because I only have one eye. I was born this way don't laugh. Anyways prepare to die...", 13, 6, 8, "Eye didn't see that coming..."),
         };
 
+    }
+    class drop
+    {
+        Item i;
+        float c;
+        public drop(Item item, float chance)
+        {
+            i = item;
+            c = chance;
+        }
+
+        public void dropItem(ref Player plr)
+        {
+            Random r = new Random();
+            if (r.Next(0, 10000)/10000 < c)
+            {
+                plr.pickupItem(i);
+            }
+        }
     }
 }
