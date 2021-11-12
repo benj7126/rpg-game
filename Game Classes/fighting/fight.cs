@@ -86,7 +86,7 @@ namespace rpg_game.Game_Classes
 
             Console.Clear();
 
-            //FightBeginning(ref game, enemy);
+            FightBeginning(ref game, enemy);
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
             FightEnding(ref game, enemy);
 
