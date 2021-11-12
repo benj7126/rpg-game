@@ -203,7 +203,6 @@ namespace Fight_Engine
             if(box) {
                 game.DrawBox(x-1, y-1, x+10, y+1, false);
             }
-
         }
     }
 

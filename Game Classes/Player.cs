@@ -21,7 +21,7 @@ namespace rpg_game.Game_Classes
         public int health = 16;
         public int maxHealth = 16;
 
-        public string name = "";
+        public string name = "<playername>";
 
         // B - the keys to interact so that they can be changed
         public static ConsoleKey up = ConsoleKey.UpArrow;
