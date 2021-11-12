@@ -205,8 +205,46 @@ namespace rpg_game.Game_Classes
                     if(defLoc == AttackableLocations.Null) {
                         defLoc = PlayerAttack(ref game, player, false);
                     } else {
+                        AttackableLocations atk;
+                        Random rng = new Random();
+
+                        if(rng.Next(2) == 0) {
+                            // Defend head
+                            atk = AttackableLocations.Head;
+                        } else {
+                            if (rng.Next(2) == 0) {
+                                // Defend torso
+                                atk = AttackableLocations.Torso;
+                            } else {
+                                // Defend Legs
+                                atk = AttackableLocations.Legs;
+                            }
+                        }
+
+                        bool defended = false;
+                        int defaultAtk = enemy.Damage;
+                        switch(atk) {
+                            case AttackableLocations.Head:
+                                defaultAtk+=2;
+                                break;
+                            case AttackableLocations.Torso:
+                                defaultAtk+=1;
+                                break;
+                        }
+
+
+                        while(Console.KeyAvailable) {
+                            Console.ReadKey();
+                        }
+
+                        if(defLoc == atk) {
+                            defended = true;
+                            defaultAtk = 0;
+                        }
+
+                        InfoBox = $"{enemy.Name} attacked your {atk}. You defended {defLoc}. {enemy.Name} therefore dealt {defaultAtk} damage.";
                         //Deal damage to player
-                        player.health -= (enemy.Damage - player.getDefence());
+                        player.health -= (defaultAtk - player.getDefence());
 
                         menu.Reset();
                         defLoc = AttackableLocations.Null;
