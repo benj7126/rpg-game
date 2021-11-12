@@ -17,7 +17,7 @@ namespace rpg_game.Game_Classes
             unEquippable,
             Consumable
         }
-        // B - some statn stuff
+        // B - some stat stuff
         public int health = 16;
         public int maxHealth = 16;
 

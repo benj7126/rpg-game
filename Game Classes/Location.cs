@@ -22,7 +22,7 @@ namespace rpg_game.Game_Classes
         {
             bool del = false;
             if (onEnter != null)
-                del = onEnter.Start(ref plr); // return true if you want to delet location availability
+                del = onEnter.Start(ref plr); // return true if you want to delete location availability
             if (del)
             {
                 plr.possibleLocations.Remove(self);

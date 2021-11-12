@@ -137,7 +137,7 @@ namespace rpg_game.Game_Classes
 
 
 
-                // make sure that the text dose not linger
+                // make sure the text doesn't linger
                 for (int i = 0; i < 20; i++)
                     Console.Write(strSpace);
 

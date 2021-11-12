@@ -27,15 +27,15 @@ namespace rpg_game.Game_Scenes
             Program.print("Who are you?", ms: 20, name: "Stranger", delay: 200);
             Program.print("What are you doing here?", ms: 20, name: "Stranger", delay: 200);
             Program.print("Are you with them?", ms: 20, name: "Stranger", delay: 200);
-            Program.print("You are, arent you", withNLine: false, ms: 20, name: "Stranger", delay: 200);
+            Program.print("You are, aren't you", withNLine: false, ms: 20, name: "Stranger", delay: 200);
             Program.print("...", ms: 200, delay: 200);
             Program.print("You're never gonna get me alive!", ms: 40, name: "Stranger", delay: 300);
             Program.print("The strange man comes charging at you with his sword in hand");
             Fight.StartFight(ref plr, Enemy.getById(1));
-            Program.print("After you defeated the Pinapple on pizza hater, you continue to walk towards your destination", delay: 200);
+            Program.print("After you defeated the Pineapple on pizza hater, you continue to walk towards your destination", delay: 200);
             Program.print("...", ms: 300, delay: 200);
-            Program.print("You arrive at a fort of sorts, it looks right out of the middle ages or maby somehting you've seen in a fantasy game at some point, you can't really tell.", delay: 200);
-            Program.print("What you do see thou is a giant wall made purely of wooden poles with spikes on top, while it's a mystery how it hasen't burned, it's also a mystery where they got the wood from.", delay: 200);
+            Program.print("You arrive at a fort of sorts, it looks right out of the middle ages or maybe something you've seen in a fantasy game at some point, you can't really tell.", delay: 200);
+            Program.print("What you do see though is a giant wall made purely of wooden poles with spikes on top, while it's a mystery how it hasn't burned, it's also a mystery where they got the wood from.", delay: 200);
             Program.print("You start pondering over those questions ms500 suddenly a loud noise comes from above the wooden spikes", delay: 200);
             Program.print("WHAT ARE YOU DOING DOWN THERE!?!", name: "Pizza Guard");
             
@@ -46,14 +46,14 @@ namespace rpg_game.Game_Scenes
             {
                 case 0:
                     Program.print("Traitors...", name: "Pizza Guard", delay: 400);
-                    Program.print("I have heard some rumors, but i must check you're alignment before you can enter.", name: "Pizza Guard", delay: 100);
+                    Program.print("I have heard some rumors, but i must check your alignment before you can enter.", name: "Pizza Guard", delay: 100);
                     break;
                 case 1:
-                    Program.print("Well, ms300 a curious thing to do at others peoples property", name: "Pizza Guard", delay: 400);
+                    Program.print("Well, ms300 a curious thing to do at other people's property", name: "Pizza Guard", delay: 400);
                     break;
                 case 2:
                     Program.print("You sound VERY suspicious", name: "Pizza Guard", delay: 100);
-                    Program.print("If i where you i would be on my best behaviour around here. ms200 Or you will have to deal with our boss, and nobody can deal with our boss", name: "Pizza Guard", delay: 100); // hinting to a potential boss fight if you piss them off
+                    Program.print("If I where you I would be on my best behaviour around here. ms200 Or you will have to deal with our boss, and nobody can deal with our boss", name: "Pizza Guard", delay: 100); // hinting to a potential boss fight if you piss them off
                     flags["tipped to boss guy"] = true;
                     break;
             }
@@ -73,7 +73,7 @@ namespace rpg_game.Game_Scenes
 
             Program.print("That is ms400 right, ms100 welcome to the outpost", name: "Pizza Guard", delay: 200);
             Program.print("Open the gates!", name: "Pizza Guard", delay: 200);
-            Program.print("As the pizza guard shouts the big wooden gates slowly begins moving, ms200 after they've open a certain amount you begin making your way into the outpost.", delay: 200);
+            Program.print("As the pizza guard shouts, the big wooden gates slowly begin moving, ms200 after they've open a certain amount you begin making your way into the outpost.", delay: 200);
 
             bool atOutpost = true;
             while (atOutpost)
@@ -112,7 +112,7 @@ namespace rpg_game.Game_Scenes
                         if (choice == 0)
                         {
                             Program.print("We're done here, Leaving The Outpost...");
-                            return true; // delete the place form list of places to go
+                            return true; // delete the place from list of places to go
                         }
                         break;
                     case 5:
@@ -127,39 +127,39 @@ namespace rpg_game.Game_Scenes
         {
             string Name = "";
             int likeMeter = 0;
-            Program.print("While walking around you stuple across building that looks a little like a house.");
+            Program.print("While walking around you stumble across a building that looks a little like a house.");
             Program.print("You decide to walk in there, on the way, you get tackled from the right");
-            Program.print("You lose the breath from your lounges as you look up", delay: 500);
-            Program.print("HELLO THERE!", name: "Random pinapple dude", delay: 100);
-            Program.print("The names John nice to meet you", name: "Random pinapple dude");
-            Program.print("While trying to get up from the ground Jhon stretches his hand out the help you");
+            Program.print("You lose your breath as you look up", delay: 500);
+            Program.print("HELLO THERE!", name: "Random pineapple dude", delay: 100);
+            Program.print("The names John nice to meet you", name: "Random pineapple dude");
+            Program.print("While trying to get up from the ground John stretches his hand out the help you");
 
             ChoiceSelector hand = new ChoiceSelector();
-            int choice = hand.update(ref plr, new List<string>() { "Grab it", "I can handle myself" }, "Do you grap it and get up?");
+            int choice = hand.update(ref plr, new List<string>() { "Grab it", "I can handle myself" }, "Do you grab it and get up?");
             if (choice == 0)
             {
                 likeMeter++;
-                Program.print("That's more like it", name: "Jhon");
+                Program.print("That's more like it", name: "John");
                 Program.print("He pulls you off the ground", delay: 200);
             }
             else
             {
                 likeMeter--;
-                Program.print("Huh... ms400 not mutch for friendship I see", name: "Jhon", delay: 100);
-                Program.print("Well dosent really matter, im not gonna hold back", name: "Jhon");
+                Program.print("Huh... ms400 not much for friendship I see", name: "John", delay: 100);
+                Program.print("Well dosen't really matter, I'm not gonna hold back", name: "John");
                 Program.print("A grin forms on his face while you get up from the ground", delay: 200);
             }
-            Program.print("You are new around here aren't you?", name: "Jhon", delay: 200);
-            Program.print("I know that because i know almost everyone here", name: "Jhon");
-            Program.print("'Ah, hes that irritatingly sociable type of person' you thhink you think to yourself");
-            Program.print("Well whats your name?", name: "Jhon");
+            Program.print("You are new around here aren't you?", name: "John", delay: 200);
+            Program.print("I know that because I know almost everyone here", name: "John");
+            Program.print("'Ah, he's that irritatingly sociable type of person' you think to yourself");
+            Program.print("Well what's your name?", name: "John");
             ChoiceSelector name = new ChoiceSelector();
             choice = name.update(ref plr, new List<string>() { "Truth", "Lie", "..." }, "How do you respond?");
             switch (choice)
             {
                 case 0:
                     Name = plr.name;
-                    Program.print($"{Name}... what a nice name", name: "Jhon");
+                    Program.print($"{Name}... what a nice name", name: "John");
                     break;
                 case 1:
                     Console.Write("My name is ");
@@ -173,36 +173,36 @@ namespace rpg_game.Game_Scenes
                     {
                         likeMeter--;
                         Program.print("He looks at you suspiciously");
-                        Program.print($"Hm... {Name} it is", name: "Jhon");
+                        Program.print($"Hm... {Name} it is", name: "John");
                     }
                     break;
                 case 2:
                     likeMeter--;
                     likeMeter--;
                     Name = "Jef";
-                    Program.print("The silent type i see, well whatever, ill just call you", name: "Jhon");
-                    Program.print("Ehhhh, Jef, yeah Jef", name: "Jhon");
+                    Program.print("The silent type I see, well whatever, I'll just call you", name: "John");
+                    Program.print("Ehhhh, Jef, yeah Jef", name: "John");
                     break;
             }
-            Program.print($"Well then {Name}, what are you doing around here?", name: "Jhon", delay: 300);
+            Program.print($"Well then {Name}, what are you doing around here?", name: "John", delay: 300);
             Program.print($"Doesn't really matther, never mind.", name: "Jhon", delay: 200);
-            Program.print($"Ill give you a quick tour around the place", name: "Jhon", delay: 200);
-            Program.print("Jhon walks behind you and pushes forward, in a friendly way", delay: 100);
-            Program.print("You walk towards the barrack looking building, and right beffore you would get pushed in there, Jhon stops.", delay: 100);
+            Program.print($"I'll give you a quick tour around the place", name: "John", delay: 200);
+            Program.print("John walks behind you and pushes forward, in a friendly way", delay: 100);
+            Program.print("You walk towards the barrack looking building, and right before you would get pushed in there, John stops.", delay: 100);
             Program.print("He takes a deep breath and- ", delay: 100);
-            Program.print($"EVERYONE, GET OUT HERE!", ms: 150, name: "Jhon", delay: 200);
-            Program.print("A little after he shouts, an army of people looking ALOT like Jhon run out of the building", delay: 100);
-            Program.print("They line up starting from in front of you two and continueing to your right", delay: 100);
-            Program.print("You begin fealing afraid that you know what's gonna happen now", delay: 100);
-            Program.print($"Ok everyone this is {Name}, say hi!", name: "Jhon", delay: 200);
-            Program.print($"These are my boys!", name: "Jhon", delay: 200);
-            Program.print($"I have a lot to do, and i will take you on that guide later so for now. {Name} ill let them take care of you", name: "Jhon", delay: 200);
-            Program.print($"The'y only bite a little", name: "Jhon", delay: 200);
-            Program.print("He chuggles, hopefully indicating a joke", delay: 100);
-            Program.print($"You keep an eye on him Jacob", name: "Jhon", delay: 200);
+            Program.print($"EVERYONE, GET OUT HERE!", ms: 150, name: "John", delay: 200);
+            Program.print("A little after he shouts, an army of people looking ALOT like John run out of the building", delay: 100);
+            Program.print("They line up in front of you two and continuing to your right", delay: 100);
+            Program.print("You begin feeling afraid that you know what's gonna happen now", delay: 100);
+            Program.print($"Ok everyone this is {Name}, say hi!", name: "John", delay: 200);
+            Program.print($"These are my boys!", name: "John", delay: 200);
+            Program.print($"I have a lot to do, and I will take you on that guide later so for now. {Name} I'll let them take care of you", name: "John", delay: 200);
+            Program.print($"They only bite a little", name: "John", delay: 200);
+            Program.print("He chuckles, hopefully indicating a joke", delay: 100);
+            Program.print($"You keep an eye on him Jacob", name: "John", delay: 200);
             Program.print("One of the guys nod", delay: 100);
-            Program.print("Jhon begins walking away leaving you in Jacobs hands", delay: 100);
-            Program.print("All the other people who were gathered also walk away", delay: 100);
+            Program.print("John begins walking away leaving you in Jacob's hands", delay: 100);
+            Program.print("All the other people who gathered also walk away", delay: 100);
         }
 
         private void PinappleArena(ref Player plr)
