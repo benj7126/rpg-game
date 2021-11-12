@@ -8,8 +8,11 @@ namespace rpg_game.Game_Scenes
 {
     class PizzaPineappleOutpost : Scene
     {
+        public Dictionary<string, bool> flags = new Dictionary<string, bool>();
         public override bool Start (ref Player plr)
         {
+            flags.Add("tipped to boss guy", false);
+
             Program.print("Walking around pits of lava and endlessly deep holes.", delay: 200);
             Program.print("A man approaches you, he has a gleem in his eye of someone who just got what he strived for his whole life, or after life if you will.", delay: 200);
             Program.print("HUH!", ms: 30, name: "Stranger", delay: 600);
@@ -43,6 +46,7 @@ namespace rpg_game.Game_Scenes
                 case 2:
                     Program.print("You sound VERY suspicious", name: "Pizza Guard", delay: 100);
                     Program.print("If i where you i would be on my best behaviour around here. ms200 Or you will have to deal with our boss, and nobody can deal with our boss", name: "Pizza Guard", delay: 100); // hinting to a potential boss fight if you piss them off
+                    flags["tipped to boss guy"] = true;
                     break;
             }
             Program.print("Either way.", name: "Pizza Guard", delay: 200);
@@ -66,14 +70,67 @@ namespace rpg_game.Game_Scenes
             bool atOutpost = true;
             while (atOutpost)
             {
+                ChoiceSelector destination = new ChoiceSelector();
+                int dest = 0;
+                if (flags["tipped to boss guy"])
+                {
+                    dest = destination.update(ref plr, new List<string>() { "To the barracks", "To the pinapple arena", "To the PP Hut", "Manage inventory", "Leave the outpost", "Make a messs of things and get the 'boss' out here" }, "Where will you go?");
+                }
+                else
+                {
+                    dest = destination.update(ref plr, new List<string>() { "To the barracks", "To the pinapple arena", "To the PP Hut", "Manage inventory", "Leave the outpost" }, "Where will you go?");
+                }
 
+                switch (dest)
+                {
+                    case 0:
+                        Barracks(ref plr);
+                        break;
+                    case 1:
+                        PinappleArena(ref plr);
+                        break;
+                    case 2:
+                        PinapplePizzaHut(ref plr);
+                        break;
+                    case 3:
+                        InvScreen invS = new InvScreen();
+                        invS.inv(ref plr);
+                        Console.Clear();
+                        break;
+                    case 4:
+                        Console.WriteLine("If you leave you will never be able to come back");
+                        ChoiceSelector confirm = new ChoiceSelector();
+                        int choice = confirm.update(ref plr, new List<string>() { "Yes", "No" }, "Are you sure?");
+                        if (choice == 0)
+                        {
+                            Program.print("We're done here, Leaving The Outpost...");
+                            return true; // delete the place form list of places to go
+                        }
+                        break;
+                    case 5:
+                        boss(ref plr);
+                        break;
+                }
             }
-
-
             return true;
         }
 
-        private void Barracks()
+        private void Barracks(ref Player plr)
+        {
+            Program.print("You");
+        }
+
+        private void PinappleArena(ref Player plr)
+        {
+
+        }
+
+        private void PinapplePizzaHut(ref Player plr) // this is where the pizza weapons are made (all have ananas on of course)
+        {
+
+        }
+
+        private void boss(ref Player plr) // this is where the pizza weapons are made (all have ananas on of course)
         {
 
         }

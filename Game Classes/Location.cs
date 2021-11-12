@@ -49,6 +49,7 @@ namespace rpg_game.Game_Classes
             new Location("The tower of the small red demons ", new Vector(-70, 30), new Game_Scenes.SmallRedDemonTower()),
             new Location("The Demon high school", new Vector(30, 50), new Game_Scenes.DemonHighSchool()),
             new Location("The gates to hell", new Vector(0,100), new Game_Scenes.HellGates()),
+            new Location("Go thru the gates", new Vector(0,100), new Game_Scenes.ThruTheGates()),
         };
     }
 }

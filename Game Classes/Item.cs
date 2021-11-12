@@ -34,7 +34,11 @@ namespace rpg_game.Game_Classes
                     switch (sfx)
                     {
                         case 1:
-                            plr.health += 2;
+                            plr.health = Math.Min(plr.health + damage, plr.maxHealth);
+                            break;
+                        case 2:
+                            plr.maxHealth += damage;
+                            plr.health = Math.Min(plr.health + damage, plr.maxHealth);
                             break;
                     }
                 }
@@ -108,11 +112,31 @@ namespace rpg_game.Game_Classes
             new Item("Demon's Trident", 2, "A normal sized trident used by a small sized demon, But now it's yours", 3, -1, Player.itemPlace.MainHand),
             new Item("Huge shield with 4 normal sized shields on top of the shield", 3, "The name says it all really.", 0, 20, Player.itemPlace.OffHand),
             new Item("Super Shotgun", 4, "For some reason Everyone here who sees you walk around with this turns around and runs away in fear", 5, 0, Player.itemPlace.OffHand),
-            new Item("Male School uniform", 5,"Pair of pants and a nice shirt with a tie and a little label that says Evil High on it", 1,5, Player.itemPlace.Armor),
+            new Item("Male School uniform", 5,"Pair o" +
+                "f pants and a nice shirt with a tie and a little label that says Evil High on it", 1,5, Player.itemPlace.Armor),
             new Item("Female School uniform", 6,"A nice shirt with a plaid skirt tucked in, the shirt has a little label that says Evil High on it", 2,4, Player.itemPlace.Armor),
             new Item("Penguin sword", 7,"If this weapon doesn't defeat your enemies. It can only be attributed to human error.", 8,2, Player.itemPlace.MainHand),
             new Item("Devilish ring of defense", 8, "Given to you by an devishly cute schoolgirl. Its magic protect you from attacks",0,7, Player.itemPlace.Ring),
-            new Item("Minor potion of healing", 9, "Drinking this heals you 4 hp",0,0, Player.itemPlace.Consumable, sEffx: new int[] {1}),
+            new Item("Minor potion of healing", 9, "Drinking this heals you 4 hp",4,0, Player.itemPlace.Consumable, sEffx: new int[] {1}),
+            new Item("Potion of healing", 10, "Drinking this heals you 16 hp",16,0, Player.itemPlace.Consumable, sEffx: new int[] {1}),
+            new Item("Strong potion of healing", 11, "Drinking this heals you 32 hp",32,0, Player.itemPlace.Consumable, sEffx: new int[] {1}),
+            new Item("Hawai", 12, "It's a pizza with pinapple on it, how it is in hell, nobody knows. But eathing it will fill you with new life",8,0, Player.itemPlace.Consumable, sEffx: new int[] {1, 2}),
+            
+            //pizza set
+            new Item("Pizza sheild", 13, "Looks like a pizza, except it's baked WAY too much and has a handle on the back",0,4, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Ball of dough", 14, "It's a ball of dough. you think to yourself 'could i make armor of this?' but then you realize it was a stupid idea, or was it?",0,3, Player.itemPlace.Armor, sEffx: new int[] {}),
+            new Item("Solid cheese sword", 15, "A sword made of cheese",2,0, Player.itemPlace.MainHand, sEffx: new int[] {}),
+            new Item("Bag of unlimited melted cheese", 16, "You grap a little and throw it at them, hit the eyes THE EYES!",2,0, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Ring of cheese", 17, "It's grose and you dont want to wear it.",-1,1, Player.itemPlace.Ring, sEffx: new int[] {}),
+            new Item("Pizza with a hole", 18, "A pizza with a hole in it, you can wear it around you neck and look like some ufo or something",1,2, Player.itemPlace.Amulet, sEffx: new int[] {}),
+            
+            //pinapple pizza set
+            new Item("Pizza sheild with pinapples on", 19, "Looks like a pizza, except it's baked WAY too much and has a handle on the back, it's also covered in pinapple pieces, kinda makes it shine a little.",0,7, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Ball of dough with pinapples in", 20, "You've proply alread seen one of these beffore, now theres pieces of pinapple in it... DONT",0,4, Player.itemPlace.Armor, sEffx: new int[] {}),
+            new Item("Pinapple bat", 21, "Just a pinapple",4,2, Player.itemPlace.MainHand, sEffx: new int[] {}),
+            new Item("Bag of unlimited pinapple shaped caltraps", 22, "A great compination of taste and blood, take it from one that has tried it.",3,0, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Pinapple ring ", 23, "Just a cylinder with a hole in it, fits your finger perfectly, sliiiides right on,",2,-4, Player.itemPlace.Ring, sEffx: new int[] {}),
+            new Item("Pinapple amulet", 24, "A lot of rings made of pinapple. Hooked together to make a choker or something.",4,-12, Player.itemPlace.Amulet, sEffx: new int[] {}),
 
         };
     }

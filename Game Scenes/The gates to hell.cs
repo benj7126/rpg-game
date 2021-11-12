@@ -43,6 +43,7 @@ namespace rpg_game.Game_Scenes
                     Fight.StartFight(ref plr, Enemy.getById(5));
                     break;
             }
+            plr.possibleLocations.Add(Location.getLocationByName("Go thru the gates"));
             return false;
         }
     }
