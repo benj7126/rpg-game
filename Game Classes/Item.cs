@@ -138,6 +138,7 @@ namespace rpg_game.Game_Classes
             new Item("Pinapple ring ", 23, "Just a cylinder with a hole in it, fits your finger perfectly, sliiiides right on,",2,-4, Player.itemPlace.Ring, sEffx: new int[] {}),
             new Item("Pinapple amulet", 24, "A lot of rings made of pinapple. Hooked together to make a choker or something.",4,-12, Player.itemPlace.Amulet, sEffx: new int[] {}),
 
+            new Item("Shabby T-Shirt", 25, "You bought this T-shirt back on earth from a thrift shop, one man's trash is another man's treasure",0,1, Player.itemPlace.Armor),
         };
     }
 }
