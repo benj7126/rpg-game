@@ -9,6 +9,7 @@ namespace rpg_game.Game_Classes.maze
 {
     class Maze {
         public static void Start() {
+            Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
             int[] mapArr = {
                 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -25,12 +26,11 @@ namespace rpg_game.Game_Classes.maze
 
             Map map = new Map(9, 10, mapArr);
 
-            double posX = 1, posY = 1;
+            double posX = 5, posY = 6;
             double dirX = -1, dirY = 0;
             double planeX = 0, planeY = 0.66;
 
             while(true) {
-                game.DrawVerLine(2, 6);
 
                 for(int x = 0; x < game.GetWinWidth(); x++) {
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
@@ -94,7 +94,11 @@ namespace rpg_game.Game_Classes.maze
                     } catch (Exception e) {
                         lineHeight = 1000;
                     }
-                    game.DrawVerLine(x, lineHeight);
+                    if(side == 0) {
+                        game.DrawVerLine(x, lineHeight, "#ffffff");
+                    } else {
+                        game.DrawVerLine(x, lineHeight, "#cccccc");
+                    }
                 }
 
                 double rotSpeed = 0.2;
