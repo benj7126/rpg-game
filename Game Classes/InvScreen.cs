@@ -131,8 +131,9 @@ namespace rpg_game.Game_Classes
 
                 Console.WriteLine(strSpace);
                 Console.WriteLine("Player Attack: " + player.getAttack() + strSpace);
-                Console.WriteLine("Player Defence: " + player.getDefence() + strSpace + "\n");
+                Console.WriteLine("Player Defence: " + player.getDefence() + strSpace + "\n" + strSpace);
                 Console.WriteLine("Player Health: " + player.health + strSpace);
+                Console.WriteLine("Player Max health: " + player.maxHealth + strSpace);
 
 
 

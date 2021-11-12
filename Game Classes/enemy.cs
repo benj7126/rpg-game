@@ -13,7 +13,12 @@ namespace rpg_game.Game_Classes
         public int Damage;
         public int ID;
         public string Last_words;
-        //public Item[] Drops;
+        public Item[] Drops;
+
+        public void Drop()
+        {
+            
+        }
 
         public static Enemy getByName(string name)
         {
@@ -84,5 +89,24 @@ namespace rpg_game.Game_Classes
             new Enemy ("Cyclops","Eye see you! Get it because I only have one eye. I was born this way don't laugh. Anyways prepare to die...", 13, 6, 8, "Eye didn't see that coming..."),
         };
 
+    }
+    class drop
+    {
+        Item i;
+        float c;
+        public drop(Item item, float chance)
+        {
+            i = item;
+            c = chance;
+        }
+
+        public void dropItem(ref Player plr)
+        {
+            Random r = new Random();
+            if (r.Next(0, 10000)/10000 < c)
+            {
+                plr.pickupItem(i);
+            }
+        }
     }
 }

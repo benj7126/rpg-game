@@ -16,8 +16,8 @@ namespace rpg_game.Game_Scenes
             flags.Add("Defeated Linux user", false);
             flags.Add("Talked to Girl", false);
             flags.Add("Been to lockers", false);
-            flags.Add("pickup", false);
-            flags.Add("Seen girl", false);
+            flags.Add("pickup", false); 
+            flags.Add("Been to cafe", false);
 
 
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
@@ -191,7 +191,7 @@ namespace rpg_game.Game_Scenes
                 {
                     Program.print("But it seems theres still more to do", delay: 100);
                     Program.print("Have you come back to steal a school uniform?", delay: 100);
-                    uniform(plr);
+                    uniform(ref plr);
                     return;
                 }
                 else
@@ -208,7 +208,7 @@ namespace rpg_game.Game_Scenes
             Program.print("One of the lockers contains a male School Uniform, and the other one, a female school uniform", delay: 100);
             Program.print("You have been feeling quite weird about walking around school without wearing a uniform", delay: 100);
             Program.print("I think it'd be okay if you took one of them", delay: 100);
-            uniform(plr);
+            uniform(ref plr);
             Program.print("Nobody is around the locker halls so you decide to try to find something else", delay: 100);
             flags["Been to lockers"] = true;
         }
@@ -242,23 +242,26 @@ namespace rpg_game.Game_Scenes
                 Program.print("You've already been here,", delay: 100);
                 if (!flags["Talked to Girl"])
                 {
+                    Program.print("That girl is still here though", delay: 100);
                     girl(ref plr);
+                    return;
                 }
                 else
                 {
-                    Program.print("That girl is still here though", delay: 100);
+                    Program.print("You leave the cafeteria");
+                    return;
                 }
-
-                Program.print("You walk into the cafeteria, see there's still a few students left hanging out here", delay: 100);
-                Program.print("You look around and notice this Cute devil schoolgirl standing around", delay: 100);
-                Program.print("She's got red skin, sharp horns and she's wearing the Evil High school uniform", delay: 100);
-                Program.print("Exactly your type", delay: 100);
-                Program.print("You're feeling good about yourself, you bet you could impress this girl", delay: 100);
-                Program.print("I'm sure nothing bad could come of just tryna talk to her", delay: 100);
-                Program.print("I mean this is the after life after all, ms100 what do you have to lose?", delay: 100);
-                girl(ref plr);
-                Program.print("You leave the cafeteria");
             }
+            Program.print("You walk into the cafeteria, see there's still a few students left hanging out here", delay: 100);
+            Program.print("You look around and notice this Cute devil schoolgirl standing around", delay: 100);
+            Program.print("She's got red skin, sharp horns and she's wearing the Evil High school uniform", delay: 100);
+            Program.print("Exactly your type", delay: 100);
+            Program.print("You're feeling good about yourself, you bet you could impress this girl", delay: 100);
+            Program.print("I'm sure nothing bad could come of just tryna talk to her", delay: 100);
+            Program.print("I mean this is the after life after all, ms100 what do you have to lose?", delay: 100);
+            girl(ref plr);
+            flags["Been to cafe"] = true;
+            return;
         }
 
         private void girl(ref Player plr)
@@ -295,7 +298,7 @@ namespace rpg_game.Game_Scenes
                 {
                     Program.print("How dare you apprach me with only boxers.", name: "Devil School girl");
                     Program.print("DUSGUSTING", name: "Devil School girl", ms: 20);
-                    Program.print("You leave the shamefully cafeteria");
+                    Program.print("You shamefully leave the cafeteria");
                     return;
                 }
             }

@@ -19,7 +19,7 @@ namespace rpg_game.Game_Classes
     class GameWorldController
     {
         // B - the core of the game
-        public gameStates gameState = gameStates.StartScreen;
+        public gameStates gameState = gameStates.Other;
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
         public Travel curTravel = new Travel();
