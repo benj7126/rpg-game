@@ -111,8 +111,9 @@ namespace rpg_game.Game_Classes
             new Item("Male School uniform", 5,"Pair of pants and a nice shirt with a tie and a little label that says Evil High on it", 1,5, Player.itemPlace.Armor),
             new Item("Female School uniform", 6,"A nice shirt with a plaid skirt tucked in, the shirt has a little label that says Evil High on it", 2,4, Player.itemPlace.Armor),
             new Item("Penguin sword", 7,"If this weapon doesn't defeat your enemies. It can only be attributed to human error.", 8,2, Player.itemPlace.MainHand),
-            new Item("Devilish ring of defense", 8, "Given to you by an devishly cute schoolgirl. Its magic protect you from attacks",0,7, Player.itemPlace.Ring),
+            new Item("Devilish ring of defense", 8, "Given to you by an devishly cute schoolgirl. It's magic protect you from attacks",0,7, Player.itemPlace.Ring),
             new Item("Minor potion of healing", 9, "Drinking this heals you 4 hp",0,0, Player.itemPlace.Consumable, sEffx: new int[] {1}),
+            new Item("Shabby T-Shirt", 25, "You bought this T-shirt back on earth from a thrift shop, one man's trash is another man's treasure",0,1, Player.itemPlace.Armor),
 
         };
     }
