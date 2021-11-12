@@ -21,7 +21,7 @@ namespace rpg_game.Game_Classes
         public int health = 16;
         public int maxHealth = 16;
 
-        public string name = "";
+        public string name = "<playername>";
 
         // B - the keys to interact so that they can be changed
         public static ConsoleKey up = ConsoleKey.UpArrow;
@@ -91,7 +91,7 @@ namespace rpg_game.Game_Classes
             // B - make item slot item slots...
             equipped.Add(itemPlace.MainHand, Item.getItemByID(1));
             equipped.Add(itemPlace.OffHand, null);
-            equipped.Add(itemPlace.Armor, null);
+            equipped.Add(itemPlace.Armor, Item.getItemByID(25));
             equipped.Add(itemPlace.Ring, null);
             equipped.Add(itemPlace.Amulet, null);
 
@@ -100,9 +100,6 @@ namespace rpg_game.Game_Classes
             {
                 possibleLocations.Add(l);
             }
-
-            inventory[1] = Item.getItemByID(2);
-            inventory[2] = Item.getItemByID(3);
         }
     }
 }
