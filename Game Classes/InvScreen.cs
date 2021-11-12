@@ -116,25 +116,29 @@ namespace rpg_game.Game_Classes
                     Console.WriteLine(item.name + strSpace);
                     Console.WriteLine(Program.convertToLen(item.description, 60) + strSpace);
 
-                    Console.WriteLine("Damage: " + item.damage + strSpace);
-                    Console.WriteLine("Defense: " + item.defence + strSpace);
+                    if (item.place != Player.itemPlace.unEquippable && item.place != Player.itemPlace.Consumable)
+                    {
+                        Console.WriteLine("Damage: " + item.damage + strSpace);
+                        Console.WriteLine("Defense: " + item.defence + strSpace);
+                    }
                     if (selected >= 0)
                         if (selected != 12)
                         {
-                            Console.WriteLine("                                                                           ");
+                            Console.WriteLine(strSpace);
                             Console.WriteLine("Press [" + Player.del + "] to throw away");
                         }
                 }
 
-                Console.WriteLine("                                                                           ");
-                Console.WriteLine("Player Attack: " + player.getAttack() + "                                                                           ");
-                Console.WriteLine("Player Defence: " + player.getDefence() + "                                                                           ");
+                Console.WriteLine(strSpace);
+                Console.WriteLine("Player Attack: " + player.getAttack() + strSpace);
+                Console.WriteLine("Player Defence: " + player.getDefence() + strSpace + "\n");
+                Console.WriteLine("Player Health: " + player.health + strSpace);
 
 
 
                 // make sure that the text dose not linger
                 for (int i = 0; i < 20; i++)
-                    Console.Write("                                                                           ");
+                    Console.Write(strSpace);
 
                 ConsoleKey ck = Console.ReadKey(true).Key;
                 if (Player.up == ck)

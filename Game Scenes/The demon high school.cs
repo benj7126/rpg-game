@@ -17,7 +17,7 @@ namespace rpg_game.Game_Scenes
             flags.Add("Talked to Girl", false);
             flags.Add("Been to lockers", false);
             flags.Add("pickup", false);
-            flags.Add("pickup2", false);
+            flags.Add("Seen girl", false);
 
 
             Program.print("You've arrived at a school. There's a big sign that says 'EVIL HIGH'");
@@ -191,24 +191,7 @@ namespace rpg_game.Game_Scenes
                 {
                     Program.print("But it seems theres still more to do", delay: 100);
                     Program.print("Have you come back to steal a school uniform?", delay: 100);
-                    ChoiceSelector uniform2 = new ChoiceSelector();
-                    int uniformchoice2 = uniform2.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
-                    if (uniformchoice2 == 0)
-                    {
-                        Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
-                        flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
-
-                    }
-                    else if (uniformchoice2 == 1)
-                    {
-                        Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
-                        flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
-
-                    }
-                    else
-                    {
-                        Program.print("It's not nice to steal. I'll just wear my own clothes for now", name: $"{plr.name}", delay: 100);
-                    }
+                    uniform(plr);
                     return;
                 }
                 else
@@ -225,121 +208,96 @@ namespace rpg_game.Game_Scenes
             Program.print("One of the lockers contains a male School Uniform, and the other one, a female school uniform", delay: 100);
             Program.print("You have been feeling quite weird about walking around school without wearing a uniform", delay: 100);
             Program.print("I think it'd be okay if you took one of them", delay: 100);
-            ChoiceSelector uniform = new ChoiceSelector();
-            int uniformchoice = uniform.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
-            if (uniformchoice == 0)
+            uniform(plr);
+            Program.print("Nobody is around the locker halls so you decide to try to find something else", delay: 100);
+            flags["Been to lockers"] = true;
+        }
+
+        private void uniform(ref Player plr)
+        {
+            ChoiceSelector uniform2 = new ChoiceSelector();
+            int uniformchoice2 = uniform2.update(ref plr, new List<string>() { "Male School Uniform", "Female School Uniform", "Don't take one" }, "Which one do you take?");
+            if (uniformchoice2 == 0)
             {
                 Program.print("You grab the male uniform, ms100 I'm sure they won't miss it", delay: 100);
                 flags["pickup"] = plr.pickupItem(Item.getItemByID(5));
-                            
+
             }
-            else if (uniformchoice == 1)
+            else if (uniformchoice2 == 1)
             {
                 Program.print("You grab the female uniform, ms100 I'm sure they won't miss it", delay: 100);
                 flags["pickup"] = plr.pickupItem(Item.getItemByID(6));
-                            
+
             }
             else
             {
                 Program.print("It's not nice to steal. I'll just wear my own clothes for now", name: $"{plr.name}", delay: 100);
             }
-            Program.print("Nobody is around the locker halls so you decide to try to find something else", delay: 100);
-            flags["Been to lockers"] = true;
         }
 
         private void Cafeteria(ref Player plr)
         {
-            int pickedupring = 0;
-                        if (flags["Been to cafe"])
+            if (flags["Been to cafe"])
             {
                 Program.print("You've already been here,", delay: 100);
-                if (flags["Talked to Girl"])
+                if (!flags["Talked to Girl"])
+                {
+                    girl(ref plr);
+                }
+                else
+                {
+                    Program.print("That girl is still here though", delay: 100);
+                }
+
+                Program.print("You walk into the cafeteria, see there's still a few students left hanging out here", delay: 100);
+                Program.print("You look around and notice this Cute devil schoolgirl standing around", delay: 100);
+                Program.print("She's got red skin, sharp horns and she's wearing the Evil High school uniform", delay: 100);
+                Program.print("Exactly your type", delay: 100);
+                Program.print("You're feeling good about yourself, you bet you could impress this girl", delay: 100);
+                Program.print("I'm sure nothing bad could come of just tryna talk to her", delay: 100);
+                Program.print("I mean this is the after life after all, ms100 what do you have to lose?", delay: 100);
+                girl(ref plr);
+                Program.print("You leave the cafeteria");
+            }
+        }
+
+        private void girl(ref Player plr)
+        {
+
+            ChoiceSelector GirlTalk2 = new ChoiceSelector();
+            int GirlTalkChoice2 = GirlTalk2.update(ref plr, new List<string>() { "Say hello to the girl", "Nah screw that" }, "Do you muster up the courage to talk to her?");
+            if (GirlTalkChoice2 == 0)
             {
-                    if (pickedupring = 1;)
+                Program.print("Hey. ms50 How you doing lady");
+                if (plr.equipped[Player.itemPlace.Armor] != null)
+                {
+                    if (plr.equipped[Player.itemPlace.Armor].name == "Male School uniform" || plr.equipped[Player.itemPlace.Armor].name == "Female School uniform")
                     {
-                        flags["pickup2"] = plr.pickupItem(Item.getItemByID(8));
-                        {
-                            if (flags["pickup2"] == false)
-                            {
-                                Program.print("You still don't have the inventory space, come back when you got some stupid!");
-                            }
-                            else if (flags["pickup2"] == true)
-                            {
-                                Program.print("you picked up the ring where you hid it");
-                            }
-                        }
+                        Program.print("Hey, I haven't seen you around here before are you new?", name: "Devil School girl", delay: 100);
+                        Program.print("You don't look like a demon", name: "Devil School girl", delay: 100);
+                        Program.print("Yea I'm actually from earth I just got here recently, I'm just trying to figure out a way back, quite an evil school you guys have", name: $"{plr.name}", delay: 100);
+                        Program.print("Oh wow, ms100 you want to escape hell? I heard that's a daunting task.", name: "Devil School girl", delay: 100);
+                        Program.print("You're lucky you talked to me, I take a real liking to humans, here have this, it'll help you get through hell's dangers", name: "Devil School girl", delay: 100);
+                        Program.print("You've received a Devilish ring of defense", delay: 100);
+
+                        plr.pickupItem(Item.getItemByID(8));
+                        flags["Talked to Girl"] = true;
                     }
                     else
                     {
-                     Program.print("and that girl already left", delay: 100);
-                     Program.print("You should go somewhere else", delay: 100);
+                        Program.print($"OMG are you seriously trying to talk with me while wearing that {plr.equipped[Player.itemPlace.Armor].name}, That's sooo last year. Come back when you've found something more stylish.", name: "Devil School girl", delay: 200);
+                        Program.print("OOF, maybe you should try to find something else to wear. Perhaps you can find some clothes around the school.", name: "Devil School girl");
                     }
-
-            }
-                else
-                {
-                Program.print("That girl is still here though", delay: 100);
-
-                                ChoiceSelector GirlTalk2 = new ChoiceSelector();
-                    int GirlTalkChoice2 = GirlTalk2.update(ref plr, new List<string>() { "Say hello to the girl", "Nah screw that" }, "Do you muster up the courage to talk to her?");
-                    if (GirlTalkChoice2 == 0)
-                Program.print("Hey. ms50 How you doing lady");
-            {
-                if (plr.equipped[Player.itemPlace.Armor].name == "Male School uniform" ||plr.equipped[Player.itemPlace.Armor].name == "Female School uniform" )
-                {
-                    Program.print("Hey, I haven't seen you around here before are you new?", name: "Devil School girl", delay: 100);
-                    Program.print("You don't look like a demon", name: "Devil School girl", delay: 100);
-                    Program.print("Yea I'm actually from earth I just got here recently, I'm just trying to figure out a way back, quite an evil school you guys have", name: $"{plr.name}", delay:100);
-                    Program.print("Oh wow, ms100 you want to escape hell? I heard that's a daunting task.", name: "Devil School girl", delay: 100);
-                    Program.print("You're lucky you talked to me, I take a real liking to humans, here have this, it'll help you get through hell's dangers", name: "Devil School girl", delay: 100);
-                    Program.print("You've received a Devilish ring of defense", delay: 100);
-                    pickedupring = 2;
-                    flags["pickup2"] = plr.pickupItem(Item.getItemByID(8));
-                    flags["Talked to Girl"] = true;
-                            if (flags["pickup2"] == false)
-                            {
-                                Program.print("You didn't have inventory space so you take the ring and hid it. Come back here when you have inventory space");
-                                pickedupring = 1;
-                            }
+                    Program.print("You leave the cafeteria");
+                    return;
                 }
                 else
                 {
-                    Program.print($"OMG are you seriously trying to talk with me while wearing that {plr.equipped[Player.itemPlace.Armor].name}, That's sooo last year. Come back when you've found something more stylish.", delay: 200);
-                    Program.print("OOF, maybe you should try to find something else to wear. Perhaps you can find some clothes around the school.");
+                    Program.print("How dare you apprach me with only boxers.", name: "Devil School girl");
+                    Program.print("DUSGUSTING", name: "Devil School girl", ms: 20);
+                    Program.print("You leave the shamefully cafeteria");
+                    return;
                 }
-                Program.print("You leave the cafeteria");
-                }
-                return;
-            }
-
-            Program.print("You walk into the cafeteria, see there's still a few students left hanging out here", delay: 100);
-            Program.print("You look around and notice this Cute devil schoolgirl standing around", delay: 100);
-            Program.print("She's got red skin, sharp horns and she's wearing the Evil High school uniform", delay: 100);
-            Program.print("Exactly your type", delay: 100);
-            Program.print("You're feeling good about yourself, you bet you could impress this girl", delay: 100);
-            Program.print("I'm sure nothing bad could come of just tryna talk to her", delay: 100);
-            Program.print("I mean this is the after life after all, ms100 what do you have to lose?", delay: 100);
-            ChoiceSelector GirlTalk = new ChoiceSelector();
-                    int GirlTalkChoice = GirlTalk.update(ref plr, new List<string>() { "Say hello to the girl", "Nah screw that" }, "Do you muster up the courage to talk to her?");
-                    if (GirlTalkChoice == 0)
-                Program.print("Hey. ms50 How you doing lady");
-            {
-                if (plr.equipped[Player.itemPlace.Armor].name == "Male School uniform" ||plr.equipped[Player.itemPlace.Armor].name == "Female School uniform" )
-                {
-                    Program.print("Hey, I haven't seen you around here before are you new?", name: "Devil School girl", delay: 100);
-                    Program.print("You don't look like a demon", name: "Devil School girl", delay: 100);
-                    Program.print("Yea I'm actually from earth I just got here recently, I'm just trying to figure out a way back, quite an evil school you guys have", name: $"{plr.name}", delay:100);
-                    Program.print("Oh wow, ms100 you want to escape hell? I heard that's a daunting task.", name: "Devil School girl", delay: 100);
-                    Program.print("You're lucky you talked to me, I take a real liking to humans, here have this, it'll help you get through hell's dangers", name: "Devil School girl", delay: 100);
-                    Program.print("You've received a Devilish ring of defense", delay: 100);
-                    flags["pickup2"] = plr.pickupItem(Item.getItemByID(8));
-                }
-                else
-                {
-                    Program.print($"OMG are you seriously trying to talk with me while wearing that {plr.equipped[Player.itemPlace.Armor].name}, That's sooo last year. Come back when you've found something more stylish.", delay: 200);
-                    Program.print("OOF, maybe you should try to find something else to wear. Perhaps you can find some clothes around the school.");
-                }
-                Program.print("You leave the cafeteria");
             }
         }
     }

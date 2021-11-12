@@ -14,7 +14,8 @@ namespace rpg_game.Game_Classes
             Armor,
             Ring,
             Amulet,
-            unEquippable
+            unEquippable,
+            Consumable
         }
         // B - some statn stuff
         public int health = 16;
