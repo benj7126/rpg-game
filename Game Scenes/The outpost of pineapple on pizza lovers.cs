@@ -11,6 +11,14 @@ namespace rpg_game.Game_Scenes
         public Dictionary<string, bool> flags = new Dictionary<string, bool>();
         public override bool Start (ref Player plr)
         {
+            string[] namelist = { "Jacob", "Michael", "Matthew", "Joshua", "Christopher", "Nicholas", "Andrew", "Joseph", "Daniel", "Tyler", "William", "Brandon", "Ryan", "John", "Zachary", "David", "Anthony", "James", "Justin", "Alexander", "Jonathan", "Christian", "Austin", "Dylan", "Ethan", "Benjamin", "Noah", "Samuel", "Robert", "Nathan", "Cameron" };
+
+            foreach (string nameI in namelist)
+            {
+                Program.print($"Hi {Name}!", ms: 2, name: nameI);
+            }
+
+
             flags.Add("tipped to boss guy", false);
 
             Program.print("Walking around pits of lava and endlessly deep holes.", delay: 200);
@@ -117,7 +125,84 @@ namespace rpg_game.Game_Scenes
 
         private void Barracks(ref Player plr)
         {
-            Program.print("You");
+            string Name = "";
+            int likeMeter = 0;
+            Program.print("While walking around you stuple across building that looks a little like a house.");
+            Program.print("You decide to walk in there, on the way, you get tackled from the right");
+            Program.print("You lose the breath from your lounges as you look up", delay: 500);
+            Program.print("HELLO THERE!", name: "Random pinapple dude", delay: 100);
+            Program.print("The names John nice to meet you", name: "Random pinapple dude");
+            Program.print("While trying to get up from the ground Jhon stretches his hand out the help you");
+
+            ChoiceSelector hand = new ChoiceSelector();
+            int choice = hand.update(ref plr, new List<string>() { "Grab it", "I can handle myself" }, "Do you grap it and get up?");
+            if (choice == 0)
+            {
+                likeMeter++;
+                Program.print("That's more like it", name: "Jhon");
+                Program.print("He pulls you off the ground", delay: 200);
+            }
+            else
+            {
+                likeMeter--;
+                Program.print("Huh... ms400 not mutch for friendship I see", name: "Jhon", delay: 100);
+                Program.print("Well dosent really matter, im not gonna hold back", name: "Jhon");
+                Program.print("A grin forms on his face while you get up from the ground", delay: 200);
+            }
+            Program.print("You are new around here aren't you?", name: "Jhon", delay: 200);
+            Program.print("I know that because i know almost everyone here", name: "Jhon");
+            Program.print("'Ah, hes that irritatingly sociable type of person' you thhink you think to yourself");
+            Program.print("Well whats your name?", name: "Jhon");
+            ChoiceSelector name = new ChoiceSelector();
+            choice = name.update(ref plr, new List<string>() { "Truth", "Lie", "..." }, "How do you respond?");
+            switch (choice)
+            {
+                case 0:
+                    Name = plr.name;
+                    Program.print($"{Name}... what a nice name", name: "Jhon");
+                    break;
+                case 1:
+                    Console.Write("My name is ");
+                    Name = Console.ReadLine();
+                    if (Name == plr.name)
+                    {
+                        likeMeter++;
+                        Program.print($"{Name}... what a nice name", name: "Jhon");
+                    }
+                    else
+                    {
+                        likeMeter--;
+                        Program.print("He looks at you suspiciously");
+                        Program.print($"Hm... {Name} it is", name: "Jhon");
+                    }
+                    break;
+                case 2:
+                    likeMeter--;
+                    likeMeter--;
+                    Name = "Jef";
+                    Program.print("The silent type i see, well whatever, ill just call you", name: "Jhon");
+                    Program.print("Ehhhh, Jef, yeah Jef", name: "Jhon");
+                    break;
+            }
+            Program.print($"Well then {Name}, what are you doing around here?", name: "Jhon", delay: 300);
+            Program.print($"Doesn't really matther, never mind.", name: "Jhon", delay: 200);
+            Program.print($"Ill give you a quick tour around the place", name: "Jhon", delay: 200);
+            Program.print("Jhon walks behind you and pushes forward, in a friendly way", delay: 100);
+            Program.print("You walk towards the barrack looking building, and right beffore you would get pushed in there, Jhon stops.", delay: 100);
+            Program.print("He takes a deep breath and- ", delay: 100);
+            Program.print($"EVERYONE, GET OUT HERE!", ms: 150, name: "Jhon", delay: 200);
+            Program.print("A little after he shouts, an army of people looking ALOT like Jhon run out of the building", delay: 100);
+            Program.print("They line up starting from in front of you two and continueing to your right", delay: 100);
+            Program.print("You begin fealing afraid that you know what's gonna happen now", delay: 100);
+            Program.print($"Ok everyone this is {Name}, say hi!", name: "Jhon", delay: 200);
+            Program.print($"These are my boys!", name: "Jhon", delay: 200);
+            Program.print($"I have a lot to do, and i will take you on that guide later so for now. {Name} ill let them take care of you", name: "Jhon", delay: 200);
+            Program.print($"The'y only bite a little", name: "Jhon", delay: 200);
+            Program.print("He chuggles, hopefully indicating a joke", delay: 100);
+            Program.print($"You keep an eye on him Jacob", name: "Jhon", delay: 200);
+            Program.print("One of the guys nod", delay: 100);
+            Program.print("Jhon begins walking away leaving you in Jacobs hands", delay: 100);
+            Program.print("All the other people who were gathered also walk away", delay: 100);
         }
 
         private void PinappleArena(ref Player plr)
