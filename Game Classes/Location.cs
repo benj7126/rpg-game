@@ -43,7 +43,7 @@ namespace rpg_game.Game_Classes
 
         public static Location[] locations =
         {
-            new Location("The town of beginnings", new Vector(0, 0), null),
+            new Location("Random fountain", new Vector(0, 0), new Game_Scenes.Fountain()),
             new Location("The outpost of pineapple on pizza lovers ", new Vector(60, 20), new Game_Scenes.PizzaPineappleOutpost()),
             new Location("The church of Socks and Sandals ", new Vector(-40, 30), new Game_Scenes.SockandSandalchurch()),
             new Location("The tower of the small red demons ", new Vector(-70, 30), new Game_Scenes.SmallRedDemonTower()),

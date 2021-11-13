@@ -51,6 +51,8 @@ namespace rpg_game.Game_Classes
                         Program.print("While wandering the planes of hell you encounter a demon.");
                         Program.print("The demon seems hungry, well, for you that is.");
                         Fight.StartFight(ref plr, Enemy.getById(procentNMonsters.enemyId));
+                        Program.sleep(500);
+                        Console.Clear();
                         break;
                     }
                 }

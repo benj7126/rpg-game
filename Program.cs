@@ -6,20 +6,25 @@ using rpg_game.Game_Classes;
 
 namespace rpg_game
 {
-    class Program   
+    class Program
     {
+        public static GameWorldController game;
+
         static void Main(string[] args)
         {
-            //rpg_game.Game_Classes.maze.Maze.Start();
             Console.CursorVisible = false;
-            Fight.update();
-            GameWorldController game = new GameWorldController();
+            gameStart();
+        }
+        public static void gameStart()
+        {
+            Console.Clear();
+            print("Starting game\n", ms: 200);
+            game = new GameWorldController();
             while (true)
             {
                 game.updateWorld();
             }
         }
-
         public static void clearKeys()
         {
             if (Console.KeyAvailable)
@@ -36,7 +41,7 @@ namespace rpg_game
             Thread.Sleep((int)MathF.Floor(ms*Player.textSpeedMulti));
         }
 
-        public static void print(string str, int ms = 50, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "")
+        public static void print(string str, int ms = 50, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "", bool raw = false)
         {
             // B - making a print function to make story telling easier (hopefully)
             if (name != "") // B - if theres someone talking you can define their name and it will be added to the wraping of text
@@ -45,11 +50,14 @@ namespace rpg_game
                 sleep(150);
             }
 
-            str = convertToLen(str, maxCharLen, startVal: name.Length+3); // B - wrap text
-
-            // int index, int wait time
             Dictionary<int, int> delays = otherConvert(str);
-            str = deleteTimestamp(str);
+            if (!raw)
+            {
+                str = convertToLen(str, maxCharLen, startVal: name.Length + 3); // B - wrap text
+
+                // int index, int wait time
+                str = deleteTimestamp(str);
+            }
 
             for (int i = 0; i < str.Length; i++)
             {

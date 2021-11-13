@@ -42,7 +42,8 @@ namespace rpg_game.Game_Classes
                             break;
                     }
                 }
-                plr.equipped[place] = null;
+                plr.inventory[pos] = null;
+                return;
             }
 
             Item savedItem = null;
@@ -123,7 +124,7 @@ namespace rpg_game.Game_Classes
             new Item("Hawai", 12, "It's a pizza with pinapple on it, how it landed in hell, nobody knows. But eating it will fill you with new life",8,0, Player.itemPlace.Consumable, sEffx: new int[] {1, 2}),
             
             //pizza set
-            new Item("Pizza shield", 13, "Looks like a pizza, except it's overcooked and has a handle on the back",0,4, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Pizza shield", 13, "Looks like a pizza, except it's overcooked and has a handle on the back",0,3, Player.itemPlace.OffHand, sEffx: new int[] {}),
             new Item("Ball of dough", 14, "It's a ball of dough. you think to yourself 'could I make armor of this?' but then you realize it was a stupid idea, or was it?",0,3, Player.itemPlace.Armor, sEffx: new int[] {}),
             new Item("Solid cheese sword", 15, "A sword made of cheese",2,0, Player.itemPlace.MainHand, sEffx: new int[] {}),
             new Item("Bag of unlimited melted cheese", 16, "You grab a little and throw it at them, hit the eyes THE EYES!",2,0, Player.itemPlace.OffHand, sEffx: new int[] {}),
@@ -131,7 +132,7 @@ namespace rpg_game.Game_Classes
             new Item("Pizza with a hole", 18, "A pizza with a hole in it, you can wear it around your neck and look like some ufo or something",1,2, Player.itemPlace.Amulet, sEffx: new int[] {}),
             
             //pinapple pizza set
-            new Item("Pizza shield with pineapples on", 19, "Looks like a pizza, except it's baked WAY too much and has a handle on the back, it's also covered in pineapple pieces, kinda makes it shine a little.",0,7, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Pizza shield with pineapples on", 19, "Looks like a pizza, except it's baked WAY too much and has a handle on the back, it's also covered in pineapple pieces, kinda makes it shine a little.",0,5, Player.itemPlace.OffHand, sEffx: new int[] {}),
             new Item("Ball of dough with pineapples in", 20, "You've probably already seen one of these before, now there's pieces of pineapple in it... DONT",0,4, Player.itemPlace.Armor, sEffx: new int[] {}),
             new Item("Pineapple bat", 21, "Just a pineapple",4,2, Player.itemPlace.MainHand, sEffx: new int[] {}),
             new Item("Bag of unlimited pineapple shaped caltrops", 22, "A great combination of taste and blood, take it from one that has tried it.",3,0, Player.itemPlace.OffHand, sEffx: new int[] {}),
@@ -139,6 +140,9 @@ namespace rpg_game.Game_Classes
             new Item("Pineapple amulet", 24, "A lot of rings made of pinapple. Hooked together to make a choker or something.",4,-12, Player.itemPlace.Amulet, sEffx: new int[] {}),
 
             new Item("Shabby T-Shirt", 25, "You bought this T-shirt back on earth from a thrift shop, one man's trash is another man's treasure",0,1, Player.itemPlace.Armor),
+
+            new Item("PPT", 26, "A token you got from a fight in the arena, where could you redeem this again..?",4,-12, Player.itemPlace.unEquippable, sEffx: new int[] {}),
+
         };
     }
 }

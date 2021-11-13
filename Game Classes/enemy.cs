@@ -50,7 +50,7 @@ namespace rpg_game.Game_Classes
             Damage = damage;
             ID = id;
             Last_words = last_words;
-            //Drops = drops;
+            Drops = drops;
         }
 
         public static Enemy[] enemies =
@@ -128,7 +128,9 @@ namespace rpg_game.Game_Classes
         public void dropItem(ref Player plr)
         {
             Random r = new Random();
-            if (r.Next(0, 10000)/10000 < c)
+            float rNr = r.Next(0, 10000) / 10000;
+            Console.WriteLine(rNr + " | " + c);
+            if (rNr < c)
             {
                 Program.print($"You found [{i.name}] after defeating the enemy");
                 plr.pickupItem(i);

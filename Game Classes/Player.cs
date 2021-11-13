@@ -37,10 +37,27 @@ namespace rpg_game.Game_Classes
         public Vector pos = new Vector(0, 0);
         public List<Location> possibleLocations = new List<Location>();
 
+
+        // B - the name says it all
+        public string[] dontAdd =
+        {
+            "Go thru the gates",
+        };
+
         // B - the inventory of the player and the item slots
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
+        public void dead()
+        {
+            Console.Clear();
+
+            Program.print("HA YOU DEAD!!!!");
+            Program.print("START OF GAME GO", delay: 200);
+            Program.print("BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR", ms: 5);
+
+            Program.gameStart();
+        }
 
         public bool pickupItem(Item item)
         {
@@ -48,11 +65,12 @@ namespace rpg_game.Game_Classes
             {
                 if (inventory[i] == null)
                 {
+                    Program.print($"[{item.name}] was added to your inventory");
                     inventory[i] = item;
                     return true;
                 }
             }
-            Program.print("But you had a full inventory so you left it behind");
+            Program.print($"But you had a full inventory so you left {item.name} behind");
             return false;
         }
 
@@ -98,7 +116,14 @@ namespace rpg_game.Game_Classes
             // B - add default locations
             foreach (Location l in Location.locations)
             {
-                possibleLocations.Add(l);
+                bool add = true;
+                foreach(string s in dontAdd)
+                {
+                    if (l.name == s)
+                        add = false;
+                }
+                if (add)
+                    possibleLocations.Add(l);
             }
         }
     }
