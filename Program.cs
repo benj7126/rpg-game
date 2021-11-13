@@ -20,9 +20,10 @@ namespace rpg_game
             Console.Clear();
             print("Starting game\n", ms: 200);
             game = new GameWorldController();
-            while (true)
+            bool runing = false;
+            while (!runing)
             {
-                game.updateWorld();
+                runing = game.updateWorld();
             }
         }
         public static void clearKeys()

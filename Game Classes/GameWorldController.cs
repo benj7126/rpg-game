@@ -25,7 +25,7 @@ namespace rpg_game.Game_Classes
         public Travel curTravel = new Travel();
 
 
-        public void updateWorld()
+        public bool updateWorld()
         {
             int chosen = 0;
             ChoiceSelector Choice = new ChoiceSelector();
@@ -138,6 +138,7 @@ namespace rpg_game.Game_Classes
                     break;
             }
             Console.WriteLine("");
+            return plr.win;
         }
         public void controls()
         {

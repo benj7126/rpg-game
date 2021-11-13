@@ -111,6 +111,7 @@ namespace rpg_game.Game_Scenes
                         break;
                     case 5:
                         boss(ref plr);
+                        return true; // delete the place from list of places to go
                         break;
                 }
             }
@@ -390,6 +391,7 @@ namespace rpg_game.Game_Scenes
             Console.CursorTop += 4;
             Program.print($"I'ma beat yo ass kid", name: "BIG MAN", delay: 200);
             Fight.StartFight(ref plr, Enemy.getById(10));
+            Program.print($"You defeat him and people now hate you, you decide to get out of there", delay: 200);
         }
     }
 }

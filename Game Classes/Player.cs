@@ -37,6 +37,7 @@ namespace rpg_game.Game_Classes
         public Vector pos = new Vector(0, 0);
         public List<Location> possibleLocations = new List<Location>();
 
+        public bool win = false;
 
         // B - the name says it all
         public string[] dontAdd =

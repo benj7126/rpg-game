@@ -50,6 +50,7 @@ namespace rpg_game.Game_Classes
             new Location("The Demon high school", new Vector(30, 50), new Game_Scenes.DemonHighSchool()),
             new Location("The gates to hell", new Vector(0,100), new Game_Scenes.HellGates()),
             new Location("Go thru the gates", new Vector(0,100), new Game_Scenes.ThruTheGates()),
+            new Location("Multi dimensional maze - layer 1", new Vector(0, -60), new Game_Scenes.maze1()),
         };
     }
 }

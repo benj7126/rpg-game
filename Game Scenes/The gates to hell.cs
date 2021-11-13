@@ -44,7 +44,7 @@ namespace rpg_game.Game_Scenes
                     break;
             }
             plr.possibleLocations.Add(Location.getLocationByName("Go thru the gates"));
-            return false;
+            return true;
         }
     }
 }
