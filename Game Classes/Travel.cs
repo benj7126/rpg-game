@@ -11,10 +11,12 @@ namespace rpg_game.Game_Classes
         public float travelLeft = 0;
         public float travelTotal = 0;
         public Location destination = null;
+        public Vector v;
         private int size = 100;
 
         public void run(ref Player plr, Location dest)
         {
+            v = new Vector(dest.pos.x, dest.pos.y);
             Console.Clear();
             Console.WriteLine("");
             destination = dest;
@@ -51,6 +53,8 @@ namespace rpg_game.Game_Classes
                         Program.print("While wandering the planes of hell you encounter a demon.");
                         Program.print("The demon seems hungry, well, for you that is.");
                         Fight.StartFight(ref plr, Enemy.getById(procentNMonsters.enemyId));
+                        Program.sleep(500);
+                        Console.Clear();
                         break;
                     }
                 }
@@ -95,7 +99,8 @@ namespace rpg_game.Game_Classes
                     Console.WriteLine(str + " 100/100%");
                     doneTraveling = true;
 
-                    plr.pos = dest.pos;
+                    plr.pos = v;
+                    Console.WriteLine("Now at pos: " + plr.pos.x + " | " + plr.pos.y);
                     dest.enterLocation(ref plr, ref dest);
                 }
             }

@@ -10,7 +10,7 @@ namespace rpg_game.Game_Classes
         public int optionSelected = 0;
         public int update(ref Player player, List<string> allOptions, string preText="")
         {
-            options = allOptions; // B - all the options that you can chose from
+            options = allOptions; // B - all the options that you can choose from
             int optionsCount = options.Count;
 
             int selected = 0;
@@ -51,7 +51,7 @@ namespace rpg_game.Game_Classes
                     done = true;
                 }
 
-                if (!done) // B - if its not done you need to repeat (its a while loop). so it moves the cursor up so that it can overwrite it and make it look good
+                if (!done) // B - if it's not done you need to repeat (its a while loop). so it moves the cursor up so that it can overwrite it and make it look good
                     Console.CursorTop = Console.CursorTop - optionsCount;
             }
             return selected;

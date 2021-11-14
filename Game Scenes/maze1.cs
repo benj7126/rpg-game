@@ -6,12 +6,11 @@ using rpg_game.Game_Classes;
 
 namespace rpg_game.Game_Scenes
 {
-    class ThruTheGates : Scene
+    class maze1 : Scene
     {
         public override bool Start(ref Player plr)
         {
-            Program.print("You win, yuhuu...");
-            plr.win = true;
+            //mazestuff
             return false;
         }
     }

@@ -63,7 +63,7 @@ namespace rpg_game.Game_Classes
                 game.SwapBuffers();
                 Console.Clear();
                 game.DrawScreen();
-                Thread.Sleep(16);
+                Program.sleep(16);
             }*/
 
             var player = new Player();
@@ -71,7 +71,7 @@ namespace rpg_game.Game_Classes
         }
 
         public static bool StartFight(ref Player player, Enemy enemy) {
-            Console.WriteLine("A fight is beginnig, make sure you have read what you must.\nPress any key to continue");
+            Console.WriteLine("A fight is beginning, make sure you've read what you must.\nPress any key to continue");
             Console.ReadKey(true);
             Engine game = new Fight_Engine.Engine(80, 40, "Fighting " + enemy.Name);
             HBColor[] playerHBCol = {
@@ -88,7 +88,7 @@ namespace rpg_game.Game_Classes
 
             FightBeginning(ref game, enemy);
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
-            FightEnding(ref game, enemy);
+            FightEnding(ref game, ref player, enemy);
 
             return false;
         }
@@ -101,7 +101,7 @@ namespace rpg_game.Game_Classes
                 game.DrawText(intro, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - intro.Length / WrapLength)/2, WrapLength, true);
                 game.SwapBuffers();
                 game.DrawScreen();
-                Thread.Sleep(tickSpeed);
+                Program.sleep(tickSpeed);
             }
 
             bool blink = false;
@@ -113,9 +113,9 @@ namespace rpg_game.Game_Classes
                 if(blink) {
                     string pressKey = "Press any key to continue!";
                     game.DrawText(pressKey, (game.GetWinWidth() - pressKey.Length) / 2, 30);
-                    Thread.Sleep(400);
+                    Program.sleep(400);
                 } else {
-                    Thread.Sleep(500);
+                    Program.sleep(500);
                 }
 
                 game.SwapBuffers();
@@ -246,6 +246,9 @@ namespace rpg_game.Game_Classes
                         //Deal damage to player
                         player.health -= (defaultAtk - player.getDefence());
 
+                        if (player.health <= 0)
+                            player.dead();
+
                         menu.Reset();
                         defLoc = AttackableLocations.Null;
                         attacking = true;
@@ -260,7 +263,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
-        private static void FightEnding(ref Engine game, Enemy enemy, int tickSpeed = 50) {
+        private static void FightEnding(ref Engine game, ref Player plr, Enemy enemy, int tickSpeed = 50) {
             string lastWords = "";
             int WrapLength = 40;
             for(int i = 0; i < enemy.Last_words.Length; i++) {
@@ -268,17 +271,17 @@ namespace rpg_game.Game_Classes
                 game.DrawText(lastWords, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - lastWords.Length / WrapLength)/2, WrapLength, true);
                 game.SwapBuffers();
                 game.DrawScreen();
-                Thread.Sleep(tickSpeed);
+                Program.sleep(tickSpeed);
             }
 
-            Thread.Sleep(1000);
+            Program.sleep(1000);
 
             while(Console.KeyAvailable) {
                 Console.ReadKey();
             }
 
             Console.Clear();
-            //enemy.Drop();
+            enemy.Drop(ref plr);
         }
 
         private static AttackableLocations PlayerAttack(ref Engine game, Player player, bool attack = true) {

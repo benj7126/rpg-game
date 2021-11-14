@@ -50,7 +50,7 @@ namespace rpg_game.Game_Classes
             Damage = damage;
             ID = id;
             Last_words = last_words;
-            //Drops = drops;
+            Drops = drops;
         }
 
         public static Enemy[] enemies =
@@ -85,7 +85,7 @@ namespace rpg_game.Game_Classes
                 "You've defeated me human, I wonder where I'll go now that I'm dead, Hells Hell? I guess I'll see",
                 new drop[] { }),
 
-            new Enemy("Demon Of The Gate", "You seem quit confident, and, i must congratulate you. This will be your last fight here in hell. But, it wont end the way you think",
+            new Enemy("Demon Of The Gate", "You seem quite confident, and, i must congratulate you. This will be your last fight here in hell. But, it wont end the way you think",
                 1000, 30, 5,
                 "HOW! It can't be. A puny human like you defeating me, I was the unstoppable demon protecting the gate. I guess I'll have to allow you through the gate. Have fun going back to that hellhole called earth. You will come to see, it is even worse up there than down here",
                 new drop[] { }),
@@ -95,22 +95,22 @@ namespace rpg_game.Game_Classes
                 "If this game was running on Linux I would've beaten you",
                 new drop[] { }),
 
-            new Enemy("Demon","I'm just a vanilla demon guy. Nothing special about me at all really. My views on life are just generally evil and I just don't like humans. You know pretty much what you would expect",
+            new Enemy("Demon","I'm just a vanilla demon guy. Nothing special about me at all really. My views on life are just generally evil and I just don't like humans. You know, pretty much what you would expect",
                 9, 5, 7,
                 "GAAH! THAT HURTS. TIME OUT! TIME OUT! This isn't funny I'm seriously hurt. Someone call the ambulance please.",
-                new drop[] {new drop(Item.getItemByID(9), 0.1f), new drop(Item.getItemByID(10), 0.02f)}),
+                new drop[] {new drop(Item.getItemByID(9), 0.2f), new drop(Item.getItemByID(10), 0.1f)}),
 
             new Enemy ("Cyclops","Eye see you! Get it because I only have one eye. I was born this way don't laugh. Anyways prepare to die...", 13, 7, 8, "Eye didn't see that coming...",
-                new drop[] {new drop(Item.getItemByID(9), 0.1f), new drop(Item.getItemByID(10), 0.02f)}),
+                new drop[] {new drop(Item.getItemByID(9), 0.2f), new drop(Item.getItemByID(10), 0.1f), new drop(Item.getItemByID(11), 0.04f)}),
 
-            new Enemy("PP Gladiator","IT STANDS FOR PINAPPLE PIZZA, PINAPPLE PIZZA I TELL YOU!!!",
+            new Enemy("PP Gladiator","IT STANDS FOR PINEAPPLE PIZZA, PINEAPPLE PIZZA I TELL YOU!!!",
                 20, 10, 9,
-                "*cough* Nice figt m8, the future of pinapples on piazzas are looking bright",
+                "*cough* Nice figt m8, the future of pineapples on pizzas are looking bright",
                 new drop[] { }),
 
-            new Enemy("PP Boss man","How dare you make a mess here at the pinapple on pizza outpost? Face my wrath",
+            new Enemy("PP Boss man","How dare you make a mess here at the pineapple on pizza outpost? Face my wrath",
                 50, 14, 10,
-                "It... was a good fight... seems like pizzas will... never see pinapples again. I give you my last pizza take care of it",
+                "It... was a good fight... seems like pizzas will... never see pineapples again. I give you my last pizza take care of it",
                 new drop[] {new drop(Item.getItemByID(12), 1f)}),
         };
 
@@ -128,7 +128,8 @@ namespace rpg_game.Game_Classes
         public void dropItem(ref Player plr)
         {
             Random r = new Random();
-            if (r.Next(0, 10000)/10000 < c)
+            float rNr = (float)r.Next(0, 10000) / 10000f;
+            if (rNr < c)
             {
                 Program.print($"You found [{i.name}] after defeating the enemy");
                 plr.pickupItem(i);

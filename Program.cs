@@ -7,8 +7,10 @@ using rpg_game.Game_Classes.maze;
 
 namespace rpg_game
 {
-    class Program   
+    class Program
     {
+        public static GameWorldController game;
+
         static void Main(string[] args)
         {
             int[] mapArr = {
@@ -27,17 +29,21 @@ namespace rpg_game
             Map map = new Map(9, 10, mapArr);
 
             Maze.StartMaze(map);
-
-
+          
             Console.CursorVisible = false;
-            Fight.update();
-            GameWorldController game = new GameWorldController();
-            while (true)
+            gameStart();
+        }
+        public static void gameStart()
+        {
+            Console.Clear();
+            print("Starting game\n", ms: 200);
+            game = new GameWorldController();
+            bool runing = false;
+            while (!runing)
             {
-                game.updateWorld();
+                runing = game.updateWorld();
             }
         }
-
         public static void clearKeys()
         {
             if (Console.KeyAvailable)
@@ -54,7 +60,7 @@ namespace rpg_game
             Thread.Sleep((int)MathF.Floor(ms*Player.textSpeedMulti));
         }
 
-        public static void print(string str, int ms = 50, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "")
+        public static void print(string str, int ms = 50, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "", bool raw = false)
         {
             // B - making a print function to make story telling easier (hopefully)
             if (name != "") // B - if theres someone talking you can define their name and it will be added to the wraping of text
@@ -63,11 +69,14 @@ namespace rpg_game
                 sleep(150);
             }
 
-            str = convertToLen(str, maxCharLen, startVal: name.Length+3); // B - wrap text
-
-            // int index, int wait time
             Dictionary<int, int> delays = otherConvert(str);
-            str = deleteTimestamp(str);
+            if (!raw)
+            {
+                str = convertToLen(str, maxCharLen, startVal: name.Length + 3); // B - wrap text
+
+                // int index, int wait time
+                str = deleteTimestamp(str);
+            }
 
             for (int i = 0; i < str.Length; i++)
             {
@@ -75,6 +84,14 @@ namespace rpg_game
                     sleep(delays[i]);
                 Console.Write(str[i]);
                 sleep(ms);
+
+                while (Console.KeyAvailable)
+                {
+                    if (Console.ReadKey(true).Key == Player.select)
+                    {
+                        ms = 0;
+                    }
+                }
             }
 
             Console.CursorLeft = Console.CursorLeft - 1;
