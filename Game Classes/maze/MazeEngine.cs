@@ -4,19 +4,21 @@ using System.Text;
 using rpg_game;
 using System.Threading;
 using System.Linq;
+using Pastel;
+using System.Drawing;
 
 namespace rpg_game.Game_Classes.maze
 {
     class MazeEngine {
         GameParams parameters = new GameParams();
 
-        List<char> buffer1;
-        List<char> buffer2;
+        List<string> buffer1;
+        List<string> buffer2;
 
         bool firstBuffer = true;
 
         public MazeEngine(int win_width, int win_height, string game_name) {
-            char[] tmp = new char[win_width * win_height];
+            string[] tmp = new string[win_width * win_height];
             buffer1 = tmp.ToList();
             buffer2 = tmp.ToList();
             parameters.winWidth = win_width;
@@ -35,13 +37,25 @@ namespace rpg_game.Game_Classes.maze
             }
 
             if(!firstBuffer) {
+                DrawToFramebuffer(ch.ToString(), x, y, ref buffer1);
+            } else {
+                DrawToFramebuffer(ch.ToString(), x, y, ref buffer2);
+            }
+        }
+
+        public void DrawChar(string ch, int x, int y) {
+            if (x < 0 || x > GetWinWidth() || y < 0 || y > GetWinHeight()) {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if(!firstBuffer) {
                 DrawToFramebuffer(ch, x, y, ref buffer1);
             } else {
                 DrawToFramebuffer(ch, x, y, ref buffer2);
             }
         }
 
-        public void DrawVerLine(int x, int height) {
+        public void DrawVerLine(int x, int height, Color color) {
             height = height > GetWinHeight() ? GetWinHeight() : height;
             if (x < 0 || x > GetWinWidth()) {
                 throw new ArgumentOutOfRangeException();
@@ -49,7 +63,7 @@ namespace rpg_game.Game_Classes.maze
 
             int startY = GetWinHeight()/2 - height/2;
             for(int i = 0; i < height; i++) {
-                DrawChar('█', x, startY+i);
+                DrawChar("█".Pastel(color), x, startY+i);
             }
         }
 
@@ -66,12 +80,12 @@ namespace rpg_game.Game_Classes.maze
             }
         }
 
-        private void DrawToFramebuffer(char ch, int x, int y, ref List<char> buffer) {
+        private void DrawToFramebuffer(string ch, int x, int y, ref List<string> buffer) {
             buffer[x + y*GetWinWidth()] = ch;
         }
 
         public void SwapBuffers() {
-            char[] tmp = new char[GetWinWidth() * GetWinHeight()];
+            string[] tmp = new string[GetWinWidth() * GetWinHeight()];
             if(firstBuffer) {
                 buffer1 = tmp.ToList();
             } else {
@@ -88,7 +102,7 @@ namespace rpg_game.Game_Classes.maze
             }
         }
 
-        private void DrawBuffer(List<char> buffer) {
+        private void DrawBuffer(List<string> buffer) {
             int winWidth = GetWinWidth();
             int winHeight = GetWinHeight();
 
@@ -97,8 +111,8 @@ namespace rpg_game.Game_Classes.maze
                 string line = "";
                 for(int x = 0; x < winWidth; x++) {
                     line += buffer[x + y*winWidth];
-                    if(buffer[x + y*winWidth] == '\0') {
-                        line += ' ';
+                    if(buffer[x + y*winWidth] == null) {
+                        line += " ";
                     }
                 }
                 Console.WriteLine(line);

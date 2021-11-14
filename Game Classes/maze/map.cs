@@ -28,7 +28,7 @@ namespace rpg_game.Game_Classes.maze
         }
 
         public int GetCell(int x, int y) {
-            return map[x + y * width];
+            return map[width-x + y * width];
         }
 
         public void SetCell(int x, int y, int cell) {
