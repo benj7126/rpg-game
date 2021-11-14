@@ -88,6 +88,12 @@ namespace rpg_game.Game_Classes.maze
                         perpWallDist = (sideDistX - deltaDistX);
                     else
                         perpWallDist = (sideDistY - deltaDistY);
+
+                    // lineHeight stores the height needed to draw the ray in
+                    // screen coordinates.
+                    // It is calculated in a try-catch block, to catch a
+                    // division by zero and in that case, make it a very large
+                    // number.
                     int lineHeight;
                     try {
                         lineHeight = Convert.ToInt32(game.GetWinHeight() / perpWallDist);
