@@ -22,9 +22,9 @@ namespace rpg_game.Game_Classes.maze
             Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
 
-            double posX = 5, posY = 6;
-            double dirX = -1, dirY = 0;
-            double planeX = 0, planeY = 0.66;
+            double posX = 5.5, posY = 7.5;
+            double dirX = 0, dirY = -1;
+            double planeX = -0.66, planeY = 0;
 
             while(true) {
 
