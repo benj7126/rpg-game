@@ -94,7 +94,7 @@ namespace rpg_game.Game_Classes.maze
                     } catch (Exception e) {
                         lineHeight = 1000;
                     }
-                    if(side == 0) {
+                    if(side == 1) {
                         game.DrawVerLine(x, lineHeight, colors[hitNum]);
                     } else {
                         // Construct darker color
