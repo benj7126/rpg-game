@@ -5,6 +5,7 @@ using rpg_game;
 using System.Threading;
 using System.Linq;
 using Pastel;
+using System.Drawing;
 
 namespace rpg_game.Game_Classes.maze
 {
@@ -54,7 +55,7 @@ namespace rpg_game.Game_Classes.maze
             }
         }
 
-        public void DrawVerLine(int x, int height, string color) {
+        public void DrawVerLine(int x, int height, Color color) {
             height = height > GetWinHeight() ? GetWinHeight() : height;
             if (x < 0 || x > GetWinWidth()) {
                 throw new ArgumentOutOfRangeException();

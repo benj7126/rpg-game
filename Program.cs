@@ -3,6 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using rpg_game;
 using rpg_game.Game_Classes;
+using rpg_game.Game_Classes.maze;
 
 namespace rpg_game
 {
@@ -10,7 +11,24 @@ namespace rpg_game
     {
         static void Main(string[] args)
         {
-            rpg_game.Game_Classes.maze.Maze.Start();
+            int[] mapArr = {
+                1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 1, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 1, 0, 0, 0, 0, 1,
+                1, 3, 2, 0, 0, 1, 1, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1,
+            };
+
+            Map map = new Map(9, 10, mapArr);
+
+            Maze.StartMaze(map);
+
+
             Console.CursorVisible = false;
             Fight.update();
             GameWorldController game = new GameWorldController();

@@ -4,27 +4,23 @@ using System.Text;
 using rpg_game;
 using System.Threading;
 using System.Linq;
+using System.Drawing;
 
 namespace rpg_game.Game_Classes.maze
 {
     class Maze {
-        public static void Start() {
+        static Dictionary<int, Color> colors = new Dictionary<int, Color>() {
+            {1, Color.FromArgb(255, 255, 255)},
+            {2, Color.FromArgb(0,   255, 0  )},
+            {3, Color.FromArgb(255, 0,   0  )},
+        };
+        public static void StartMaze(Map map) {
+            Start(map);
+        }
+
+        public static void Start(Map map) {
             Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
-            int[] mapArr = {
-                1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 0, 1, 0, 0, 0, 0, 0, 1,
-                1, 0, 0, 1, 0, 0, 0, 0, 1,
-                1, 1, 1, 0, 0, 1, 1, 1, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1,
-            };
-
-            Map map = new Map(9, 10, mapArr);
 
             double posX = 5, posY = 6;
             double dirX = -1, dirY = 0;
@@ -51,6 +47,7 @@ namespace rpg_game.Game_Classes.maze
                     int stepY;
 
                     bool hit = false;
+                    int hitNum = 0;
                     int side = 0;
 
                     if(rayDirX < 0) {
@@ -80,8 +77,11 @@ namespace rpg_game.Game_Classes.maze
                             side = 1;
                         }
 
-                        if(map.GetCell(mapX, mapY) > 0)
+                        if(map.GetCell(mapX, mapY) > 0) {
                             hit = true;
+                            hitNum = map.GetCell(mapX, mapY);
+                        }
+
                     }
 
                     if(side == 0)
@@ -95,9 +95,15 @@ namespace rpg_game.Game_Classes.maze
                         lineHeight = 1000;
                     }
                     if(side == 0) {
-                        game.DrawVerLine(x, lineHeight, "#ffffff");
+                        game.DrawVerLine(x, lineHeight, colors[hitNum]);
                     } else {
-                        game.DrawVerLine(x, lineHeight, "#cccccc");
+                        // Construct darker color
+                        Color dCol = colors[hitNum];
+                        Color col = Color.FromArgb(
+                            (int)(dCol.R * 0.8),
+                            (int)(dCol.G * 0.8),
+                            (int)(dCol.B * 0.8));
+                        game.DrawVerLine(x, lineHeight, col);
                     }
                 }
 
