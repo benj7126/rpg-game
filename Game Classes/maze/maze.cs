@@ -100,6 +100,9 @@ namespace rpg_game.Game_Classes.maze
                     } catch (Exception e) {
                         lineHeight = 1000;
                     }
+
+                    // Actually draw the raycast line. Darken color depending on
+                    // facing side, simulating lighting,
                     if(side == 1) {
                         game.DrawVerLine(x, lineHeight, colors[hitNum]);
                     } else {
