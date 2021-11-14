@@ -138,7 +138,7 @@ namespace rpg_game.Game_Classes
                     break;
             }
             Console.WriteLine("");
-            return plr.win;
+            return player.win;
         }
         public void controls()
         {

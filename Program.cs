@@ -66,6 +66,14 @@ namespace rpg_game
                     sleep(delays[i]);
                 Console.Write(str[i]);
                 sleep(ms);
+
+                while (Console.KeyAvailable)
+                {
+                    if (Console.ReadKey(true).Key == Player.select)
+                    {
+                        ms = 0;
+                    }
+                }
             }
 
             Console.CursorLeft = Console.CursorLeft - 1;

@@ -98,10 +98,10 @@ namespace rpg_game.Game_Classes
             new Enemy("Demon","I'm just a vanilla demon guy. Nothing special about me at all really. My views on life are just generally evil and I just don't like humans. You know, pretty much what you would expect",
                 9, 5, 7,
                 "GAAH! THAT HURTS. TIME OUT! TIME OUT! This isn't funny I'm seriously hurt. Someone call the ambulance please.",
-                new drop[] {new drop(Item.getItemByID(9), 0.1f), new drop(Item.getItemByID(10), 0.02f)}),
+                new drop[] {new drop(Item.getItemByID(9), 0.2f), new drop(Item.getItemByID(10), 0.1f)}),
 
             new Enemy ("Cyclops","Eye see you! Get it because I only have one eye. I was born this way don't laugh. Anyways prepare to die...", 13, 7, 8, "Eye didn't see that coming...",
-                new drop[] {new drop(Item.getItemByID(9), 0.1f), new drop(Item.getItemByID(10), 0.02f)}),
+                new drop[] {new drop(Item.getItemByID(9), 0.2f), new drop(Item.getItemByID(10), 0.1f), new drop(Item.getItemByID(11), 0.04f)}),
 
             new Enemy("PP Gladiator","IT STANDS FOR PINEAPPLE PIZZA, PINEAPPLE PIZZA I TELL YOU!!!",
                 20, 10, 9,
@@ -128,8 +128,7 @@ namespace rpg_game.Game_Classes
         public void dropItem(ref Player plr)
         {
             Random r = new Random();
-            float rNr = r.Next(0, 10000) / 10000;
-            Console.WriteLine(rNr + " | " + c);
+            float rNr = (float)r.Next(0, 10000) / 10000f;
             if (rNr < c)
             {
                 Program.print($"You found [{i.name}] after defeating the enemy");
