@@ -10,7 +10,7 @@ namespace rpg_game.Game_Scenes
     {
         public override bool Start(ref Player plr)
         {
-            Program.print("You win, yuhuu...");
+            Program.print("You walk through the gates of hell proud of yourself, so far you've come.");
             plr.win = true;
             return false;
         }
