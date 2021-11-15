@@ -13,6 +13,8 @@ namespace rpg_game
 
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
+
             int[] mapArr = {
                 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -30,7 +32,6 @@ namespace rpg_game
 
             Maze.StartMaze(map);
           
-            Console.CursorVisible = false;
             gameStart();
         }
         public static void gameStart()
