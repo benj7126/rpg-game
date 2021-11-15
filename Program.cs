@@ -14,23 +14,22 @@ namespace rpg_game
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-
             int[] mapArr = {
                 1, 3, 1, 3, 1, 3, 1, 3, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 1,
                 3, 0, 0, 0, 0, 0, 1, 0, 3,
                 1, 0, 0, 0, 0, 1, 0, 0, 1,
-                3, 1, 1, 1, 0, 0, 2, 3, 3,
+                3, 1, 1, 1, 0, 0, 101, 102, 3,
                 1, 0, 0, 0, 0, 0, 0, 0, 1,
                 3, 0, 0, 0, 0, 0, 0, 0, 3,
                 1, 0, 0, 0, 0, 0, 0, 0, 1,
-                3, 0, 0, 0, 0, 0, 0, 0, 3,
+                3, 0, 0, 0, 0, 100, 0, 0, 3,
                 1, 3, 1, 3, 1, 3, 1, 3, 1,
             };
 
-            /*
-            Martins Labyrint
+            //Martins Labyrint
 
+            /*
             int[] mapArr = {
                 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 3, 1, 0, 0, 0, 0, 0, 1,
@@ -43,11 +42,9 @@ namespace rpg_game
                 1, 0, 0, 0, 1, 0, 1, 2, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1,
             };
-            */
-
+ */
             Map map = new Map(9, 10, mapArr);
-
-            //Maze.StartMaze(map);
+            Maze.StartMaze(map);
           
             gameStart();
         }

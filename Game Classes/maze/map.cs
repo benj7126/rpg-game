@@ -11,7 +11,7 @@ namespace rpg_game.Game_Classes.maze
         int width, height;
         public int Width{get => width;}
         public int Height{get => height;}
-        List<int> map = new List<int>();
+        public List<int> map = new List<int>();
 
         public Map(int sizeX, int sizeY) {
             width = sizeX;
@@ -33,6 +33,10 @@ namespace rpg_game.Game_Classes.maze
 
         public void SetCell(int x, int y, int cell) {
             map[x + y * width] = cell;
+        }
+
+        public void SetCellRel(int x, int y, int cell) {
+            map[width-x + y * width] = cell;
         }
     }
 }

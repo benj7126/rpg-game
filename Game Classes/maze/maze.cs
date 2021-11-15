@@ -13,18 +13,45 @@ namespace rpg_game.Game_Classes.maze
             {1, Color.FromArgb(255, 255, 255)},
             {2, Color.FromArgb(0,   255, 0  )},
             {3, Color.FromArgb(255, 0,   0  )},
+            {101, Color.FromArgb(0,   255, 0  )}, // Also used as collision box for winning.
+            {102, Color.FromArgb(255, 0,   0  )}, // Also used for leaving the maze
         };
-        public static void StartMaze(Map map) {
-            Start(map);
+        public static bool StartMaze(Map map) {
+            return Start(map);
         }
 
-        public static void Start(Map map) {
+        public static bool Start(Map map) {
             Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
 
             double posX = 5.5, posY = 7.5;
             double dirX = 0, dirY = -1;
             double planeX = -0.66, planeY = 0;
+            int winCX = -1, winCY = -1;
+            int extCX = -1, extCY = -1;
+
+            for(int x = 0; x < map.Width; x++) {
+                for(int y = 0; y < map.Height-1; y++) {
+                    int cell = map.GetCell(x, y);
+                    if(cell >= 100) {
+                        switch(cell) {
+                            case 100: // SpawnPoint
+                                map.SetCellRel(x, y, 0);
+                                posX = 0.5 + x;
+                                posY = 0.5 + y;
+                                break;
+                            case 101: // WinPoint
+                                winCX = x;
+                                winCY = y;
+                                break;
+                            case 102: // ExitPoint
+                                extCX = x;
+                                extCY = y;
+                                break;
+                        }
+                    }
+                }
+            }
 
             while(true) {
 
@@ -101,21 +128,23 @@ namespace rpg_game.Game_Classes.maze
                         lineHeight = 1000;
                     }
 
+                    // Get the ray color.
+                    Color col = colors[hitNum];
                     // Actually draw the raycast line. Darken color depending on
                     // facing side, simulating lighting,
                     if(side == 1) {
-                        game.DrawVerLine(x, lineHeight, colors[hitNum]);
+                        game.DrawVerLine(x, lineHeight, col);
                     } else {
                         // Construct darker color
-                        Color dCol = colors[hitNum];
-                        Color col = Color.FromArgb(
-                            (int)(dCol.R * 0.8),
-                            (int)(dCol.G * 0.8),
-                            (int)(dCol.B * 0.8));
-                        game.DrawVerLine(x, lineHeight, col);
+                        Color dCol = Color.FromArgb(
+                            (int)(col.R * 0.8),
+                            (int)(col.G * 0.8),
+                            (int)(col.B * 0.8));
+                        game.DrawVerLine(x, lineHeight, dCol);
                     }
                 }
 
+                // Handle movement
                 double rotSpeed = 0.2;
                 double movSpeed = 0.1;
                 if (Console.KeyAvailable) {
@@ -123,8 +152,10 @@ namespace rpg_game.Game_Classes.maze
                     ConsoleKeyInfo key = Console.ReadKey();
                     // Checks the pressed key. Sends press to menu.
                     if(key.Key == ConsoleKey.UpArrow) {
-                        if(map.GetCell((int)(posX + dirX * movSpeed), (int)(posY)) == 0) posX += dirX * movSpeed;
-                        if(map.GetCell((int)(posX), (int)(posY + dirY * movSpeed)) == 0) posY += dirY * 0.1;
+                        int cellX = map.GetCell((int)(posX + dirX * movSpeed), (int)(posY));
+                        int cellY = map.GetCell((int)(posX), (int)(posY + dirY * movSpeed));
+                        if(cellX == 0 || cellX >= 100) posX += dirX * movSpeed;
+                        if(cellY == 0 || cellY >= 100) posY += dirY * 0.1;
                     } else if(key.Key == ConsoleKey.DownArrow) {
                         if(map.GetCell((int)(posX - dirX * movSpeed), (int)(posY)) == 0) posX -= dirX * movSpeed;
                         if(map.GetCell((int)(posX), (int)(posY - dirY * movSpeed)) == 0) posY -= dirY * 0.1;
@@ -143,7 +174,17 @@ namespace rpg_game.Game_Classes.maze
                         planeX = planeX * Math.Cos(rotSpeed) - planeY * Math.Sin(rotSpeed);
                         planeY = oldPlaneX * Math.Sin(rotSpeed) + planeY * Math.Cos(rotSpeed);
                     }
-            }
+                }
+
+                // Check for win/exit
+                if((int)posX == winCX && (int)posY == winCY) {
+                    // Winner!
+                    return true;
+                }
+                if((int)posX == extCX && (int)posY == extCY) {
+                    // Loser!
+                    return false;
+                }
 
                 game.DrawBorder();
                 game.SwapBuffers();
