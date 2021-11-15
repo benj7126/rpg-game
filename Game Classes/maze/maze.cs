@@ -117,16 +117,17 @@ namespace rpg_game.Game_Classes.maze
                 }
 
                 double rotSpeed = 0.2;
+                double movSpeed = 0.1;
                 if (Console.KeyAvailable) {
                     // Reads and saves pressed key
                     ConsoleKeyInfo key = Console.ReadKey();
                     // Checks the pressed key. Sends press to menu.
                     if(key.Key == ConsoleKey.UpArrow) {
-                        posX += dirX * 0.1;
-                        posY += dirY * 0.1;
+                        if(map.GetCell((int)(posX + dirX * movSpeed), (int)(posY)) == 0) posX += dirX * movSpeed;
+                        if(map.GetCell((int)(posX), (int)(posY + dirY * movSpeed)) == 0) posY += dirY * 0.1;
                     } else if(key.Key == ConsoleKey.DownArrow) {
-                        posX -= dirX * 0.1;
-                        posY -= dirY * 0.1;
+                        if(map.GetCell((int)(posX - dirX * movSpeed), (int)(posY)) == 0) posX -= dirX * movSpeed;
+                        if(map.GetCell((int)(posX), (int)(posY - dirY * movSpeed)) == 0) posY -= dirY * 0.1;
                     } else if(key.Key == ConsoleKey.RightArrow) {
                         double oldDirX = dirX;
                         dirX = dirX * Math.Cos(-rotSpeed) - dirY * Math.Sin(-rotSpeed);

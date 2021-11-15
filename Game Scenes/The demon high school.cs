@@ -13,6 +13,7 @@ namespace rpg_game.Game_Scenes
 
         public override bool Start(ref Player plr)
         {
+            flags.Clear();
             flags.Add("Defeated Linux user", false);
             flags.Add("Talked to Girl", false);
             flags.Add("Been to lockers", false);

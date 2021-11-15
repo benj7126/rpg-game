@@ -11,6 +11,7 @@ namespace rpg_game.Game_Scenes
         public Dictionary<string, bool> flags = new Dictionary<string, bool>();
         public override bool Start (ref Player plr)
         {
+            flags.Clear();
             flags.Add("tipped to boss guy", false);
             flags.Add("Barracks", false);
             flags.Add("Shop", false);

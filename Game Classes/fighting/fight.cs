@@ -244,7 +244,7 @@ namespace rpg_game.Game_Classes
 
                         InfoBox = $"{enemy.Name} attacked your {atk}. You defended {defLoc}. {enemy.Name} therefore dealt {defaultAtk} damage.";
                         //Deal damage to player
-                        player.health -= (defaultAtk - player.getDefence());
+                        player.health -= Math.Max(0, defaultAtk - player.getDefence());
 
                         if (player.health <= 0)
                             player.dead();
