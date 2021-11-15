@@ -13,7 +13,7 @@ namespace rpg_game.Game_Scenes
             Program.print("You look into the fountain");
             if (plr.health == plr.maxHealth)
             {
-                Program.print(@"You see a shape, you can'r really make out what it is:
+                Program.print(@"You see a shape, you can't really make out what it is:
           /´¯/)
          /  //
         /  //
@@ -28,7 +28,7 @@ namespace rpg_game.Game_Scenes
             {
                 Program.print("You see your reflection, but somehow your reflection looks less hurt");
                 ChoiceSelector cs = new ChoiceSelector();
-                if (cs.update(ref plr, new List<string>() { "Get away from that instakil bs", "Toutch it!" }) == 1)
+                if (cs.update(ref plr, new List<string>() { "Get away from that instakil bs", "Touch it!" }) == 1)
                 {
                     while (plr.health != plr.maxHealth)
                     {
