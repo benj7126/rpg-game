@@ -7,7 +7,7 @@ using rpg_game.Game_Classes.maze;
 
 namespace rpg_game.Game_Scenes
 {
-    class maze1 : Scene
+    class maze3 : Scene
     {
         public override bool Start(ref Player plr)
         {
@@ -23,8 +23,8 @@ namespace rpg_game.Game_Scenes
             Map map = new Map(28, 7, mapArr);
             if (Maze.StartMaze(map))
             {
-                plr.possibleLocations.Add(Location.getLocationByName("Multi dimensional maze - layer 2"));
-                plr.pickupItem(Item.getItemByID(27));
+                plr.pickupItem(Item.getItemByID(29));
+
                 return true;
             }
             else

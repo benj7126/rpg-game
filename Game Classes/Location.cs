@@ -51,6 +51,8 @@ namespace rpg_game.Game_Classes
             new Location("The gates to hell", new Vector(0,100), new Game_Scenes.HellGates()),
             new Location("Go thru the gates", new Vector(0,100), new Game_Scenes.ThruTheGates()),
             new Location("Multi dimensional maze - layer 1", new Vector(0, -60), new Game_Scenes.maze1()),
+            new Location("Multi dimensional maze - layer 2", new Vector(0, -60), new Game_Scenes.maze2()),
+            new Location("Multi dimensional maze - layer 3", new Vector(0, -60), new Game_Scenes.maze3()),
         };
     }
 }

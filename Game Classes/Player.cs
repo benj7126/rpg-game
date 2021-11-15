@@ -43,6 +43,8 @@ namespace rpg_game.Game_Classes
         public string[] dontAdd =
         {
             "Go thru the gates",
+            "Multi dimensional maze - layer 2",
+            "Multi dimensional maze - layer 3",
         };
 
         // B - the inventory of the player and the item slots

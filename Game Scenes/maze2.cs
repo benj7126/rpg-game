@@ -23,8 +23,8 @@ namespace rpg_game.Game_Scenes
             Map map = new Map(28, 7, mapArr);
             if (Maze.StartMaze(map))
             {
-                plr.possibleLocations.Add(Location.getLocationByName("Multi dimensional maze - layer 2"));
-                plr.pickupItem(Item.getItemByID(27));
+                plr.possibleLocations.Add(Location.getLocationByName("Multi dimensional maze - layer 3"));
+                plr.pickupItem(Item.getItemByID(28));
                 return true;
             }
             else

@@ -29,7 +29,7 @@ namespace rpg_game.Game_Classes
 
             if (place == Player.itemPlace.Consumable)
             {
-                foreach(int sfx in specialEffects)
+                foreach (int sfx in specialEffects)
                 {
                     switch (sfx)
                     {
@@ -141,7 +141,10 @@ namespace rpg_game.Game_Classes
 
             new Item("Shabby T-Shirt", 25, "You bought this T-shirt back on earth from a thrift shop, one man's trash is another man's treasure",0,1, Player.itemPlace.Armor),
 
-            new Item("PPT", 26, "A token you got from a fight in the arena, where could you redeem this again..?",4,-12, Player.itemPlace.unEquippable, sEffx: new int[] {}),
+            new Item("PPT", 26, "A token you got from a fight in the arena, where could you redeem this again..?",0, 0, Player.itemPlace.unEquippable, sEffx: new int[] {}),
+            new Item("3D Sword", 27, "It's a simple sword, but for some reason, when you look at it, it's like it has... another dimension, but you can't really see it, you can just feel it, it kinda makes your brain go numb to think about.",6,-999999, Player.itemPlace.MainHand, sEffx: new int[] {}),
+            new Item("Cube", 28, "It has six sides...",-20,20, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Dungeon wall", 29, "You found a piece of the maze that was broken off. It fits you weirdly well...",5,10, Player.itemPlace.OffHand, sEffx: new int[] {}),
 
         };
     }
