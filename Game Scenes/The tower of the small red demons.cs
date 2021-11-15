@@ -26,16 +26,15 @@ namespace rpg_game.Game_Scenes
             {
                 case 0:
                     Program.print("Could I possibly have a look inside?", name: plr.name, delay: 100);
+                    Program.print("...");
                     Program.print("");
                     return false;
                 case 1:
-                    Program.print("...", ms: 200, name: "Demon Of The Gate", delay: 100);
-                    Program.print("It seems that my title has begin to lose its meaning here in the underworld", name: "Demon Of The Gate", delay: 100);
-                    Program.print("I will have to make an example", name: "Demon Of The Gate", delay: 1000);
+                    Program.print("...", ms: 200, name: "Little red demon", delay: 100);
                     Fight.update();
                     break;
                 case 2:
-                    Program.print("Well, if you insist on dying, be my guest", name: "Demon Of The Gate", delay: 1000);
+                    Program.print("Well, if you insist on dying, be my guest", name: "Little red demon", delay: 1000);
                     Fight.update();
                     break;
             }
