@@ -44,6 +44,7 @@ namespace rpg_game.Game_Classes
                 }
 
                 // do travel stuff
+                /*
                 Random r = new Random();
                 float rNR = (float)r.Next(0, 10000) / 10000;
                 foreach (procentNMonsters procentNMonsters in encounterList)
@@ -58,6 +59,7 @@ namespace rpg_game.Game_Classes
                         break;
                     }
                 }
+                */// commented out cuz testing
 
                 float p = Math.Abs(travelLeft/travelTotal-1)* size;
                 string str = "[";

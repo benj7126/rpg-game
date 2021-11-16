@@ -14,11 +14,11 @@ namespace rpg_game.Game_Scenes
             if (layer == 0)
             {
                 layer = 1;
-                Program.print("There's a tower before you, ", delay: 200, withNLine: false); Program.print("the tower is about 4 times as tall as you, but only has like a 2 meter diameter. ", delay: 200, withNLine: false); Program.print("and the door is really small");
+                Program.print("There's a tower before you, ms200 the tower is about 4 times as tall as you, but only has like a 2 meter diameter. ms200 and the door is really small");
                 Program.print("outside the tower there's a little sign that says");
                 Program.print("'Welcome to the red demon tower", delay: 200);
                 Program.print("MAXIMUM HEIGHT 3'0 ft'", delay: 200);
-                Program.print("Looks like America isn't the only place that still doesn't use the metric system.", delay: 200, withNLine: false); Program.print("Or maybe just a lot of Americans go to hell hmm...", delay: 200, withNLine: false); Program.print("I'll let you interpret that one for yourself", delay: 200);
+                Program.print("Looks like America isn't the only place that still doesn't use the metric system. ms200 Or maybe just a lot of Americans go to hell hmm... ms200 I'll let you interpret that one for yourself", delay: 200);
                 Program.print("You bend down to knock on the small door and take a step back");
                 Program.print("...", ms: 500);
                 Program.print("The door slowly opens and a small pair of eyes look at you from the door frame", delay: 200);
@@ -61,6 +61,7 @@ namespace rpg_game.Game_Scenes
             }
 
             DungeonCrawler DC = new DungeonCrawler(ref plr, layer);
+            DC.gameLoop();
 
             return false;
         }
