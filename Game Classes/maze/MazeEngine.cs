@@ -67,6 +67,31 @@ namespace rpg_game.Game_Classes.maze
             }
         }
 
+        public void DrawBackground(Color groundCol, Color skyCol, int visRange) {
+            //DrawGround(groundCol, visRange);
+            DrawSky(skyCol, visRange);
+        }
+
+        private void DrawGround(Color col, int visRange) {
+            for(int x = 0; x < GetWinWidth(); x++) {
+                for(int y = GetWinHeight()-1; y > GetWinHeight()/2; y--) {
+                    col = Color.FromArgb(
+                        (int)(Math.Max(0, col.R - y*visRange/2 )),
+                        (int)(Math.Max(0, col.G - y*visRange/2 )),
+                        (int)(Math.Max(0, col.B - y*visRange/2 )));
+                    DrawChar("█".Pastel(col), x, y);
+                }
+            }
+        }
+
+        private void DrawSky(Color col, int visRange) {
+            for(int x = 0; x < GetWinWidth(); x++) {
+                for(int y = 0; y < GetWinHeight()/2; y++) {
+                    DrawChar("█".Pastel(col), x, y);
+                }
+            }
+        }
+
         public void DrawBorder() {
             int winWidth = GetWinWidth();
             int winHeight = GetWinHeight();

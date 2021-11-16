@@ -26,9 +26,11 @@ namespace rpg_game.Game_Classes.maze
 
             double posX = 5.5, posY = 7.5;
             double dirX = 0, dirY = -1;
-            double planeX = -0.66, planeY = 0;
+            double planeX = -0.33, planeY = 0;
             int winCX = -1, winCY = -1;
             int extCX = -1, extCY = -1;
+
+            int visRange = 25;
 
             for(int x = 0; x < map.Width; x++) {
                 for(int y = 0; y < map.Height-1; y++) {
@@ -54,6 +56,8 @@ namespace rpg_game.Game_Classes.maze
             }
 
             while(true) {
+
+                // game.DrawBackground(Color.FromArgb(255, 255, 0), Color.Blue, visRange);
 
                 for(int x = 0; x < game.GetWinWidth(); x++) {
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
@@ -132,16 +136,19 @@ namespace rpg_game.Game_Classes.maze
                     Color col = colors[hitNum];
                     // Actually draw the raycast line. Darken color depending on
                     // facing side, simulating lighting,
-                    if(side == 1) {
-                        game.DrawVerLine(x, lineHeight, col);
-                    } else {
+                    if(side == 0) {
                         // Construct darker color
-                        Color dCol = Color.FromArgb(
+                        col = Color.FromArgb(
                             (int)(col.R * 0.8),
                             (int)(col.G * 0.8),
                             (int)(col.B * 0.8));
-                        game.DrawVerLine(x, lineHeight, dCol);
                     }
+
+                    col = Color.FromArgb(
+                        (int)(Math.Max(0, col.R - perpWallDist*visRange )),
+                        (int)(Math.Max(0, col.G - perpWallDist*visRange )),
+                        (int)(Math.Max(0, col.B - perpWallDist*visRange )));
+                    game.DrawVerLine(x, lineHeight, col);
                 }
 
                 // Handle movement
