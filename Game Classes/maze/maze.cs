@@ -5,6 +5,7 @@ using rpg_game;
 using System.Threading;
 using System.Linq;
 using System.Drawing;
+using rpg_game.Game_Classes.maze.math;
 
 namespace rpg_game.Game_Classes.maze
 {
@@ -24,11 +25,11 @@ namespace rpg_game.Game_Classes.maze
             Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
 
-            double posX = 5.5, posY = 7.5;
-            double dirX = 0, dirY = -1;
-            double planeX = -0.33, planeY = 0;
-            int winCX = -1, winCY = -1;
-            int extCX = -1, extCY = -1;
+            Vector2d pos = new Vector2d(5.5, 7.5);
+            Vector2d dir = new Vector2d(0, -1);
+            Vector2d plane = new Vector2d(-0.33, 0);
+            Vector2d winC = new Vector2d(-1, -1);
+            Vector2d extC = new Vector2d(-1, -1);
 
             int visRange = 25;
 
@@ -39,16 +40,16 @@ namespace rpg_game.Game_Classes.maze
                         switch(cell) {
                             case 100: // SpawnPoint
                                 map.SetCellRel(x, y, 0);
-                                posX = 0.5 + x;
-                                posY = 0.5 + y;
+                                pos.x = 0.5 + x;
+                                pos.y = 0.5 + y;
                                 break;
                             case 101: // WinPoint
-                                winCX = x;
-                                winCY = y;
+                                winC.x = x;
+                                winC.y = y;
                                 break;
                             case 102: // ExitPoint
-                                extCX = x;
-                                extCY = y;
+                                extC.x = x;
+                                extC.y = y;
                                 break;
                         }
                     }
@@ -61,64 +62,59 @@ namespace rpg_game.Game_Classes.maze
 
                 for(int x = 0; x < game.GetWinWidth(); x++) {
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
-                    double rayDirX = dirX + planeX * cameraX;
-                    double rayDirY = dirY + planeY * cameraX;
+                    Vector2d rayDir = dir + (plane * cameraX);
 
-                    int mapX = (int)Math.Floor(posX);
-                    int mapY = (int)Math.Floor(posY);
+                    Vector2d mapPos = pos.Floor();
 
-                    double sideDistX;
-                    double sideDistY;
-
-                    double deltaDistX = rayDirX == 0 ? 100000000 : Math.Abs(1 / rayDirX);
-                    double deltaDistY = rayDirY == 0 ? 100000000 : Math.Abs(1 / rayDirY);
+                    Vector2d sideDist = new Vector2d(0, 0);
+                    Vector2d diffDist = new Vector2d(rayDir.x == 0 ? 100000000 : Math.Abs(1 / rayDir.x),
+                                                     rayDir.y == 0 ? 100000000 : Math.Abs(1 / rayDir.y));
                     double perpWallDist;
 
-                    int stepX;
-                    int stepY;
+                    Vector2d step = new Vector2d(0, 0);
 
                     bool hit = false;
                     int hitNum = 0;
                     int side = 0;
 
-                    if(rayDirX < 0) {
-                        stepX = -1;
-                        sideDistX = (posX - mapX) * deltaDistX;
+                    if(rayDir.x < 0) {
+                        step.x = -1;
+                        sideDist.x = (pos.x - mapPos.x) * diffDist.x;
                     } else {
-                        stepX = 1;
-                        sideDistX = (mapX + 1 - posX) * deltaDistX;
+                        step.x = 1;
+                        sideDist.x = (mapPos.x + 1 - pos.x) * diffDist.x;
                     }
 
-                    if(rayDirY < 0) {
-                        stepY = -1;
-                        sideDistY = (posY - mapY) * deltaDistY;
+                    if(rayDir.y < 0) {
+                        step.y = -1;
+                        sideDist.y = (pos.y - mapPos.y) * diffDist.y;
                     } else {
-                        stepY = 1;
-                        sideDistY = (mapY + 1 - posY) * deltaDistY;
+                        step.y = 1;
+                        sideDist.y = (mapPos.y + 1 - pos.y) * diffDist.y;
                     }
 
                     while(!hit) {
-                        if(sideDistX < sideDistY) {
-                            sideDistX += deltaDistX;
-                            mapX += stepX;
+                        if(sideDist.x < sideDist.y) {
+                            sideDist.x += diffDist.x;
+                            mapPos.x += step.x;
                             side = 0;
                         } else {
-                            sideDistY += deltaDistY;
-                            mapY += stepY;
+                            sideDist.y += diffDist.y;
+                            mapPos.y += step.y;
                             side = 1;
                         }
 
-                        if(map.GetCell(mapX, mapY) > 0) {
+                        if(map.GetCell((int)mapPos.x, (int)mapPos.y) > 0) {
                             hit = true;
-                            hitNum = map.GetCell(mapX, mapY);
+                            hitNum = map.GetCell((int)mapPos.x, (int)mapPos.y);
                         }
 
                     }
 
                     if(side == 0)
-                        perpWallDist = (sideDistX - deltaDistX);
+                        perpWallDist = (sideDist.x - diffDist.x);
                     else
-                        perpWallDist = (sideDistY - deltaDistY);
+                        perpWallDist = (sideDist.y - diffDist.y);
 
                     // lineHeight stores the height needed to draw the ray in
                     // screen coordinates.
@@ -159,38 +155,38 @@ namespace rpg_game.Game_Classes.maze
                     ConsoleKeyInfo key = Console.ReadKey();
                     // Checks the pressed key. Sends press to menu.
                     if(key.Key == Player.up) {
-                        int cellX = map.GetCell((int)(posX + dirX * movSpeed), (int)(posY));
-                        int cellY = map.GetCell((int)(posX), (int)(posY + dirY * movSpeed));
-                        if(cellX == 0 || cellX >= 100) posX += dirX * movSpeed;
-                        if(cellY == 0 || cellY >= 100) posY += dirY * 0.1;
+                        int cellX = map.GetCell((int)(pos.x + dir.x * movSpeed), (int)(pos.y));
+                        int cellY = map.GetCell((int)(pos.x), (int)(pos.y + dir.y * movSpeed));
+                        if(cellX == 0 || cellX >= 100) pos.x += dir.x * movSpeed;
+                        if(cellY == 0 || cellY >= 100) pos.y += dir.y * 0.1;
                     } else if(key.Key == Player.down) {
-                        int cellX = map.GetCell((int)(posX - dirX * movSpeed), (int)(posY));
-                        int cellY = map.GetCell((int)(posX), (int)(posY - dirY * movSpeed));
-                        if(cellX == 0 || cellX >= 100) posX -= dirX * movSpeed;
-                        if(cellY == 0 || cellY >= 100) posY -= dirY * 0.1;
+                        int cellX = map.GetCell((int)(pos.x - dir.x * movSpeed), (int)(pos.y));
+                        int cellY = map.GetCell((int)(pos.x), (int)(pos.y - dir.y * movSpeed));
+                        if(cellX == 0 || cellX >= 100) pos.x -= dir.x * movSpeed;
+                        if(cellY == 0 || cellY >= 100) pos.y -= dir.y * 0.1;
                     } else if(key.Key == Player.right) {
-                        double oldDirX = dirX;
-                        dirX = dirX * Math.Cos(-rotSpeed) - dirY * Math.Sin(-rotSpeed);
-                        dirY = oldDirX * Math.Sin(-rotSpeed) + dirY * Math.Cos(-rotSpeed);
-                        double oldPlaneX = planeX;
-                        planeX = planeX * Math.Cos(-rotSpeed) - planeY * Math.Sin(-rotSpeed);
-                        planeY = oldPlaneX * Math.Sin(-rotSpeed) + planeY * Math.Cos(-rotSpeed);
+                        double oldDirX = dir.x;
+                        dir.x = dir.x * Math.Cos(-rotSpeed) - dir.y * Math.Sin(-rotSpeed);
+                        dir.y = oldDirX * Math.Sin(-rotSpeed) + dir.y * Math.Cos(-rotSpeed);
+                        double oldPlaneX = plane.x;
+                        plane.x = plane.x * Math.Cos(-rotSpeed) - plane.y * Math.Sin(-rotSpeed);
+                        plane.y = oldPlaneX * Math.Sin(-rotSpeed) + plane.y * Math.Cos(-rotSpeed);
                     } else if(key.Key == Player.left) {
-                        double oldDirX = dirX;
-                        dirX = dirX * Math.Cos(rotSpeed) - dirY * Math.Sin(rotSpeed);
-                        dirY = oldDirX * Math.Sin(rotSpeed) + dirY * Math.Cos(rotSpeed);
-                        double oldPlaneX = planeX;
-                        planeX = planeX * Math.Cos(rotSpeed) - planeY * Math.Sin(rotSpeed);
-                        planeY = oldPlaneX * Math.Sin(rotSpeed) + planeY * Math.Cos(rotSpeed);
+                        double oldDirX = dir.x;
+                        dir.x = dir.x * Math.Cos(rotSpeed) - dir.y * Math.Sin(rotSpeed);
+                        dir.y = oldDirX * Math.Sin(rotSpeed) + dir.y * Math.Cos(rotSpeed);
+                        double oldPlaneX = plane.x;
+                        plane.x = plane.x * Math.Cos(rotSpeed) - plane.y * Math.Sin(rotSpeed);
+                        plane.y = oldPlaneX * Math.Sin(rotSpeed) + plane.y * Math.Cos(rotSpeed);
                     }
                 }
 
                 // Check for win/exit
-                if((int)posX == winCX && (int)posY == winCY) {
+                if(pos.Floor() == winC) {
                     // Winner!
                     return true;
                 }
-                if((int)posX == extCX && (int)posY == extCY) {
+                if(pos.Floor() == extC) {
                     // Loser!
                     return false;
                 }
@@ -199,7 +195,7 @@ namespace rpg_game.Game_Classes.maze
                 game.SwapBuffers();
                 game.DrawScreen();
 
-                Console.WriteLine(posX + " : " + posY);
+                Console.WriteLine(pos.x + " : " + pos.y);
             }
         }
     }
