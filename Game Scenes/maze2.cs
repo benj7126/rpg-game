@@ -7,7 +7,7 @@ using rpg_game.Game_Classes.maze;
 
 namespace rpg_game.Game_Scenes
 {
-    class maze1 : Scene
+    class maze2 : Scene
     {
         public override bool Start(ref Player plr)
         {
