@@ -157,8 +157,10 @@ namespace rpg_game.Game_Classes.maze
                         if(cellX == 0 || cellX >= 100) posX += dirX * movSpeed;
                         if(cellY == 0 || cellY >= 100) posY += dirY * 0.1;
                     } else if(key.Key == Player.down) {
-                        if(map.GetCell((int)(posX - dirX * movSpeed), (int)(posY)) == 0) posX -= dirX * movSpeed;
-                        if(map.GetCell((int)(posX), (int)(posY - dirY * movSpeed)) == 0) posY -= dirY * 0.1;
+                        int cellX = map.GetCell((int)(posX - dirX * movSpeed), (int)(posY));
+                        int cellY = map.GetCell((int)(posX), (int)(posY - dirY * movSpeed));
+                        if(cellX == 0 || cellX >= 100) posX -= dirX * movSpeed;
+                        if(cellY == 0 || cellY >= 100) posY -= dirY * 0.1;
                     } else if(key.Key == Player.right) {
                         double oldDirX = dirX;
                         dirX = dirX * Math.Cos(-rotSpeed) - dirY * Math.Sin(-rotSpeed);
