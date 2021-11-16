@@ -76,6 +76,13 @@ namespace rpg_game.Game_Classes.maze
                 // game.DrawBackground(Color.FromArgb(255, 255, 0), Color.Blue, visRange);
 
                 // Loop through every x in the "window", casting a ray for each.
+                // ---
+                // Raycasting is done using the digital differential analyzer
+                // algorithm. For a straight line, the x distance, between
+                // intersections of a grid on the y axis, is the same. Same goes
+                // inverse. By checking all the intersected cells for both,
+                // swtiching between them and always using the current shortest,
+                // the first gridcell intersection can be found.
                 for(int x = 0; x < game.GetWinWidth(); x++) {
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
                     Vector2d rayDir = dir + (plane * cameraX);
