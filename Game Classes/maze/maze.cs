@@ -10,6 +10,8 @@ using rpg_game.Game_Classes.maze.math;
 namespace rpg_game.Game_Classes.maze
 {
     class Maze {
+
+        // Numbers and their colors.
         static Dictionary<int, Color> colors = new Dictionary<int, Color>() {
             {1, Color.FromArgb(255, 255, 255)},
             {2, Color.FromArgb(0,   255, 0  )},
@@ -17,28 +19,41 @@ namespace rpg_game.Game_Classes.maze
             {101, Color.FromArgb(0,   255, 0  )}, // Also used as collision box for winning.
             {102, Color.FromArgb(255, 0,   0  )}, // Also used for leaving the maze
         };
+
+        // Returns true if maze is completed, false if exited.
         public static bool StartMaze(Map map) {
             return Start(map);
         }
 
-        public static bool Start(Map map) {
+        private static bool Start(Map map) {
             Console.Clear();
             MazeEngine game = new MazeEngine(80, 40, "maze");
 
+            // Position vector
             Vector2d pos = new Vector2d(5.5, 7.5);
+            // Directional unit vector
             Vector2d dir = new Vector2d(0, -1);
+            // Camera view plane, held as 2d vector line.
+            // Were this actually 3d, not raycasting, it would be a plane,
+            // represtented by 2 vectors.
             Vector2d plane = new Vector2d(-0.33, 0);
+
+            // The location of the win and exit cells
             Vector2d winC = new Vector2d(-1, -1);
             Vector2d extC = new Vector2d(-1, -1);
 
+            // The visibility distance. Controls the distance-based darkening.
             int visRange = 25;
 
+            // Loops through all cells, checking for control cells.
             for(int x = 0; x < map.Width; x++) {
                 for(int y = 0; y < map.Height-1; y++) {
                     int cell = map.GetCell(x, y);
+                    // Control cells are above 100
                     if(cell >= 100) {
                         switch(cell) {
                             case 100: // SpawnPoint
+                                // Removes spawnpoint cell
                                 map.SetCellRel(x, y, 0);
                                 pos.x = 0.5 + x;
                                 pos.y = 0.5 + y;
@@ -56,10 +71,11 @@ namespace rpg_game.Game_Classes.maze
                 }
             }
 
+            // Main game loop
             while(true) {
-
                 // game.DrawBackground(Color.FromArgb(255, 255, 0), Color.Blue, visRange);
 
+                // Loop through every x in the "window", casting a ray for each.
                 for(int x = 0; x < game.GetWinWidth(); x++) {
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
                     Vector2d rayDir = dir + (plane * cameraX);
@@ -140,10 +156,13 @@ namespace rpg_game.Game_Classes.maze
                             (int)(col.B * 0.8));
                     }
 
+                    // Darken color based on distance and visRange variable.
                     col = Color.FromArgb(
                         (int)(Math.Max(0, col.R - perpWallDist*visRange )),
                         (int)(Math.Max(0, col.G - perpWallDist*visRange )),
                         (int)(Math.Max(0, col.B - perpWallDist*visRange )));
+
+                    // Draw the ray.
                     game.DrawVerLine(x, lineHeight, col);
                 }
 
@@ -155,26 +174,38 @@ namespace rpg_game.Game_Classes.maze
                     ConsoleKeyInfo key = Console.ReadKey();
                     // Checks the pressed key. Sends press to menu.
                     if(key.Key == Player.up) {
+                        // CellX and CellY holds the cell, the player would move
+                        // into, in those directions. Using a vector doesn't
+                        // make sense, since they could be different. They are
+                        // split up, to allow sliding on walls, when not walking
+                        // perpendicular into them.
                         int cellX = map.GetCell((int)(pos.x + dir.x * movSpeed), (int)(pos.y));
                         int cellY = map.GetCell((int)(pos.x), (int)(pos.y + dir.y * movSpeed));
+
+                        // Check if cell is empty or a control cell, if so, move.
                         if(cellX == 0 || cellX >= 100) pos.x += dir.x * movSpeed;
                         if(cellY == 0 || cellY >= 100) pos.y += dir.y * 0.1;
                     } else if(key.Key == Player.down) {
+                        // Same as before, just backwards, so with subtraction instead of addition.
                         int cellX = map.GetCell((int)(pos.x - dir.x * movSpeed), (int)(pos.y));
                         int cellY = map.GetCell((int)(pos.x), (int)(pos.y - dir.y * movSpeed));
                         if(cellX == 0 || cellX >= 100) pos.x -= dir.x * movSpeed;
                         if(cellY == 0 || cellY >= 100) pos.y -= dir.y * 0.1;
                     } else if(key.Key == Player.right) {
+                        // Use too much math, to calculate the direction unit vector.
                         double oldDirX = dir.x;
                         dir.x = dir.x * Math.Cos(-rotSpeed) - dir.y * Math.Sin(-rotSpeed);
                         dir.y = oldDirX * Math.Sin(-rotSpeed) + dir.y * Math.Cos(-rotSpeed);
+                        // Use too much math, to calculate the camera viewport plane.
                         double oldPlaneX = plane.x;
                         plane.x = plane.x * Math.Cos(-rotSpeed) - plane.y * Math.Sin(-rotSpeed);
                         plane.y = oldPlaneX * Math.Sin(-rotSpeed) + plane.y * Math.Cos(-rotSpeed);
                     } else if(key.Key == Player.left) {
+                        // Use too much math, to calculate the direction unit vector.
                         double oldDirX = dir.x;
                         dir.x = dir.x * Math.Cos(rotSpeed) - dir.y * Math.Sin(rotSpeed);
                         dir.y = oldDirX * Math.Sin(rotSpeed) + dir.y * Math.Cos(rotSpeed);
+                        // Use too much math, to calculate the camera viewport plane.
                         double oldPlaneX = plane.x;
                         plane.x = plane.x * Math.Cos(rotSpeed) - plane.y * Math.Sin(rotSpeed);
                         plane.y = oldPlaneX * Math.Sin(rotSpeed) + plane.y * Math.Cos(rotSpeed);
@@ -194,8 +225,6 @@ namespace rpg_game.Game_Classes.maze
                 game.DrawBorder();
                 game.SwapBuffers();
                 game.DrawScreen();
-
-                Console.WriteLine(pos.x + " : " + pos.y);
             }
         }
     }
