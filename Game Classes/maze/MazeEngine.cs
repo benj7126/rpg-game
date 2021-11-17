@@ -137,7 +137,7 @@ namespace rpg_game.Game_Classes.maze
                 for(int x = 0; x < winWidth; x++) {
                     line += buffer[x + y*winWidth];
                     if(buffer[x + y*winWidth] == null) {
-                        line += " ";
+                        line += " ".PastelBg(Color.Black);
                     }
                 }
                 Console.WriteLine(line);

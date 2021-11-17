@@ -92,6 +92,8 @@ namespace rpg_game.Game_Classes.maze
                     Vector2d sideDist = new Vector2d(0, 0);
                     Vector2d diffDist = new Vector2d(rayDir.x == 0 ? 100000000 : Math.Abs(1 / rayDir.x),
                                                      rayDir.y == 0 ? 100000000 : Math.Abs(1 / rayDir.y));
+                    // The distance to the intersected cell, perpendicular to
+                    // the camera plane.
                     double perpWallDist;
 
                     Vector2d step = new Vector2d(0, 0);
