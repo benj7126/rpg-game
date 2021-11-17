@@ -7,7 +7,7 @@ namespace rpg_game.Game_Classes
 {
     class Player
     {
-        public enum itemPlace // B - all slots for the player
+        public enum itemPlace // all slots for the player
         {
             MainHand,
             OffHand,
@@ -17,13 +17,13 @@ namespace rpg_game.Game_Classes
             unEquippable,
             Consumable
         }
-        // B - some stat stuff
+        // some stat stuff
         public int health = 16;
         public int maxHealth = 16;
 
         public string name = "<playername>";
 
-        // B - the keys to interact so that they can be changed
+        // the keys to interact so that they can be changed
         public static ConsoleKey up = ConsoleKey.UpArrow;
         public static ConsoleKey down = ConsoleKey.DownArrow;
         public static ConsoleKey left = ConsoleKey.LeftArrow;
@@ -33,13 +33,13 @@ namespace rpg_game.Game_Classes
 
         public static float textSpeedMulti = 1;
 
-        // B - where the player is and where they can go
+        // where the player is and where they can go
         public Vector pos = new Vector(0, 0);
         public List<Location> possibleLocations = new List<Location>();
 
         public bool win = false;
 
-        // B - the name says it all
+        // the name says it all
         public string[] dontAdd =
         {
             "Go thru the gates",
@@ -47,7 +47,7 @@ namespace rpg_game.Game_Classes
             "Multi dimensional maze - layer 3",
         };
 
-        // B - the inventory of the player and the item slots
+        // the inventory of the player and the item slots
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
@@ -109,14 +109,14 @@ namespace rpg_game.Game_Classes
 
         public Player() // Setup off player
         {
-            // B - make item slot item slots...
+            // make item slot item slots...
             equipped.Add(itemPlace.MainHand, Item.getItemByID(1));
             equipped.Add(itemPlace.OffHand, null);
             equipped.Add(itemPlace.Armor, Item.getItemByID(25));
             equipped.Add(itemPlace.Ring, null);
             equipped.Add(itemPlace.Amulet, null);
 
-            // B - add default locations
+            // add default locations
             foreach (Location l in Location.locations)
             {
                 bool add = true;

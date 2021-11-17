@@ -104,7 +104,7 @@ namespace rpg_game.Game_Classes
                 new drop[] {new drop(Item.getItemByID(9), 0.2f), new drop(Item.getItemByID(10), 0.1f), new drop(Item.getItemByID(11), 0.04f)}),
 
             new Enemy("PP Gladiator","IT STANDS FOR PINEAPPLE PIZZA, PINEAPPLE PIZZA I TELL YOU!!!",
-                20, 10, 9,
+                16, 10, 9,
                 "*cough* Nice figt m8, the future of pineapples on pizzas are looking bright",
                 new drop[] { }),
 
