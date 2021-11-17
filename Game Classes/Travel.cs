@@ -100,7 +100,6 @@ namespace rpg_game.Game_Classes
                     doneTraveling = true;
 
                     plr.pos = v;
-                    Console.WriteLine("Now at pos: " + plr.pos.x + " | " + plr.pos.y);
                     dest.enterLocation(ref plr, ref dest);
                 }
             }
