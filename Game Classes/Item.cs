@@ -17,8 +17,7 @@ namespace rpg_game.Game_Classes
         // specialEffects:
         /*
         1: Healing
-
-
+        2: maxHp
 
         */
 

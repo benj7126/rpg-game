@@ -34,6 +34,25 @@ namespace rpg_game.Game_Classes
                     actualDungeon[x, y] = r.Next(2, senario.senarioList.Count);
                 }
             }
+
+            int tx = 0;
+            int ty = 0;
+            bool placed = false;
+            while (!placed)
+            {
+                tx = r.Next(dLength);
+                ty = r.Next(dLength);
+                if (tx == 0 && ty == 0)
+                {
+                    placed = false;
+                }
+                else
+                {
+                    placed = true;
+                }
+            }
+            actualDungeon[tx, ty] = 1;
+
             converter.Add(0, new Vector(0, 1));
             converter.Add(1, new Vector(1, 0));
             converter.Add(2, new Vector(0, -1));
