@@ -46,7 +46,7 @@ namespace rpg_game
             // Map map = new Map(29, 7, mapArr);
 
             // Maze.StartMaze(map);
-          
+
             gameStart();
         }
         public static void gameStart()
