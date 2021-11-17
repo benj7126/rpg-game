@@ -84,24 +84,41 @@ namespace rpg_game.Game_Classes.maze
                 // swtiching between them and always using the current shortest,
                 // the first gridcell intersection can be found.
                 for(int x = 0; x < game.GetWinWidth(); x++) {
+                    // The current x-coordinate on the camera viewport "plane"
+                    // (line), corresponding to the current viewspace
+                    // x-coordinate.
+                    // The x-range of the rendering space then becomes [-1;1].
+                    // This allows for easier further calculations.
                     double cameraX = 2 * x / (double)game.GetWinWidth() - 1;
+                    // A unit vector, representing the direction of the
+                    // currently cast ray. Calculated by the player direction
+                    // plus part of the viewport "plane".
                     Vector2d rayDir = dir + (plane * cameraX);
 
+                    // The player position in map-coordinates. Had we
+                    // implemented integer vectors, this would be one of those.
                     Vector2d mapPos = pos.Floor();
 
+                    // sideDist holds the initial length, needed to travel, for
+                    // the ray to be on an x-intersection and a y-intersection.
                     Vector2d sideDist = new Vector2d(0, 0);
+                    // The x-value holds the amount, x has to increase by, to go
+                    // from one intersection of the grid in the y-axis, to
+                    // another. The y-value is the opposite.
+                    // The ternary operator is used to avoid division by zero,
+                    // setting it to a really high number in that case.
                     Vector2d diffDist = new Vector2d(rayDir.x == 0 ? 100000000 : Math.Abs(1 / rayDir.x),
                                                      rayDir.y == 0 ? 100000000 : Math.Abs(1 / rayDir.y));
                     // The distance to the intersected cell, perpendicular to
                     // the camera plane.
                     double perpWallDist;
 
+                    // Holds the direction to move in for x and y.
+                    // X: -1 = left ; +1 = right
+                    // Y: -1 = up   ; +1 = down
                     Vector2d step = new Vector2d(0, 0);
 
-                    bool hit = false;
-                    int hitNum = 0;
-                    int side = 0;
-
+                    // Sets step variable and calculates sideDist for both x and y.
                     if(rayDir.x < 0) {
                         step.x = -1;
                         sideDist.x = (pos.x - mapPos.x) * diffDist.x;
@@ -118,17 +135,46 @@ namespace rpg_game.Game_Classes.maze
                         sideDist.y = (mapPos.y + 1 - pos.y) * diffDist.y;
                     }
 
+                    // Whether or not the ray hit a wall. Used to get out of a
+                    // while loop.
+                    bool hit = false;
+                    // The cell-type / number of the hit wall.
+                    int hitNum = 0;
+                    // Whether it was hit in a y-intersection or an
+                    // x-intersection.
+                    int side = 0;
+                    // This while loop runs, until a ray hits a cell.
                     while(!hit) {
+                        // DDA essentially just casts two rays the same direction.
+                        // On looking for x-intersections and one for
+                        // y-intersections. We switch between the two, depending
+                        // on which is currently shorter, then keep casting
+                        // that, until the other is shorter.
+                        // SideDist is now holding the full ray distance.
                         if(sideDist.x < sideDist.y) {
+                            // Increment sideDist by the distance between
+                            // intersections.
                             sideDist.x += diffDist.x;
+                            // mapPos now holds the position of the intersected
+                            // cell.
                             mapPos.x += step.x;
+                            // Set side, since we know, if this ray hit, the
+                            // side was 0.
                             side = 0;
                         } else {
+                            // Increment sideDist by the distance between
+                            // intersections.
                             sideDist.y += diffDist.y;
+                            // mapPos now holds the position of the intersected
+                            // cell.
                             mapPos.y += step.y;
+                            // Set side, since we know, if this ray hit, the
+                            // side was 0.
                             side = 1;
                         }
 
+                        // Check if the currently intersected cell was not
+                        // empty.
                         if(map.GetCell((int)mapPos.x, (int)mapPos.y) > 0) {
                             hit = true;
                             hitNum = map.GetCell((int)mapPos.x, (int)mapPos.y);
@@ -136,6 +182,12 @@ namespace rpg_game.Game_Classes.maze
 
                     }
 
+                    // Calculate the distance to the wall, depending on which
+                    // intersection was made. This is because DDA essentially
+                    // just casts two rays the same direction. On looking for
+                    // x-intersections and one for y-intersections. We use the
+                    // side variable to know which ray hit, calculating the
+                    // distance it traveled.
                     if(side == 0)
                         perpWallDist = (sideDist.x - diffDist.x);
                     else
