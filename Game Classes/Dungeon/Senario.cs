@@ -5,7 +5,7 @@ using rpg_game.Game_Classes.Dungeon.AllSenarios;
 
 namespace rpg_game.Game_Classes.Dungeon
 {
-    class senario
+    class senario // class for inheriting or something... got the idea from terraria, xD
     {
         public virtual int onEnter(ref Player plr, int layer)
         {

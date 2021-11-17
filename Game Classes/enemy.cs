@@ -15,7 +15,7 @@ namespace rpg_game.Game_Classes
         public string Last_words;
         public drop[] Drops;
 
-        public void Drop(ref Player plr)
+        public void Drop(ref Player plr) // drop items when a monster is killed
         {
             foreach (drop d in Drops)
             {
@@ -23,7 +23,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
-        public static Enemy getByName(string name)
+        public static Enemy getByName(string name) // get an enemy class thingy based on given string name
         {
             foreach (Enemy e in enemies)
             {
@@ -32,7 +32,7 @@ namespace rpg_game.Game_Classes
             }
             return enemies[0];
         }
-        public static Enemy getById(int id)
+        public static Enemy getById(int id) // get an enemy class thingy based on given int id
         {
             foreach (Enemy e in enemies)
             {
@@ -130,7 +130,7 @@ namespace rpg_game.Game_Classes
         };
 
     }
-    class drop
+    class drop // easy drops for the game i guess, cuz its hard to do with dictionaries n stuff... i miss my lua, and also kinda dont...
     {
         Item i;
         float c;

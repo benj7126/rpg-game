@@ -48,7 +48,7 @@ namespace rpg_game.Game_Classes
                 float rNR = (float)r.Next(0, 10000) / 10000;
                 foreach (procentNMonsters procentNMonsters in encounterList)
                 {
-                    if (procentNMonsters.chance > rNR)
+                    if (procentNMonsters.chance > rNR) // encounter monster
                     {
                         Program.print("While wandering the planes of hell you encounter a demon.");
                         Program.print("The demon seems hungry, well, for you that is.");
@@ -59,7 +59,7 @@ namespace rpg_game.Game_Classes
                     }
                 }
 
-                float p = Math.Abs(travelLeft/travelTotal-1)* size;
+                float p = Math.Abs(travelLeft/travelTotal-1)* size; // begin generating the line for travel the [#################      ]
                 string str = "[";
 
                 //Console.WriteLine(p);
@@ -82,7 +82,7 @@ namespace rpg_game.Game_Classes
                 }
 
                 str += "]";
-                if (doWrite)
+                if (doWrite) // write the line
                 {
                     Console.CursorTop = 0;
                     Console.WriteLine("Traveling to " + dest.name + ".");
@@ -92,7 +92,7 @@ namespace rpg_game.Game_Classes
                 }
 
 
-                if (travelLeft <= 0)
+                if (travelLeft <= 0) // writhe the line and end the loop
                 {
                     Console.CursorTop = 0;
                     Console.WriteLine("Traveling to " + dest.name + ".");

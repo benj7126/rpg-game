@@ -12,7 +12,7 @@ namespace rpg_game.Game_Classes
         public float encounterRate;
         public int[] enemies;
 
-        public MonsterArea(Vector p, int rad, float eRate, int[] fightables)
+        public MonsterArea(Vector p, int rad, float eRate, int[] fightables) // all the areas for monsters/travel encounters
         {
             pos = p;
             radius = rad;

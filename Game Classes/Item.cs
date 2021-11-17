@@ -21,7 +21,7 @@ namespace rpg_game.Game_Classes
 
         */
 
-        public void equip(ref Player plr, int pos) // B - calls when player wants to equip an item, place is where this item needs to go to be equiped
+        public void equip(ref Player plr, int pos) // calls when player wants to equip an item, place is where this item needs to go to be equiped
         {
             if (place == Player.itemPlace.unEquippable)
                 return;
@@ -54,11 +54,11 @@ namespace rpg_game.Game_Classes
             plr.equipped[place] = plr.inventory[pos];
             plr.inventory[pos] = savedItem;
         }
-        public void remove(ref Player plr, int pos) // B - calls when player wants to equip an item, place is where this item needs to go to be equipped
+        public void remove(ref Player plr, int pos) // calls when player wants to equip an item, place is where this item needs to go to be equipped
         {
             plr.inventory[pos] = null;
         }
-        public void unequip(ref Player plr) // B - finds the first free position in your inventory and moves item there, if there are no free spaces nothing happens
+        public void unequip(ref Player plr) // finds the first free position in your inventory and moves item there, if there are no free spaces nothing happens
         {
             for (int i = 0; i < 12; i++)
             {
@@ -71,7 +71,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
-        public static Item getItemByName(string name) // B - look through all items and return the first item with the given name
+        public static Item getItemByName(string name) // look through all items and return the first item with the given name
         {
             foreach (Item i in items)
             {
@@ -82,7 +82,7 @@ namespace rpg_game.Game_Classes
             }
             return null;
         }
-        public static Item getItemByID(int id) // B - look through all items and return the first item with the given id
+        public static Item getItemByID(int id) // look through all items and return the first item with the given id
         {
             foreach (Item i in items)
             {
@@ -105,7 +105,7 @@ namespace rpg_game.Game_Classes
             specialEffects = sEffx;
         }
 
-        // B - list of all items in game
+        // list of all items in game
         public static Item[] items =
         {
             new Item("Plep's sword", 1, "You found this sword laying on the ground, It's really bad quality and for some reason there's carved the word Plep into it", 1, 0, Player.itemPlace.MainHand),

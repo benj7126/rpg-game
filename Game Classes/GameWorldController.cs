@@ -18,14 +18,14 @@ namespace rpg_game.Game_Classes
 
     class GameWorldController
     {
-        // B - the core of the game
-        public gameStates gameState = gameStates.StartScreen;
+        // the core of the game
+        public gameStates gameState = gameStates.StartScreen; // this discripes where the game is at...
         public Player player = new Player();
         public List<Location> knownPlaces = new List<Location>();
         public Travel curTravel = new Travel();
 
 
-        public bool updateWorld()
+        public bool updateWorld() // this is looped while the game is active, kinda feel like it makes fine sence...
         {
             int chosen = 0;
             ChoiceSelector Choice = new ChoiceSelector();
@@ -98,7 +98,7 @@ namespace rpg_game.Game_Classes
                             break;
                     }
                     break;
-                case gameStates.StartScreen:
+                case gameStates.StartScreen: // where the game starts
                     Program.print("What is your name player?");
                     Console.Write("My name is ");
                     player.name = Console.ReadLine();
@@ -140,7 +140,7 @@ namespace rpg_game.Game_Classes
             Console.WriteLine("");
             return player.win;
         }
-        public void controls()
+        public void controls() // edid player controls
         {
             Console.Write("Up - ");
             Player.up = Console.ReadKey(true).Key;
@@ -170,7 +170,7 @@ namespace rpg_game.Game_Classes
             Player.del = Console.ReadKey(true).Key;
             Console.WriteLine(Player.del);
         }
-        public void speed()
+        public void speed() // edit speed of game text
         {
             Console.WriteLine("Lower procent = faster text, 0 is the same as instant but not recomended\nsince you might come to regret half skipping some of the story and therefore missing some items\n");
             bool changing = true;

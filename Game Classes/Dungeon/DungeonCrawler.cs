@@ -25,7 +25,7 @@ namespace rpg_game.Game_Classes
             dLength = Math.Max(layer, 3);
 
 
-            actualDungeon = new int[dLength, dLength];
+            actualDungeon = new int[dLength, dLength]; // create the dungeon based on current layer, min 3
 
             for (int x = 0; x < dLength; x++)
             {
@@ -53,13 +53,15 @@ namespace rpg_game.Game_Classes
             }
             actualDungeon[tx, ty] = 1;
 
+            // converter is used to find out what values to add when facing which directions
+
             converter.Add(0, new Vector(0, 1));
             converter.Add(1, new Vector(1, 0));
             converter.Add(2, new Vector(0, -1));
             converter.Add(3, new Vector(-1, 0));
         }
 
-        public void gameLoop()
+        public void gameLoop() // for the looping of the dungeon
         {
             Program.print("While walking into this tower, you get the feeling of regret, you turn around ms300 the exit is gone.");
             Program.print("It's do or die now, you tell yourself.");
@@ -105,12 +107,12 @@ namespace rpg_game.Game_Classes
                 }
             }
         }
-        private bool isNotWall(Vector pos)
+        private bool isNotWall(Vector pos) // check if this(position) is within the scop of the labrinth
         {
             return pos.x > -1 && pos.x < dLength && pos.y > -1 && pos.y < dLength;
         }
 
-        private bool proced(Vector pos)
+        private bool proced(Vector pos) // go to room and activate it
         {
             ChoiceSelector CS = new ChoiceSelector();
             int Choice = CS.update(ref plr, new List<string>() { "Yes", "No" }, "Do you wish to proceed?");
@@ -127,7 +129,7 @@ namespace rpg_game.Game_Classes
             return false;
         }
 
-        private int turn(int orig, int turnWith)
+        private int turn(int orig, int turnWith) // turn around
         {
             orig += turnWith;
             if (orig == 4)

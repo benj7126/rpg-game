@@ -5,7 +5,7 @@ using rpg_game;
 
 namespace rpg_game.Game_Classes
 {
-    class Vector
+    class Vector // some random vector class for traveling n stuff...
     {
         public float x = 0;
         public float y = 0;

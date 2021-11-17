@@ -18,7 +18,7 @@ namespace rpg_game.Game_Classes
             onEnter = scene;
         }
 
-        public void enterLocation(ref Player plr, ref Location self)
+        public void enterLocation(ref Player plr, ref Location self) // call when you enter a location after traveling
         {
             bool del = false;
             if (onEnter != null)
@@ -29,7 +29,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
-        public static Location getLocationByName(string name)
+        public static Location getLocationByName(string name) // used to get a location from the list based on the name
         {
             foreach (Location l in locations)
             {
@@ -41,7 +41,7 @@ namespace rpg_game.Game_Classes
             return null;
         }
 
-        public static Location[] locations =
+        public static Location[] locations = // all locations
         {
             new Location("Random fountain", new Vector(0, 0), new Game_Scenes.Fountain()),
             new Location("The outpost of pineapple on pizza lovers ", new Vector(-60, 20), new Game_Scenes.PizzaPineappleOutpost()),

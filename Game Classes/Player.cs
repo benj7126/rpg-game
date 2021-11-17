@@ -51,7 +51,7 @@ namespace rpg_game.Game_Classes
         public Item[] inventory = new Item[12];
         public Dictionary<itemPlace, Item> equipped = new Dictionary<itemPlace, Item>();
 
-        public void dead()
+        public void dead() // well dead yeah...
         {
             Console.Clear();
 
@@ -62,7 +62,7 @@ namespace rpg_game.Game_Classes
             Program.gameStart();
         }
 
-        public bool pickupItem(Item item)
+        public bool pickupItem(Item item) // for picking up items
         {
             for (int i = 0; i < 12; i++)
             {
@@ -77,7 +77,7 @@ namespace rpg_game.Game_Classes
             return false;
         }
 
-        public int getAttack()
+        public int getAttack() // gets the total damage
         {
             int attack = 0;
 
@@ -92,7 +92,7 @@ namespace rpg_game.Game_Classes
             return attack;
         }
 
-        public int getDefence()
+        public int getDefence() // gets the total defence
         {
             int defence = 0;
 
@@ -107,7 +107,7 @@ namespace rpg_game.Game_Classes
             return defence;
         }
 
-        public Player()
+        public Player() // Setup off player
         {
             // B - make item slot item slots...
             equipped.Add(itemPlace.MainHand, Item.getItemByID(1));

@@ -17,39 +17,9 @@ namespace rpg_game
 
             Console.CursorVisible = false;
 
-            //Martins Labyrint
-            // int[] mapArr = {
-            //     1, 1, 1, 1, 1, 1, 1, 1, 1,
-            //     1, 3, 1, 0, 0, 0, 0, 0, 1,
-            //     1, 0, 1, 0, 1, 0, 1, 0, 1,
-            //     1, 0, 0, 0, 1, 0, 1, 0, 1,
-            //     1, 0, 1, 1, 1, 0, 1, 0, 1,
-            //     1, 0, 0, 0, 1, 0, 1, 1, 1,
-            //     1, 1, 1, 0, 1, 0, 0, 0, 1,
-            //     1, 0, 1, 0, 1, 0, 1, 0, 1,
-            //     1, 0, 0, 0, 1, 0, 1, 2, 1,
-            //     1, 1, 1, 1, 1, 1, 1, 1, 1,
-            // };
-
-            // The following is used to test the maze, without actually walking
-            // to it.
-
-            // int[] mapArr = {
-            //     1, 1,   1,   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            //     1, 1,   0,   0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1,
-            //     1, 1,   0,   1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1,
-            //     1, 102, 100, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 101,
-            //     1, 1,   0,   0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1,
-            //     1, 1,   0,   0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-            //     1, 1,   1,   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            // };
-            // Map map = new Map(29, 7, mapArr);
-
-            // Maze.StartMaze(map);
-
-            gameStart();
+            gameStart(); // start game
         }
-        public static void gameStart()
+        public static void gameStart() // run to start game (also restart when you die)
         {
             Console.Clear();
             print("Booting up Hellcrawler", ms: 200);
@@ -60,7 +30,7 @@ namespace rpg_game
                 runing = game.updateWorld();
             }
         }
-        public static void clearKeys()
+        public static void clearKeys() // clears keys
         {
             if (Console.KeyAvailable)
             {
@@ -78,30 +48,29 @@ namespace rpg_game
 
         public static void print(string str, int ms = 50, int delay = 0, int maxCharLen = 80, bool withNLine = true, string name = "", bool raw = false)
         {
-            // B - making a print function to make story telling easier (hopefully)
-            if (name != "") // B - if theres someone talking you can define their name and it will be added to the wraping of text
+            // making a print function to make story telling easier (hopefully)
+            if (name != "") // if theres someone talking you can define their name and it will be added to the wraping of text
             {
                 Console.Write("[" + name + "]: ");
                 sleep(150);
             }
 
-            Dictionary<int, int> delays = otherConvert(str);
+            Dictionary<int, int> delays = otherConvert(str); // mak a dictionary of all the waiting points in the string
             if (!raw)
             {
-                str = convertToLen(str, maxCharLen, startVal: name.Length + 3); // B - wrap text
+                str = convertToLen(str, maxCharLen, startVal: name.Length + 3); // wrap text
 
-                // int index, int wait time
-                str = deleteTimestamp(str);
+                str = deleteTimestamp(str); // delete all msXXX in the string
             }
 
             for (int i = 0; i < str.Length; i++)
             {
-                if (delays.ContainsKey(i))
+                if (delays.ContainsKey(i)) // sleep if you are at a wait point
                     sleep(delays[i]);
                 Console.Write(str[i]);
                 sleep(ms);
 
-                while (Console.KeyAvailable)
+                while (Console.KeyAvailable) // clear all keys
                 {
                     if (Console.ReadKey(true).Key == Player.select)
                     {
@@ -118,7 +87,7 @@ namespace rpg_game
             clearKeys();
         }
 
-        public static Dictionary<int, int> otherConvert(string str)
+        public static Dictionary<int, int> otherConvert(string str) // this goes thru all words removes msXXX and ads them to a dictionary of the char index or something.
         {
             Dictionary<int, int> delays = new Dictionary<int, int>();
 
@@ -151,7 +120,7 @@ namespace rpg_game
             return delays;
         }
 
-        public static string deleteTimestamp(string str)
+        public static string deleteTimestamp(string str) // Delete all the ms thingys from the text
         {
             string[] nStr = str.Split(" ");
             string nString = "";
@@ -179,7 +148,7 @@ namespace rpg_game
             return str;
         }
 
-        public static string convertToLen(string str, int maxCharLen, int startVal = 0) // B - takes a string and makes sure it wraps
+        public static string convertToLen(string str, int maxCharLen, int startVal = 0) // takes a string and makes sure it wraps
         {
             string[] nStr = str.Split(" ");
             int totalNR = startVal;

@@ -28,6 +28,7 @@ namespace rpg_game.Game_Classes
                 Console.CursorTop = 0;
                 Console.CursorLeft = 0;
 
+                // place all the 5 equip items
                 if (selected == -5)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Main hand > ");
@@ -56,7 +57,7 @@ namespace rpg_game.Game_Classes
 
                 Console.Write("\n\n");
 
-                int wrap = 0;
+                int wrap = 0; // for loop for writing inventory slots to the screen
                 for (int i = 0; i<12; i++)
                 {
                     if (wrap == 4)
@@ -111,7 +112,7 @@ namespace rpg_game.Game_Classes
                     item = player.equipped[convert[selected]];
                 }
 
-                if (item != null)
+                if (item != null) // writes the selected items stats to the screen, if thers any
                 {
                     Console.WriteLine(item.name + strSpace);
                     Console.WriteLine(Program.convertToLen(item.description, 60) + strSpace);
@@ -141,7 +142,7 @@ namespace rpg_game.Game_Classes
                 for (int i = 0; i < 20; i++)
                     Console.Write(strSpace);
 
-                ConsoleKey ck = Console.ReadKey(true).Key;
+                ConsoleKey ck = Console.ReadKey(true).Key; // check what key was pressed and what to do with it n stuff...
                 if (Player.up == ck)
                 {
                     if (selected < 1)
@@ -173,7 +174,7 @@ namespace rpg_game.Game_Classes
                 {
                     selected = Math.Min(12, selected + 1);
                 }
-                else if (Player.select == ck)
+                else if (Player.select == ck) // do things with item when selected
                 {
 
                     if (selected >= 0)
@@ -194,7 +195,7 @@ namespace rpg_game.Game_Classes
                             player.equipped[convert[selected]].unequip(ref player);
                     }
                 }
-                else if (Player.del == ck)
+                else if (Player.del == ck) // remove the item from the internet
                 {
                     if (selected != 12)
                     {
