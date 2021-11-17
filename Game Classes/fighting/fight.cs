@@ -9,7 +9,6 @@ namespace rpg_game.Game_Classes
 {
     class Fight
     {
-
         private static ListItem[] HitLocations = {
             new ListItem("Head"),
             new ListItem("Torso"),
@@ -25,69 +24,36 @@ namespace rpg_game.Game_Classes
             Legs,
             Null
         };
-        public static void update() {
-            /*
-            Engine game = new Fight_Engine.Engine(80, 40, "Fight");
-            int hp = 305;
-            HBColor[] playerHBCol = {
-                new HBColor(15, ConsoleColor.Red),
-                new HBColor(30, ConsoleColor.Yellow),
-                new HBColor(80, ConsoleColor.Green),
-            };
 
-            HBColor[] enemyHBCol = {
-                new HBColor(80, ConsoleColor.Red),
-            };
-
-            ListItem[] controlList = {
-                new ListItem("Fight"),
-                new ListItem("Defend"),
-                new ListItem("Run Away (coward)"),
-            };
-
-            MenuList menu = new MenuList(controlList);
-
-            while(true) {
-                HandleInput(ref menu);
-                game.DrawBorder();
-                FightHelpers.DrawHealthBar(hp, 305, 10, 20, ref game, playerHBCol, true);
-                FightHelpers.DrawHealthBar(hp, 305, 2, 10, ref game, enemyHBCol);
-
-                hp = hp < 0 ? 305 : hp-1;
-
-                game.DrawText(Enemy.enemies[1].Introduction, 5, 25, 20, true);
-                game.DrawText("testing", 5, 15, box:true);
-
-                menu.DrawList(ref game, 3, 32);
-
-                game.SwapBuffers();
-                Console.Clear();
-                game.DrawScreen();
-                Program.sleep(16);
-            }*/
-
-            var player = new Player();
-            StartFight(ref player, Enemy.enemies[6]);
-        }
-
+        // This function starts a fight between the player and an enemy.
         public static bool StartFight(ref Player player, Enemy enemy) {
+            // Give player a warning, since fight clears screen.
             Console.WriteLine("A fight is beginning, make sure you've read what you must.\nPress any key to continue");
             Console.ReadKey(true);
+
+            // Create an instance of the fight engine.
             Engine game = new Fight_Engine.Engine(80, 40, "Fighting " + enemy.Name);
+
+            // Holds color of player healthbar, depending on health percentage.
             HBColor[] playerHBCol = {
                 new HBColor(15, ConsoleColor.Red),
                 new HBColor(30, ConsoleColor.Yellow),
                 new HBColor(100, ConsoleColor.Green),
             };
 
+            // Holds color of enemy healthbar, depending on health percentage.
             HBColor[] enemyHBCol = {
                 new HBColor(100, ConsoleColor.Red),
             };
 
+            // Clear console in advance.
             Console.Clear();
 
+            // FightBeginning runs before fight, showing the enemy introduction text.
             FightBeginning(ref game, enemy);
+            // HandleFight runs the actual fight.
             HandleFight(ref game, ref player, enemy, playerHBCol, enemyHBCol);
+            // FightEnding runs after the fight, showing the enemy's last words.
             FightEnding(ref game, ref player, enemy);
 
             return false;
