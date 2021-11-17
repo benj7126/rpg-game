@@ -13,6 +13,7 @@ namespace rpg_game.Game_Classes
         int dir = 0; // 0: up, 1: left, 2: down, 3: right
         Dictionary<int, Vector> converter = new Dictionary<int, Vector>();
         Vector plrPosInDung = new Vector(0, 0);
+        bool ongoing = true;
 
         int[,] actualDungeon;
 
@@ -30,7 +31,7 @@ namespace rpg_game.Game_Classes
             {
                 for (int y = 0; y < dLength; y++)
                 {
-                    actualDungeon[x, y] = r.Next(1, senario.senarioList.Count);
+                    actualDungeon[x, y] = r.Next(2, senario.senarioList.Count);
                 }
             }
             converter.Add(0, new Vector(0, 1));
@@ -43,8 +44,9 @@ namespace rpg_game.Game_Classes
         {
             Program.print("While walking into this tower, you get the feeling of regret, you turn around ms300 the exit is gone.");
             Program.print("It's do or die now, you tell yourself.");
+            Program.print("Entering dungeon level "+layer);
 
-            while (true)
+            while (ongoing)
             {
                 ChoiceSelector CS = new ChoiceSelector();
                 int Choice = CS.update(ref plr, new List<string>() {"Look forward", "Turn left", "Turn right", "Manage inventory"}, "What to do now?");
@@ -62,7 +64,7 @@ namespace rpg_game.Game_Classes
                         y = (int)plrPosInDung.y + (int)converter[dir].y;
                         if (isNotWall(new Vector(x, y)))
                         {
-                            senario.senarioList[actualDungeon[x, y]].onLook(ref plr);
+                            senario.senarioList[actualDungeon[x, y]].onLook(ref plr, layer);
                             proced(new Vector(x, y));
                         }
                         else
@@ -95,8 +97,12 @@ namespace rpg_game.Game_Classes
             int Choice = CS.update(ref plr, new List<string>() { "Yes", "No" }, "Do you wish to proceed?");
             if (Choice == 0)
             {
-                plrPosInDung = pos;if (senario.senarioList[actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y]].onEnter(ref plr) == 0)
+                plrPosInDung = pos;
+                int back = senario.senarioList[actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y]].onEnter(ref plr, layer);
+                if (back == 0)
                     actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y] = 0;
+                else if (back == 1)
+                    ongoing = false;
                 return true;
             }
             return false;

@@ -20,8 +20,11 @@ namespace rpg_game.Game_Classes.Dungeon
         public static List<senario> senarioList = new List<senario>()
         {
             new AlreadyBeenThere(),
+            new Exit(),
             new Empty(),
             new Enemy1(),
+            new Enemy2(),
+            new Chest(),
         };
     }
 }

@@ -49,7 +49,7 @@ namespace rpg_game
         public static void gameStart()
         {
             Console.Clear();
-            print("Starting game\n", ms: 200);
+            print("Booting up Hellcrawler", ms: 200);
             game = new GameWorldController();
             bool runing = false;
             while (!runing)

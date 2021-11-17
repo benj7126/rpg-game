@@ -148,11 +148,15 @@ namespace rpg_game.Game_Classes
             new Item("Boomstick", 30, "Yeah. All right, you primitive screwheads, listen up. See this? This... is my BOOMSTICK! It's a twelve gauge double barreled Remington, S-Mart's top-of-the-line. You can find this in the sporting goods department. That's right, this sweet baby was made in Grand Rapids, Michigan. Retails for about $109.95. It's got a walnut stock, cobalt blue steel and a hair trigger. That's right. Shop Smart. Shop S-Mart. YA GOT THAT!?", 7, 0, Player.itemPlace.MainHand),
             new Item("Oni's katana", 31, "You gotta fight evil with evil",9,1, Player.itemPlace.MainHand),
             new Item("Suit of armor", 32, "If you wear this armor you'll look like you're straight ouf of medieval times",0,9, Player.itemPlace.Armor),
-            new Item("Biker club leader's jacket", 33, "This jacket should make you feel really cool wearing it. But it's a bit too big and now you just look sorta dumb",3,7, Player.itemPlace.Armor),
-            new Item("Nunchucks", 34, "For some reason it says 'Nintendo Wii controller' on your Nunchucks but nontheless someone's getting beat up",10,3, Player.itemPlace.Armor),
+            new Item("Biker club leader's jacket", 33, "This jacket should make you feel really cool wearing it. But it's a bit too big and now you just look sorta dumb",5,9, Player.itemPlace.Armor),
+            new Item("Nunchucks", 34, "For some reason it says 'Nintendo Wii controller' on your Nunchucks but nontheless someone's getting beat up",10,3, Player.itemPlace.MainHand),
 
+            new Item("Red demon tail", 35, "The tail of a red demon that you ripped off, its quite stylish, maby use it as a ring",3, 9, Player.itemPlace.Ring),
+            new Item("Red demon horns", 36, "Fitting, for someones as horrible as you, daring to rip off demon body parts and wearing them as a necklace",5,7, Player.itemPlace.Amulet),
+            new Item("Fork", 37, "A demon's trident thingy, but it's a little too smaal, maby it could be used as a toothpick",5,1, Player.itemPlace.OffHand),
 
-
+            new Item("Stick", 38, "The remains of a deamon, it looks like a stick", 6, 6, Player.itemPlace.MainHand),
+            new Item("Sticks", 39, "A lot of sticks, stik them together and use them as armor or something", 7, 9, Player.itemPlace.Armor)
         };
     }
 }

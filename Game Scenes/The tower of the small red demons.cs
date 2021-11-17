@@ -62,6 +62,7 @@ namespace rpg_game.Game_Scenes
 
             DungeonCrawler DC = new DungeonCrawler(ref plr, layer);
             DC.gameLoop();
+            layer++;
 
             return false;
         }

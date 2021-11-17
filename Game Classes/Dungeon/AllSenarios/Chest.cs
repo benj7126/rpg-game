@@ -35,7 +35,7 @@ namespace rpg_game.Game_Classes.Dungeon.AllSenarios
                     item = Item.getItemByID(32);
                 else
                     item = Item.getItemByID(34);
-                drops = new drop[] { new drop(Item.getItemByID(10), 1f), new drop(Item.getItemByID(11), 0.6f), new drop(Item.getItemByID(30), 0.6f), new drop(Item.getItemByID(31), 0.6f), new drop(Item.getItemByID(32), 0.6f), , new drop(Item.getItemByID(34), 0.3f) };
+                drops = new drop[] { new drop(Item.getItemByID(10), 1f), new drop(Item.getItemByID(11), 0.6f), new drop(Item.getItemByID(30), 0.6f), new drop(Item.getItemByID(31), 0.6f), new drop(Item.getItemByID(32), 0.6f), new drop(Item.getItemByID(34), 0.3f) };
             }
 
             Program.print("You walk into the room to confirm you suspitions, and you are confronted with a chest, nothing else. The chest is standing in the middle of the room.");
