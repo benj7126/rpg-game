@@ -102,9 +102,10 @@ namespace rpg_game.Game_Classes.maze
                     // sideDist holds the initial length, needed to travel, for
                     // the ray to be on an x-intersection and a y-intersection.
                     Vector2d sideDist = new Vector2d(0, 0);
-                    // The x-value holds the amount, x has to increase by, to go
+                    // The x-value holds the amount, y increases by, to go
                     // from one intersection of the grid in the y-axis, to
-                    // another. The y-value is the opposite.
+                    // another. In other words, the increase in Y, when X
+                    // increases by one. The y-value is the opposite.
                     // The ternary operator is used to avoid division by zero,
                     // setting it to a really high number in that case.
                     Vector2d diffDist = new Vector2d(rayDir.x == 0 ? 100000000 : Math.Abs(1 / rayDir.x),
