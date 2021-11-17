@@ -64,7 +64,6 @@ namespace rpg_game.Game_Classes
                         {
                             senario.senarioList[actualDungeon[x, y]].onLook(ref plr);
                             proced(new Vector(x, y));
-                            Program.print("oh");
                         }
                         else
                         {
@@ -96,9 +95,8 @@ namespace rpg_game.Game_Classes
             int Choice = CS.update(ref plr, new List<string>() { "Yes", "No" }, "Do you wish to proceed?");
             if (Choice == 0)
             {
-                plrPosInDung = pos;
-                senario.senarioList[actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y]].onEnter(ref plr);
-                actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y] = 0;
+                plrPosInDung = pos;if (senario.senarioList[actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y]].onEnter(ref plr) == 0)
+                    actualDungeon[(int)plrPosInDung.x, (int)plrPosInDung.y] = 0;
                 return true;
             }
             return false;

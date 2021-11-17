@@ -91,7 +91,7 @@ namespace rpg_game.Game_Classes
                 new drop[] { }),
 
             new Enemy("LinuxOS user","What you're referring to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX. But what do you know about that?",
-                15, 6, 6,
+                60, 14, 6,
                 "If this game was running on Linux I would've beaten you",
                 new drop[] { }),
 
@@ -112,6 +112,21 @@ namespace rpg_game.Game_Classes
                 50, 14, 10,
                 "It... was a good fight... seems like pizzas will... never see pineapples again. I give you my last pizza take care of it",
                 new drop[] {new drop(Item.getItemByID(12), 1f)}),
+
+            new Enemy("Demon school thug","You gon' cross my territory, stupid human. Yo gon' pay for dis.",
+                40, 10, 11,
+                "You got, fair n square, but my brothers will avenge me!",
+                new drop[] {new drop(Item.getItemByID(9), 0.4f), new drop(Item.getItemByID(10), 0.2f), new drop(Item.getItemByID(11), 0.05f)}),
+
+            new Enemy("Demon biker","*wroom* *wroom* YOU IN DA WROOONG TERRITORY KID, This territory belongs to the demon school bike... club? FIGHT ME!",
+                50, 12, 12,
+                "Dont take my bike! I beg of... *cough* you...",
+                new drop[] {new drop(Item.getItemByID(10), 0.3f), new drop(Item.getItemByID(11), 0.2f)}),
+
+            new Enemy("Demon bike club leader","For my BROTERS!",
+                90, 24, 13,
+                "Seems like the club is doomed now.",
+                new drop[] {new drop(Item.getItemByID(10), 0.5f), new drop(Item.getItemByID(11), 0.3f), new drop(Item.getItemByID(33), 1f)}),
         };
 
     }
