@@ -104,6 +104,7 @@ namespace rpg_game.Game_Classes
 
         // HandleFight runs the actual fight.
         private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
+            // Store the enemy max health in a variable, to be used as current health.
             int enemyHP = enemy.Health;
 
             bool attacking = true;
@@ -277,6 +278,7 @@ namespace rpg_game.Game_Classes
             // The following line stops blocking the executing thread, if no key
             // has been pressed. It has been commented out, since it is no
             // longer useful, but might be later.
+
             //if (!Console.KeyAvailable) return null;
 
             ListItem selectedItem = null;
