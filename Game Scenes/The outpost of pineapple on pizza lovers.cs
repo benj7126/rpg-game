@@ -212,10 +212,10 @@ namespace rpg_game.Game_Scenes
             Program.print($"Well, follow me then {Name}", name: "Jacob", delay: 200);
             Program.print("Jacob begins walking into the building that you now assume are their barracks, you follow him\n", delay: 100);
 
-            Program.print($"Well, as you know the names Jacob, I dont really do anything around here... Nobody dose, honsetly. It's not like we have anything to do either, well except going and fighting in that arena, speaking off...", name: "Jacob", delay: 200);
+            Program.print($"Well, as you know the names Jacob, I dont really do anything around here... Nobody does, honestly. It's not like we have anything to do either, well except going and fighting in that arena, speaking off...", name: "Jacob", delay: 200);
             Program.print($"You seem pretty new down here, new to hell that is", name: "Jacob", delay: 200);
             Program.print($"If you don't want to see what happens when you double die, I recomend getting some gear, since that is practically all that matters down here", name: "Jacob", delay: 200);
-            Program.print($"If you are confident, you could go to the arena... Thou you might die, so better not be too recless they are merciless over there", name: "Jacob", delay: 200);
+            Program.print($"If you are confident, you could go to the arena... Though you might die, so better not be too reckless they are merciless over there", name: "Jacob", delay: 200);
             Program.print($"Anyway, for every fight you win over there you get a PPT, pinapple pizza token, if you were wondering. They can be used to trade in for some alright gear", name: "Jacob", delay: 200);
 
             Program.print("\nWhile walking, you pass a lot of rooms, Jacob stops at one of them", delay: 100);
@@ -226,10 +226,10 @@ namespace rpg_game.Game_Scenes
                 Program.print($"Semms like he's nice enough", name: "Jacob", delay: 200);
                 Program.print("He then signals for you to follow him inside", delay: 100);
                 Program.print("The room is filled to the brim with random objects", delay: 100);
-                Program.print("Jacob begins looking thru them", delay: 100);
+                Program.print("Jacob begins looking through them", delay: 100);
                 Program.print($"Ah!", name: "Jacob", delay: 200);
                 Program.print($"Here you go {Name}", name: "Jacob", delay: 200);
-                Program.print("Jacob hands you a handfull of random stuff", delay: 100);
+                Program.print("Jacob hands you a handful of random stuff", delay: 100);
                 plr.pickupItem(Item.getItemByID(13));
                 plr.pickupItem(Item.getItemByID(14));
                 plr.pickupItem(Item.getItemByID(15));
@@ -245,8 +245,8 @@ namespace rpg_game.Game_Scenes
                 Program.print("And continues walking", delay: 100);
             }
             Program.print("The two of you continue walking", delay: 100);
-            Program.print("Jacob has more or less shown you around, but there really wasen't anything of much interest to you", delay: 100);
-            Program.print("Well that about dose it, ima leave you on your own now, good luck out there man.", delay: 100);
+            Program.print("Jacob has more or less shown you around, but there really wasn't anything much of interest to you", delay: 100);
+            Program.print("Well that about does it, I'll leave you on your own now, good luck out there man.", delay: 100);
             Program.print("You walk away from the barracks", delay: 100);
 
             flags["Barracks"] = true;
@@ -275,15 +275,15 @@ namespace rpg_game.Game_Scenes
         {
             if (!flags["Shop"])
             {
-                Program.print("While walking around the outpost you stumple into a place called the PP Hut, you are hessitant to go in there, but you do it non the less", delay: 100);
+                Program.print("While walking around the outpost you stumble into a place called the PP Hut, you are hesitant to go in there, but you do it nonetheless", delay: 100);
                 Program.print("You open up the door and a person comes to great you", delay: 100);
 
                 Program.print("Hey there fella!", name: "Shop owner", delay: 100);
                 Program.print("Haven't seen you here beffore...", name: "Shop owner", delay: 100);
-                Program.print("Folks around here call me the Shop owner, since i run this damn place", name: "Shop owner", delay: 100);
-                Program.print("Oh, yeah, this is a shop if you haden't already noticed", name: "Shop owner", delay: 100);
+                Program.print("Folks around here call me the Shop owner, since I run this damn place", name: "Shop owner", delay: 100);
+                Program.print("Oh, yeah, this is a shop if you hadn't already noticed", name: "Shop owner", delay: 100);
                 Program.print("We make weapons and stuff round ere", name: "Shop owner", delay: 300);
-                Program.print("If ya want anythin you will need some a dose PPT's from that one arena over thee, they supply us with food and ingredients so we have our own little currency going on here ya see...", name: "Shop owner", delay: 300);
+                Program.print("If ya want anythin you will need some a those PPT's from that one arena over thee, they supply us with food and ingredients so we have our own little currency going on here ya see...", name: "Shop owner", delay: 300);
                 Program.print("Wellll, anyways", name: "Shop owner", delay: 100);
 
                 flags["Shop"] = true;
@@ -371,13 +371,13 @@ namespace rpg_game.Game_Scenes
         {
             Program.print("You cause an uproar", delay: 100);
             Program.print("Throwing stones at people while hiding", delay: 100);
-            Program.print("Going around screaming that pinapple on pizza is awfull, still while hiding", delay: 100);
+            Program.print("Going around screaming that pinapple on pizza is awful, still while hiding", delay: 100);
             Program.print("Hitting random people in the head when you pass them", delay: 100);
             Program.print("And you continue doing this, until suddenly, you hear a loud noise", delay: 100);
-            Program.print("STOMP STOMP STOMP, the sound comes from behind you, you turn around and see a MASSIVE figurer", delay: 100);
+            Program.print("STOMP STOMP STOMP, the sound comes from behind you, you turn around and see a MASSIVE figure", delay: 100);
 
             Program.print($"Hah, hah......", name: "BIG MAN", delay: 200);
-            Program.print($"Of all the awfull things you have done here, why did you have to call pinapple on pizza awfull?", name: "BIG MAN", delay: 200);
+            Program.print($"Of all the awful things you have done here, why did you have to call pinapple on pizza awful?", name: "BIG MAN", delay: 200);
             Program.print("How do you answer?");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("> Just cuz");
