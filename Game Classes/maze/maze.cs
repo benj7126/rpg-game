@@ -32,11 +32,11 @@ namespace rpg_game.Game_Classes.maze
             // Position vector
             Vector2d pos = new Vector2d(5.5, 7.5);
             // Directional unit vector
-            Vector2d dir = new Vector2d(0, -1);
+            Vector2d dir = new Vector2d(0, 1);
             // Camera view plane, held as 2d vector line.
             // Were this actually 3d, not raycasting, it would be a plane,
             // represtented by 2 vectors.
-            Vector2d plane = new Vector2d(-0.33, 0);
+            Vector2d plane = new Vector2d(0.33, 0);
 
             // The location of the win and exit cells
             Vector2d winC = new Vector2d(-1, -1);
