@@ -59,6 +59,7 @@ namespace rpg_game.Game_Classes
             return false;
         }
 
+        // FightBeginning runs before fight, showing the enemy introduction text.
         private static void FightBeginning(ref Engine game, Enemy enemy, int tickSpeed = 50) {
             string intro = "";
             int WrapLength = 40;
@@ -70,8 +71,10 @@ namespace rpg_game.Game_Classes
                 Program.sleep(tickSpeed);
             }
 
+            // Shows blinking text, saying "Press any key to continue!".
             bool blink = false;
             while(true) {
+                // Draws enemy introduction text, every frame.
                 game.DrawText(intro, (game.GetWinWidth()-WrapLength)/2, (game.GetWinHeight() - intro.Length / WrapLength)/2, WrapLength, true);
 
                 blink = !blink;
@@ -87,7 +90,7 @@ namespace rpg_game.Game_Classes
                 game.SwapBuffers();
                 game.DrawScreen();
 
-
+                // Remove queued keypresses.
                 if (Console.KeyAvailable)
                 {
                     while (Console.KeyAvailable)
@@ -99,6 +102,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
+        // HandleFight runs the actual fight.
         private static void HandleFight(ref Engine game, ref Player player, Enemy enemy, HBColor[] playerHB, HBColor[] enemyHB) {
             int enemyHP = enemy.Health;
 
@@ -229,6 +233,7 @@ namespace rpg_game.Game_Classes
             }
         }
 
+        // FightEnding runs after the fight, showing the enemy's last words.
         private static void FightEnding(ref Engine game, ref Player plr, Enemy enemy, int tickSpeed = 50) {
             string lastWords = "";
             int WrapLength = 40;
