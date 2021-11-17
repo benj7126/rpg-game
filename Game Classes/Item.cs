@@ -145,6 +145,13 @@ namespace rpg_game.Game_Classes
             new Item("3D Sword", 27, "It's a simple sword, but for some reason, when you look at it, it's like it has... another dimension, but you can't really see it, you can just feel it, it kinda makes your brain go numb to think about.",6,-999999, Player.itemPlace.MainHand, sEffx: new int[] {}),
             new Item("Cube", 28, "It has six sides...",-20,20, Player.itemPlace.OffHand, sEffx: new int[] {}),
             new Item("Dungeon wall", 29, "You found a piece of the maze that was broken off. It fits you weirdly well...",5,10, Player.itemPlace.OffHand, sEffx: new int[] {}),
+            new Item("Boomstick", 30, "Yeah. All right, you primitive screwheads, listen up. See this? This... is my BOOMSTICK! It's a twelve gauge double barreled Remington, S-Mart's top-of-the-line. You can find this in the sporting goods department. That's right, this sweet baby was made in Grand Rapids, Michigan. Retails for about $109.95. It's got a walnut stock, cobalt blue steel and a hair trigger. That's right. Shop Smart. Shop S-Mart. YA GOT THAT!?", 7, 0, Player.itemPlace.MainHand),
+            new Item("Oni's katana", 31, "You gotta fight evil with evil",9,1, Player.itemPlace.MainHand),
+            new Item("Suit of armor", 32, "If you wear this armor you'll look like you're straight ouf of medieval times",0,9, Player.itemPlace.Armor),
+            new Item("Biker club leader's jacket", 33, "This jacket should make you feel really cool wearing it. But it's a bit too big and now you just look sorta dumb",3,7, Player.itemPlace.Armor),
+            new Item("Nunchucks", 34, "For some reason it says 'Nintendo Wii controller' on your Nunchucks but nontheless someone's getting beat up",10,3, Player.itemPlace.Armor),
+
+
 
         };
     }

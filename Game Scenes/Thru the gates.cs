@@ -10,7 +10,7 @@ namespace rpg_game.Game_Scenes
     {
         public override bool Start(ref Player plr)
         {
-            Program.print("You walk through the gates of hell proud of yourself, so far you've come.");
+            Program.print("You walk through the gates of hell proud of yourself, so far you've come. Time to show those on earth");
             plr.win = true;
             return false;
         }
